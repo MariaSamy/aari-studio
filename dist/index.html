@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Aari embroidery lessons and printable designs in Tamil and English.">
+<title>Aari Studio</title>
+<link rel="stylesheet" href="style.css"><script defer src="app.js"></script><script defer src="catalog.js"></script><script defer src="designs.js"></script><script defer src="ready-designs.js"></script>
+</head>
+<body>
+<header class="top"><div class="bar">
+<a class="brand" href="#home"><span aria-hidden="true" class="mark">✿</span> Aari Studio</a>
+<nav aria-label="Main navigation">
+<a href="#learn" data-i="learn"></a><a href="#designs" data-i="designs"></a><a href="#ready-designs" data-i="readyNav"></a><a href="#practice" data-i="practice"></a>
+</nav>
+<button class="language" id="language" type="button">தமிழ்</button>
+</div></header>
+<main>
+<section class="hero" id="home"><div class="hero-copy">
+<p class="kicker" data-i="art"></p><h1 data-i="hello"></h1><p class="intro" data-i="intro"></p>
+<div class="actions"><a class="button" href="#frame-setup" id="start" data-i="start"></a><a class="button secondary" href="#ready-designs" data-i="readyBrowse"></a></div>
+</div><div class="hero-art" aria-hidden="true"></div></section>
+<section class="section" id="ready-designs" aria-labelledby="ready-title">
+<div class="design-heading"><h2 id="ready-title" data-i="readyTitle"></h2><a class="ready-pattern-link" href="#designs" data-i="readyPatterns"></a></div>
+<p class="section-intro" data-i="readyIntro"></p>
+<div id="ready-selection" class="ready-selection" hidden>
+<p id="ready-selected" role="status"></p><button type="button" class="button soft" id="ready-clear" data-i="readyClear"></button>
+</div>
+<p id="ready-save-note" class="notice" role="status"></p>
+<div id="ready-cards" class="ready-grid"></div>
+<template id="ready-template">
+<article class="ready-card">
+<button type="button" class="ready-open">
+<img alt="" width="960" height="640" loading="lazy"><span class="ready-caption"><span><strong></strong><small></small></span><span class="ready-action"></span></span>
+</button>
+</article>
+</template>
+<dialog id="ready-preview" class="ready-dialog" aria-labelledby="ready-preview-title">
+<div class="ready-dialog-copy"><div><h3 id="ready-preview-title"></h3><p id="ready-preview-place"></p></div><button class="button soft" id="ready-close" type="button" data-i="readyClose" autofocus></button></div>
+<img id="ready-preview-image" alt="">
+<div class="ready-dialog-copy"><p id="ready-preview-detail"></p><button type="button" class="button" id="ready-choose" data-i="readyChoose"></button></div>
+</dialog>
+</section>
+<section class="section" id="learn">
+<h2 data-i="learn"></h2>
+<nav class="lesson-nav" aria-label="Lessons" data-label="lessonsLabel">
+<a href="#frame-setup" data-i="frameTitle"></a><a href="#chain-stitch" data-i="lessonTitle"></a><a href="#curves-corners" data-i="curvesTitle"></a><a href="#adding-beads" data-i="beadsTitle"></a><a href="#floral-motif" data-i="flowerTitle"></a><a href="#backstitch" data-i="backstitchTitle"></a><a href="#spiral-chain" data-i="spiralTitle"></a>
+<a href="#long-short-chain" data-i="longShortTitle"></a>
+</nav>
+<article class="lesson-panel" id="frame-setup" aria-labelledby="frame-title">
+<p class="kicker" data-i="frameTag"></p><h3 class="lesson-title" id="frame-title" data-i="frameTitle"></h3><p class="section-intro" data-i="frameIntro"></p>
+<div class="lesson-card"><aside><h4 data-i="tools"></h4><ul id="frame-tools"></ul><p data-i="frameTip"></p></aside>
+<div class="steps"><img class="diagram" src="frame-setup.png" alt="" data-alt="frameAlt" width="900" height="340">
+<ol id="frame-steps"></ol><p class="exercise" data-i="frameExercise"></p>
+<div class="actions"><button type="button" class="button" id="frame-done" aria-pressed="false"></button><a class="button soft" href="#chain-stitch" data-i="nextLesson"></a></div>
+</div></div></article>
+<article class="lesson-panel" id="chain-stitch" aria-labelledby="chain-title" hidden>
+<p class="kicker" data-i="lessonTag"></p><h3 class="lesson-title" id="chain-title" data-i="lessonTitle"></h3><p class="section-intro" data-i="lessonIntro"></p>
+<div class="lesson-card"><aside><h4 data-i="tools"></h4><ul id="tools"></ul><p data-i="setup"></p></aside>
+<div class="steps">
+<figure class="stitch-demo">
+<figcaption id="demo-title" data-i="demoTitle"></figcaption>
+<video id="stitch-video" controls playsinline preload="none" poster="chain-stitch-demo-poster.png" width="768" height="432" aria-labelledby="demo-title" aria-describedby="demo-note">
+<source src="chain-stitch-demo.mp4" type="video/mp4">
+<track kind="captions" srclang="en" label="English" src="chain-stitch-demo-en.vtt" default>
+<track kind="captions" srclang="ta" label="தமிழ்" src="chain-stitch-demo-ta.vtt">
+</video>
+<p id="demo-note" data-i="demoNote"></p>
+</figure>
+<img class="diagram" src="chain-stitch.png" alt="" data-alt="diagramAlt" width="900" height="300">
+<ol id="steps"></ol><p class="exercise" data-i="exercise"></p>
+<div class="actions"><button type="button" class="button" id="done" aria-pressed="false"></button><a class="button soft" href="#curves-corners" data-i="goToCurves"></a></div>
+</div></div></article>
+<article class="lesson-panel" id="curves-corners" aria-labelledby="curves-title" hidden>
+<p class="kicker" data-i="curvesTag"></p><h3 class="lesson-title" id="curves-title" data-i="curvesTitle"></h3><p class="section-intro" data-i="curvesIntro"></p>
+<div class="lesson-card"><aside><h4 data-i="tools"></h4><ul id="curves-tools"></ul><p data-i="curvesTip"></p></aside>
+<div class="steps"><img class="diagram" src="curves-corners.png" alt="" data-alt="curvesAlt" width="900" height="340">
+<ol id="curves-steps"></ol><p class="exercise" data-i="curvesExercise"></p>
+<div class="actions"><button type="button" class="button" id="curves-done" aria-pressed="false"></button><a class="button soft" href="#adding-beads" data-i="goToBeads"></a></div>
+</div></div></article>
+<article class="lesson-panel" id="adding-beads" aria-labelledby="beads-title" hidden>
+<p class="kicker" data-i="beadsTag"></p><h3 class="lesson-title" id="beads-title" data-i="beadsTitle"></h3><p class="section-intro" data-i="beadsIntro"></p>
+<div class="lesson-card"><aside><h4 data-i="tools"></h4><ul id="beads-tools"></ul><p data-i="beadsTip"></p></aside>
+<div class="steps">
+<figure class="stitch-demo">
+<figcaption id="beads-demo-title" data-i="beadsDemoTitle"></figcaption>
+<video id="beads-video" controls playsinline preload="none" poster="beads-demo-poster.png" width="768" height="432" aria-labelledby="beads-demo-title" aria-describedby="beads-demo-note">
+<source src="beads-demo.mp4" type="video/mp4">
+<track kind="captions" srclang="en" label="English" src="beads-demo-en.vtt" default>
+<track kind="captions" srclang="ta" label="தமிழ்" src="beads-demo-ta.vtt">
+</video>
+<p id="beads-demo-note" data-i="demoNote"></p>
+</figure>
+<ol id="beads-steps"></ol><p class="exercise" data-i="beadsExercise"></p>
+<div class="actions"><button type="button" class="button" id="beads-done" aria-pressed="false"></button><a class="button soft" href="#floral-motif" data-i="goToFlower"></a></div>
+</div></div></article>
+<article class="lesson-panel" id="floral-motif" aria-labelledby="flower-title" hidden>
+<p class="kicker" data-i="flowerTag"></p><h3 class="lesson-title" id="flower-title" data-i="flowerTitle"></h3><p class="section-intro" data-i="flowerIntro"></p>
+<div class="lesson-card"><aside><h4 data-i="tools"></h4><ul id="flower-tools"></ul><p data-i="flowerTip"></p></aside>
+<div class="steps"><img class="diagram" src="floral-motif.png" alt="" data-alt="flowerAlt" width="900" height="340" loading="lazy">
+<ol id="flower-steps"></ol><p class="exercise" data-i="flowerExercise"></p>
+<div class="actions"><button type="button" class="button" id="flower-done" aria-pressed="false"></button><a class="button soft" href="small-flower-a4.pdf" download data-i="flowerDownload"></a><a class="button soft" href="#backstitch" data-i="goToBackstitch"></a></div>
+</div></div></article>
+<article class="lesson-panel" id="backstitch" aria-labelledby="backstitch-title" hidden>
+<p class="kicker" data-i="backstitchTag"></p><h3 class="lesson-title" id="backstitch-title" data-i="backstitchTitle"></h3><p class="section-intro" data-i="backstitchIntro"></p>
+<div class="lesson-card"><aside><h4 data-i="tools"></h4><ul id="backstitch-tools"></ul><p data-i="backstitchTip"></p></aside>
+<div class="steps"><img class="diagram" src="backstitch.png" alt="" data-alt="backstitchAlt" width="900" height="300" loading="lazy">
+<ol id="backstitch-steps"></ol><p class="exercise" data-i="backstitchExercise"></p>
+<div class="actions"><button type="button" class="button" id="backstitch-done" aria-pressed="false"></button><a class="button soft" href="#spiral-chain" data-i="spiralNext"></a></div>
+</div></div></article>
+<article class="lesson-panel" id="spiral-chain" aria-labelledby="spiral-title" hidden>
+<p class="kicker" data-i="spiralTag"></p><h3 class="lesson-title" id="spiral-title" data-i="spiralTitle"></h3><p class="section-intro" data-i="spiralIntro"></p>
+<div class="lesson-card"><aside><h4 data-i="tools"></h4><ul id="spiral-tools"></ul><p data-i="spiralTip"></p></aside>
+<div class="steps"><img class="diagram" src="spiral-chain.png" alt="" data-alt="spiralAlt" width="900" height="340" loading="lazy">
+<ol id="spiral-steps"></ol><p class="exercise" data-i="spiralExercise"></p>
+<div class="actions"><button type="button" class="button" id="spiral-done" aria-pressed="false"></button><a class="button soft" href="#long-short-chain" data-i="longShortNext"></a></div>
+</div></div></article>
+<article class="lesson-panel" id="long-short-chain" aria-labelledby="long-short-title" hidden>
+<p class="kicker" data-i="longShortTag"></p><h3 class="lesson-title" id="long-short-title" data-i="longShortTitle"></h3><p class="section-intro" data-i="longShortIntro"></p>
+<div class="lesson-card"><aside><h4 data-i="tools"></h4><ul id="long-short-tools"></ul><p data-i="longShortTip"></p></aside>
+<div class="steps"><img class="diagram" src="long-short-chain.png" alt="" data-alt="longShortAlt" width="900" height="340" loading="lazy">
+<ol id="long-short-steps"></ol><p class="exercise" data-i="longShortExercise"></p>
+<button type="button" class="button" id="long-short-done" aria-pressed="false"></button>
+</div></div></article>
+</section>
+<section class="section" id="designs">
+<div class="design-heading"><h2 data-i="designTitle"></h2><a class="button soft" href="#design-mixer" data-i="mixerTitle"></a></div>
+<div class="design-fields"><label><span data-i="placementLabel"></span><select id="placement-filter"><option value="" data-i="allPlacements"></option><option value="small" data-i="small"></option><option value="sleeve" data-i="sleeve"></option><option value="neck" data-i="neck"></option><option value="border" data-i="border"></option></select></label><label><span data-i="levelLabel"></span><select id="level-filter"><option value="" data-i="allLevels"></option><option value="beginner" data-i="beginner"></option><option value="intermediate" data-i="intermediate"></option></select></label></div>
+<p id="gallery-empty" data-i="noDesigns" hidden></p><div class="gallery-grid" id="gallery-cards"></div>
+<template id="gallery-card-template"><article class="gallery-card"><div class="gallery-media"></div><div class="gallery-copy"><h3></h3><p></p><a href="#" download></a></div></article></template>
+<section class="mixer" id="design-mixer" aria-labelledby="mixer-title">
+<div class="mixer-controls"><h3 id="mixer-title" data-i="mixerTitle"></h3><p data-i="mixerIntro"></p><div class="design-fields"><label><span data-i="placementLabel"></span><select id="mix-placement"><option value="small" data-i="small"></option><option value="sleeve" data-i="sleeve"></option><option value="neck" data-i="neck"></option><option value="border" data-i="border"></option></select></label><label><span data-i="mainLabel"></span><select id="mix-main"><option value="lotus" data-i="lotus"></option><option value="paisley" data-i="paisley"></option><option value="jasmine" data-i="jasmine"></option><option value="leaf" data-i="leaf"></option><option value="bud" data-i="bud"></option></select></label><label><span data-i="accentLabel"></span><select id="mix-accent"><option value="leaf" data-i="leaf"></option><option value="bud" data-i="bud"></option><option value="lotus" data-i="lotus"></option><option value="paisley" data-i="paisley"></option><option value="jasmine" data-i="jasmine"></option></select></label><label><span data-i="paletteLabel"></span><select id="mix-palette"><option value="wine" data-i="wine"></option><option value="teal" data-i="teal"></option><option value="indigo" data-i="indigo"></option></select></label></div>
+<div class="actions"><button type="button" class="button" id="mix-surprise" data-i="surprise"></button><a class="button soft" id="mix-download" download="aari-studio-mixed-design.png" data-i="downloadImage"></a></div></div>
+<canvas id="mix-preview" width="600" height="360" role="img" data-label="previewLabel"></canvas>
+<div class="ai-panel"><h4 data-i="aiTitle"></h4><p data-i="aiText"></p>
+<div class="actions"><button type="button" class="button soft" id="ai-copy" data-i="aiCopy"></button><a class="button soft" href="https://chatgpt.com/" target="_blank" rel="noopener" data-i="openChatGPT"></a></div>
+<textarea id="ai-prompt" readonly data-label="aiPromptLabel" hidden></textarea><p id="mix-feedback" role="status"></p></div>
+</section>
+<p class="kicker featured-pattern" data-i="designTag"></p>
+<div class="pattern-card"><div class="pattern-art"><img src="floral-sleeve.png" alt="" data-alt="vineAlt" width="1000" height="630"></div>
+<div class="pattern-copy"><h3 data-i="vine"></h3><p data-i="vineDetail"></p><p data-i="print"></p>
+<div class="actions"><a class="button" href="floral-sleeve-a4.pdf" download data-i="download"></a><button type="button" class="button soft" id="save" aria-pressed="false"></button></div>
+</div></div></section>
+<section class="section practice" id="practice">
+<h2 data-i="practice"></h2><p data-i="local"></p>
+<ul><li><a href="#frame-setup" data-i="frameTitle"></a><span id="frame-status"></span></li><li><a href="#chain-stitch" data-i="lessonTitle"></a><span id="progress-status"></span></li><li><a href="#curves-corners" data-i="curvesTitle"></a><span id="curves-status"></span></li><li><a href="#adding-beads" data-i="beadsTitle"></a><span id="beads-status"></span></li><li><a href="#floral-motif" data-i="flowerTitle"></a><span id="flower-status"></span></li><li><a href="#backstitch" data-i="backstitchTitle"></a><span id="backstitch-status"></span></li><li><a href="#spiral-chain" data-i="spiralTitle"></a><span id="spiral-status"></span></li><li><a href="#long-short-chain" data-i="longShortTitle"></a><span id="long-short-status"></span></li><li><a href="#designs" data-i="vine"></a><span id="saved-status"></span></li></ul>
+<p class="notice" id="notice" role="status"></p>
+</section>
+</main><footer><div class="footer-inner"><span class="brand"><span class="mark" aria-hidden="true">✿</span> Aari Studio</span><span data-i="footer"></span></div></footer>
+</body></html>
