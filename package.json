@@ -1,0 +1,6 @@
+{
+  "name": "aari-studio",
+  "private": true,
+  "engines": { "node": ">=22.13" },
+  "scripts": { "start": "node server/index.mjs" }
+}

@@ -37,6 +37,30 @@
 <p class="membership-price"><strong>₹99</strong> <span data-i="membershipPeriod">/ month</span></p>
 <p class="membership-status" data-i="membershipStatus">Subscriptions opening soon</p>
 </div>
+<div id="member-controls" class="member-controls" hidden>
+<details id="member-payment">
+<summary data-i="memberPay">Pay ₹99 by UPI</summary>
+<div class="member-payment">
+<img src="upi-payment-qr.png" width="328" height="328" loading="lazy" alt="UPI payment QR code for Sandhiya Sandhiya" data-alt="memberQrAlt">
+<div>
+<p><strong>Sandhiya Sandhiya</strong><br>yasumozhi@oksbi</p>
+<p data-i="memberPaymentNote"></p>
+<div class="member-actions">
+<a class="button" href="upi://pay?pa=yasumozhi%40oksbi&amp;pn=Sandhiya%20Sandhiya&amp;cu=INR&amp;am=99.00" data-i="memberOpenUpi"></a>
+<a class="button soft" id="member-contact" data-i="memberRequestCode"></a>
+</div>
+</div>
+</div>
+</details>
+<form id="member-form">
+<label for="member-code" data-i="memberCodeLabel">Enter access code</label>
+<div class="member-actions">
+<input type="text" id="member-code" name="member-code" maxlength="23" spellcheck="false" autocapitalize="characters" autocomplete="off" required>
+<button type="submit" class="button" data-i="memberUnlock">Unlock designs</button>
+</div>
+</form>
+<p id="member-message" role="status"></p>
+</div>
 </section>
 <div id="premium-cards" class="ready-grid premium-grid"></div>
 <template id="ready-template">

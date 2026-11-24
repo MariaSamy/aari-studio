@@ -58,8 +58,33 @@ const premiumCollection = [
 
 const readyDialog = byId('ready-preview');
 const readyCards = byId('ready-cards');
+const memberControls = byId('member-controls');
+const memberForm = byId('member-form');
+const memberStorageKey = 'aari-membership-code';
 let previewDesign;
+let memberCode;
+let memberMessage;
+let memberImageUrl;
+let memberImageLoading = false;
 const readyPlacement = (design, lang) => copy[lang][design.placement];
+
+function showDesign(design, image, isFree) {
+  const lang = state.language;
+  const t = copy[lang];
+  previewDesign = design;
+  byId('ready-preview-title').textContent = design.name[lang];
+  byId('ready-preview-place').textContent = readyPlacement(design, lang);
+  byId('ready-preview-detail').textContent = design.detail?.[lang] || '';
+  const preview = byId('ready-preview-image');
+  preview.src = image;
+  preview.alt = design.detail?.[lang] || design.name[lang];
+  const choose = byId('ready-choose');
+  const chosen = design.id === state.readyChoice;
+  choose.hidden = !isFree;
+  choose.disabled = !isFree || chosen;
+  choose.textContent = chosen ? t.readyChosen : t.readyChoose;
+  readyDialog.showModal();
+}
 
 function renderReadyCollection() {
   const lang = state.language;
@@ -69,6 +94,7 @@ function renderReadyCollection() {
   byId('ready-selection').hidden = !active;
   selected.textContent = active ? `${t.readySelected} · ${active.name[lang]}` : '';
   byId('ready-save-note').textContent = active && storageError ? t.readyUnsaved : '';
+  byId('member-message').textContent = memberMessage ? t[memberMessage] : '';
   function makeCard(design, isFree) {
     const card = byId('ready-template').content.firstElementChild.cloneNode(true);
     const control = document.createElement(isFree ? 'button' : 'a');
@@ -81,29 +107,121 @@ function renderReadyCollection() {
     card.append(control);
     if (!isFree) {
       control.href = '#payment';
-      action.textContent = t.membershipPreview;
+      action.textContent = memberCode ? t.memberOpen : t.membershipPreview;
+      if (memberCode) {
+        control.addEventListener('click', event => {
+          event.preventDefault();
+          openMemberDesign(design);
+        });
+      }
       return card;
     }
     action.textContent = design === active ? t.readyChosen : t.readyView;
     control.type = 'button';
     control.dataset.readyId = design.id;
-    control.addEventListener('click', () => {
-      previewDesign = design;
-      byId('ready-preview-title').textContent = design.name[lang];
-      byId('ready-preview-place').textContent = readyPlacement(design, lang);
-      byId('ready-preview-detail').textContent = design.detail[lang];
-      const preview = byId('ready-preview-image');
-      preview.src = design.image;
-      preview.alt = design.detail[lang];
-      byId('ready-choose').textContent = design === active ? t.readyChosen : t.readyChoose;
-      byId('ready-choose').disabled = design === active;
-      readyDialog.showModal();
-    });
+    control.addEventListener('click', () => showDesign(design, design.image, true));
     return card;
   }
   readyCards.replaceChildren(...readyCollection.map(design => makeCard(design, true)));
   byId('premium-cards').replaceChildren(...premiumCollection.map(design => makeCard(design, false)));
 }
+
+function saveMembership(code) {
+  memberCode = code;
+  try {
+    if (code) sessionStorage.setItem(memberStorageKey, code);
+    else sessionStorage.removeItem(memberStorageKey);
+  } catch {
+    // The code remains usable until the page is closed or refreshed.
+  }
+  memberForm.hidden = Boolean(code);
+  byId('member-payment').hidden = Boolean(code);
+}
+
+async function checkMembership(code) {
+  try {
+    const response = await fetch('/api/membership/access', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code }),
+    });
+    if (response.ok) {
+      saveMembership(code);
+      memberMessage = 'memberReady';
+    } else if (response.status === 403) {
+      saveMembership();
+      memberMessage = 'memberInvalid';
+    } else {
+      memberMessage = 'memberTryAgain';
+    }
+  } catch {
+    memberMessage = 'memberTryAgain';
+  }
+  renderReadyCollection();
+}
+
+async function openMemberDesign(design) {
+  if (memberImageLoading || readyDialog.open) return;
+  memberImageLoading = true;
+  try {
+    const response = await fetch(`/api/membership/designs/${design.id}`, {
+      headers: { Authorization: `Bearer ${memberCode}` },
+    });
+    if (response.status === 403) {
+      saveMembership();
+      memberMessage = 'memberInvalid';
+      renderReadyCollection();
+      byId('member-code').focus();
+      return;
+    }
+    if (!response.ok) throw new Error('Could not open design.');
+    const image = await response.blob();
+    if (readyDialog.open) return;
+    memberImageUrl = URL.createObjectURL(image);
+    showDesign(design, memberImageUrl, false);
+  } catch {
+    memberMessage = 'memberTryAgain';
+    byId('member-message').textContent = copy[state.language][memberMessage];
+  } finally {
+    memberImageLoading = false;
+  }
+}
+
+async function loadMembership() {
+  try {
+    const response = await fetch('/api/membership/config');
+    if (!response.ok) return;
+    const config = await response.json();
+    if (!config.available) return;
+    byId('member-contact').href = config.contact;
+    memberControls.hidden = false;
+    document.querySelector('.membership-status').hidden = true;
+    const stored = sessionStorage.getItem(memberStorageKey);
+    if (stored) await checkMembership(stored);
+  } catch {
+    // Static deployments display the upcoming membership message.
+  }
+}
+
+memberForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  const code = byId('member-code');
+  const submit = memberForm.querySelector('button');
+  submit.disabled = true;
+  await checkMembership(code.value.trim().toUpperCase().replaceAll('-', ''));
+  submit.disabled = false;
+  if (memberCode) {
+    code.value = '';
+    byId('premium-cards').querySelector('a').focus();
+  }
+});
+
+readyDialog.addEventListener('close', () => {
+  if (!memberImageUrl) return;
+  URL.revokeObjectURL(memberImageUrl);
+  byId('ready-preview-image').removeAttribute('src');
+  memberImageUrl = undefined;
+});
 
 byId('ready-choose').addEventListener('click', () => {
   state.readyChoice = previewDesign.id;
@@ -122,3 +240,4 @@ byId('ready-clear').addEventListener('click', () => {
 byId('ready-close').addEventListener('click', () => readyDialog.close());
 byId('language').addEventListener('click', renderReadyCollection);
 renderReadyCollection();
+loadMembership();
