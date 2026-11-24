@@ -11,6 +11,7 @@ const publicDir = fileURLToPath(new URL('../dist', import.meta.url));
 const dataDir = resolve(process.env.AARI_DATA_DIR || 'data');
 const adminToken = process.env.AARI_ADMIN_TOKEN?.trim();
 const contact = parseContact(process.env.AARI_MEMBERSHIP_CONTACT_URL);
+const manualUpi = process.env.AARI_MANUAL_UPI_ENABLED === '1';
 const keyId = process.env.RAZORPAY_KEY_ID?.trim();
 const keySecret = process.env.RAZORPAY_KEY_SECRET?.trim();
 const razorpayEnabled = Boolean(keyId && keySecret &&
@@ -44,10 +45,10 @@ const mimeTypes = {
 };
 
 let db;
-if (contact && !razorpayEnabled && (!adminToken || adminToken.length < 32)) {
+if ((manualUpi || (contact && !razorpayEnabled)) && (!adminToken || adminToken.length < 32)) {
   throw new Error('Set AARI_ADMIN_TOKEN to a secret of at least 32 characters.');
 }
-if (razorpayEnabled || contact) {
+if (manualUpi || razorpayEnabled || contact) {
   if (dataDir === publicDir || dataDir.startsWith(publicDir + sep)) {
     throw new Error('AARI_DATA_DIR must be outside dist.');
   }
@@ -77,6 +78,11 @@ if (razorpayEnabled || contact) {
       checked_at INTEGER NOT NULL DEFAULT 0,
       payment_id TEXT UNIQUE,
       payment_reference TEXT
+    ) STRICT;
+    CREATE TABLE IF NOT EXISTS manual_upi_approvals (
+      payment_reference TEXT PRIMARY KEY,
+      expires_at INTEGER NOT NULL,
+      claim_hash TEXT UNIQUE
     ) STRICT;
   `);
 }
@@ -140,6 +146,70 @@ function findMembership(code, now) {
   if (!/^[A-F0-9]{20}$/.test(normalized)) return undefined;
   return db.prepare('SELECT code_hash, expires_at FROM memberships WHERE code_hash = ? AND expires_at > ?')
     .get(codeHash(normalized), now);
+}
+
+function normalizeReference(value) {
+  const reference = typeof value === 'string' ? value.trim().toUpperCase() : '';
+  return /^[A-Z0-9][A-Z0-9-]{4,46}[A-Z0-9]$/.test(reference) ? reference : '';
+}
+
+async function approveDirectPayment(request, response, now) {
+  if (!isAdmin(request)) return json(response, 401, { error: 'Admin access is required.' });
+  const body = await readJson(request);
+  const reference = normalizeReference(body.reference);
+  if (!reference || body.amountPaise !== priceInPaise) {
+    return json(response, 400, { error: 'Confirm a credited payment of ₹99 and enter its reference.' });
+  }
+  if (db.prepare('SELECT 1 FROM memberships WHERE payment_reference = ?').get(reference)) {
+    return json(response, 409, { error: 'This payment reference has already been used.' });
+  }
+  const result = db.prepare('INSERT OR IGNORE INTO manual_upi_approvals (payment_reference, expires_at) VALUES (?, ?)')
+    .run(reference, now + monthInSeconds);
+  return result.changes
+    ? json(response, 201, { status: 'approved' })
+    : json(response, 409, { error: 'This payment reference was already approved.' });
+}
+
+let manualWindow = 0;
+let manualChecks = 0;
+
+async function claimDirectPayment(request, response, now) {
+  const { reference: rawReference, code } = await readJson(request);
+  const reference = normalizeReference(rawReference);
+  if (!reference || typeof code !== 'string' || !/^[A-F0-9]{20}$/.test(code)) {
+    return json(response, 400, { error: 'Enter the UPI payment reference from your receipt.' });
+  }
+  const minute = Math.floor(now / 60);
+  if (minute !== manualWindow) {
+    manualWindow = minute;
+    manualChecks = 0;
+  }
+  if (manualChecks >= 180) return json(response, 429, { error: 'Please try again shortly.' });
+  manualChecks += 1;
+
+  const approval = db.prepare('SELECT expires_at, claim_hash FROM manual_upi_approvals WHERE payment_reference = ?')
+    .get(reference);
+  if (!approval) return json(response, 202, { status: 'pending' });
+  const hash = codeHash(code);
+  if (approval.expires_at <= now || (approval.claim_hash && approval.claim_hash !== hash)) {
+    return json(response, 409, { error: 'This payment has expired or was already used.' });
+  }
+  if (!approval.claim_hash) {
+    try {
+      db.exec('BEGIN IMMEDIATE');
+      db.prepare('INSERT INTO memberships (code_hash, payment_reference, amount_paise, issued_at, expires_at) VALUES (?, ?, ?, ?, ?)')
+        .run(hash, reference, priceInPaise, now, approval.expires_at);
+      db.prepare('UPDATE manual_upi_approvals SET claim_hash = ? WHERE payment_reference = ?').run(hash, reference);
+      db.exec('COMMIT');
+    } catch (error) {
+      db.exec('ROLLBACK');
+      if (error.errcode === 1555 || error.errcode === 2067) {
+        return json(response, 409, { error: 'This payment has already been used.' });
+      }
+      throw error;
+    }
+  }
+  return json(response, 200, { expiresAt: approval.expires_at });
 }
 
 async function razorpay(path, data) {
@@ -269,10 +339,14 @@ async function sendFile(request, response, path, cacheControl) {
 
 async function membership(request, response, path) {
   if (path === '/config' && request.method === 'GET') {
-    return json(response, 200, { available: Boolean(db), upi: Boolean(db && razorpayEnabled) });
+    return json(response, 200, { available: Boolean(db), upi: Boolean(db && razorpayEnabled), manualUpi });
   }
   if (!db) return json(response, 503, { error: 'Membership is unavailable.' });
   const now = Math.floor(Date.now() / 1000);
+  if (manualUpi && request.method === 'POST') {
+    if (path === '/manual/approve') return approveDirectPayment(request, response, now);
+    if (path === '/manual/claim') return claimDirectPayment(request, response, now);
+  }
   if (razorpayEnabled && request.method === 'POST') {
     if (path === '/upi/start') return startUpiCheckout(request, response, now);
     if (path === '/upi/verify') return verifyUpiCheckout(request, response, now);
@@ -286,7 +360,8 @@ async function membership(request, response, path) {
     if (!/^[A-Z0-9-]{6,48}$/.test(reference) || body.amountPaise !== priceInPaise) {
       return json(response, 400, { error: 'Provide the confirmed payment reference and amount of ₹99.' });
     }
-    if (db.prepare('SELECT 1 FROM memberships WHERE payment_reference = ?').get(reference)) {
+    if (db.prepare('SELECT 1 FROM memberships WHERE payment_reference = ?').get(reference) ||
+        db.prepare('SELECT 1 FROM manual_upi_approvals WHERE payment_reference = ?').get(reference)) {
       return json(response, 409, { error: 'An access code has already been issued for this payment.' });
     }
     const code = randomBytes(10).toString('hex').toUpperCase();
@@ -322,6 +397,10 @@ const server = createServer(async (request, response) => {
   response.setHeader('X-Content-Type-Options', 'nosniff');
   try {
     const path = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
+    if (manualUpi && request.method === 'GET' && path === '/admin/payments') {
+      const page = fileURLToPath(new URL('./payments.html', import.meta.url));
+      return await sendFile(request, response, page, 'no-store');
+    }
     if (path.startsWith(membershipPath + '/')) {
       await membership(request, response, path.slice(membershipPath.length));
       return;

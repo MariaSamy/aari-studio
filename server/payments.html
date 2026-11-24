@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Approve UPI payments | Aari Studio</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<main class="section">
+<h1 style="max-width:none;font-size:2.4rem">Approve UPI payments</h1>
+<p>Find the incoming ₹99 credit in your bank or UPI app. Enter the reference listed on that transaction.</p>
+<form id="approve-payment" method="post">
+<p><label for="admin-token">Admin token</label><br>
+<input id="admin-token" type="password" minlength="32" autocomplete="off" required></p>
+<p><label for="upi-reference">UPI reference (UTR)</label><br>
+<input id="upi-reference" type="text" minlength="6" maxlength="48" autocomplete="off" spellcheck="false" required></p>
+<p><label><input type="checkbox" required> I confirmed this ₹99 credit in the receiving account.</label></p>
+<button class="button" type="submit">Approve ₹99 payment</button>
+</form>
+<p id="approval-result" role="status"></p>
+</main>
+<script>
+const form = document.getElementById('approve-payment');
+const result = document.getElementById('approval-result');
+const reference = document.getElementById('upi-reference');
+form.addEventListener('submit', async event => {
+  event.preventDefault();
+  const submit = form.querySelector('button');
+  submit.disabled = true;
+  result.textContent = '';
+  try {
+    const response = await fetch('/api/membership/manual/approve', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + document.getElementById('admin-token').value.trim(),
+      },
+      body: JSON.stringify({ reference: reference.value.trim(), amountPaise: 9900 }),
+    });
+    if (response.status === 201) {
+      result.textContent = 'Payment approved. The customer can now unlock the designs with this reference.';
+      form.reset();
+    } else {
+      result.textContent = (await response.json()).error || 'Approval is unavailable.';
+    }
+  } catch {
+    result.textContent = 'Could not approve the payment. Try again.';
+  } finally {
+    submit.disabled = false;
+  }
+});
+</script>
+</body>
+</html>
