@@ -72,9 +72,19 @@ function showDesigns() {
     card.querySelector('h3').textContent = name;
     card.querySelector('p').textContent = [t[design.placement], t[design.level]].join(' · ');
     const action = card.querySelector('a');
-    action.textContent = t.download;
-    if (design.pdf) action.href = design.pdf;
-    else action.remove();
+    if (design.pdf) {
+      action.href = design.pdf;
+      action.textContent = t.download;
+    } else if (design.photo) {
+      action.href = design.image;
+      action.target = '_blank';
+      action.rel = 'noopener';
+      action.removeAttribute('download');
+      action.textContent = t.viewGalleryPhoto;
+      action.setAttribute('aria-label', t.viewGalleryPhoto + ' · ' + name);
+    } else {
+      action.remove();
+    }
     return card;
   }));
 }
