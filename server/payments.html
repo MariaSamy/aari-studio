@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Approve UPI payments | Aari Studio</title>
+<title>Approve training payments | Aari Studio</title>
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 <main class="section">
-<h1 style="max-width:none;font-size:2.4rem">Approve UPI payments</h1>
+<h1 style="max-width:none;font-size:2.4rem">Approve training payments</h1>
 <p>Find the incoming ₹99 credit in your bank or UPI app. Enter the reference listed on that transaction.</p>
 <form id="approve-payment" method="post">
 <p><label for="admin-token">Admin token</label><br>
@@ -40,7 +40,7 @@ form.addEventListener('submit', async event => {
       body: JSON.stringify({ reference: reference.value.trim(), amountPaise: 9900 }),
     });
     if (response.status === 201) {
-      result.textContent = 'Payment approved. The customer can now unlock the designs with this reference.';
+      result.textContent = 'Payment approved. The customer can now open the training lessons with this reference.';
       form.reset();
     } else {
       result.textContent = (await response.json()).error || 'Approval is unavailable.';

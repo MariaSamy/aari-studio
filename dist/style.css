@@ -137,17 +137,18 @@ footer{background:#f8edf1;color:var(--wine);padding:1.4rem 0}
 .manual-payment{flex:0 0 100%;display:grid;grid-template-columns:minmax(0, 1fr) minmax(0, 1.4fr);gap:1rem;background:#fff8f5;color:var(--ink);padding:clamp(.9rem, 3vw, 1.45rem);border-radius:.7rem}
 .manual-payment[hidden]{display:none}
 .membership-status{color:#f4dae3;font-size:.94rem}
-.manual-payment h4{margin:0 0 .5rem;font-size:1.1rem}
+.training-topics{flex:0 0 100%;margin:0;padding-inline-start:1.25rem}
+.training-topics li+li{margin-top:.4rem}
+.training-lessons:not([hidden]){display:grid;gap:1rem;margin-top:1.2rem}
+.training-lessons details{padding:1rem;background:white;border:1px solid var(--line);border-radius:.85rem}
+.training-lessons summary{font-weight:750;color:var(--wine);cursor:pointer}
+.training-lessons li+li{margin-top:.5rem}
+.manual-payment h3{margin:0 0 .5rem;font-size:1.1rem}
 .manual-payment p{color:#64515a;margin:.35rem 0 .7rem;overflow-wrap:anywhere}
 .manual-payment-qr img{display:block;width:min(100%, 12rem);height:auto;background:white;border:1px solid var(--line);border-radius:.5rem}
 .manual-payment label{font-weight:700}
 @media(max-width:600px){.manual-payment{grid-template-columns:minmax(0, 1fr)}.manual-payment form{border-top:1px solid var(--line);padding-top:1rem}}
-.member-controls{flex:0 0 100%;color:var(--ink);background:#fff8f5;padding:1rem;border-radius:.7rem}
-.member-controls summary{cursor:pointer;font-weight:700;color:var(--wine);min-height:2.4rem}
 .member-actions{display:flex;align-items:center;flex-wrap:wrap;gap:.65rem;margin-top:.45rem}
 .member-actions input{min-height:46px;min-width:0;width:min(100%,17rem);font:inherit;padding:.5rem .7rem;border:1px solid var(--line);border-radius:.55rem;color:var(--ink);background:white}
-.member-controls form label{font-weight:700}
 #member-message:empty{display:none}
-.premium-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-@media(max-width:850px){.premium-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:620px){.ready-grid{grid-template-columns:minmax(0,1fr)}.bar nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 .5rem}}

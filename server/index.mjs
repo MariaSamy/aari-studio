@@ -1,6 +1,6 @@
 import { createHash, randomBytes, timingSafeEqual } from 'node:crypto';
 import { createReadStream } from 'node:fs';
-import { mkdir, stat } from 'node:fs/promises';
+import { mkdir, readFile, stat } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import { extname, join, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -45,6 +45,7 @@ const mimeTypes = {
 };
 
 let db;
+let training;
 if ((manualUpi || (contact && !razorpayEnabled)) && (!adminToken || adminToken.length < 32)) {
   throw new Error('Set AARI_ADMIN_TOKEN to a secret of at least 32 characters.');
 }
@@ -53,11 +54,19 @@ if (manualUpi || razorpayEnabled || contact) {
     throw new Error('AARI_DATA_DIR must be outside dist.');
   }
   await mkdir(dataDir, { recursive: true, mode: 0o700 });
-  await Promise.all([...designFiles.values()].map(name => {
-    return stat(join(dataDir, 'designs', name)).then(file => {
-      if (!file.isFile()) throw new Error('Missing professional design: ' + name);
-    });
-  }));
+  if (manualUpi) {
+    training = JSON.parse(await readFile(join(dataDir, 'training.json'), 'utf8'));
+    if (!validLessons(training?.en) || !validLessons(training?.ta) || training.en.length !== training.ta.length) {
+      throw new Error('training.json must contain matching English and Tamil lessons.');
+    }
+  }
+  if (razorpayEnabled || contact) {
+    await Promise.all([...designFiles.values()].map(name => {
+      return stat(join(dataDir, 'designs', name)).then(file => {
+        if (!file.isFile()) throw new Error('Missing professional design: ' + name);
+      });
+    }));
+  }
   db = new DatabaseSync(join(dataDir, 'memberships.sqlite'));
   db.exec(`
     PRAGMA journal_mode = WAL;
@@ -85,6 +94,13 @@ if (manualUpi || razorpayEnabled || contact) {
       claim_hash TEXT UNIQUE
     ) STRICT;
   `);
+}
+
+function validLessons(lessons) {
+  const hasText = value => typeof value === 'string' && value.trim().length > 0;
+  return Array.isArray(lessons) && lessons.length > 0 && lessons.every(lesson =>
+    lesson && [lesson.title, lesson.goal, lesson.exercise, lesson.check].every(hasText) &&
+    Array.isArray(lesson.steps) && lesson.steps.length > 0 && lesson.steps.every(hasText));
 }
 
 function parseContact(value) {
@@ -146,6 +162,14 @@ function findMembership(code, now) {
   if (!/^[A-F0-9]{20}$/.test(normalized)) return undefined;
   return db.prepare('SELECT code_hash, expires_at FROM memberships WHERE code_hash = ? AND expires_at > ?')
     .get(codeHash(normalized), now);
+}
+
+function recordMemberOpen(access, now) {
+  db.prepare(`
+    UPDATE memberships
+    SET first_opened_at = COALESCE(first_opened_at, ?), last_opened_at = ?, open_count = open_count + 1
+    WHERE code_hash = ?
+  `).run(now, now, access.code_hash);
 }
 
 function normalizeReference(value) {
@@ -376,18 +400,22 @@ async function membership(request, response, path) {
     if (!access) return json(response, 403, { error: 'Invalid or expired access code.' });
     return json(response, 200, { expiresAt: access.expires_at });
   }
-  if (request.method === 'GET' && path.startsWith('/designs/')) {
+  if (manualUpi && request.method === 'GET' && path === '/training') {
+    const access = findMembership(bearer(request), now);
+    if (!access || !db.prepare('SELECT 1 FROM manual_upi_approvals WHERE claim_hash = ?').get(access.code_hash)) {
+      return json(response, 403, { error: 'Verified training access is required.' });
+    }
+    recordMemberOpen(access, now);
+    return json(response, 200, training);
+  }
+  if ((razorpayEnabled || contact) && request.method === 'GET' && path.startsWith('/designs/')) {
     const design = designFiles.get(path.slice('/designs/'.length));
     if (!design) return json(response, 404, { error: 'Design not found.' });
     const access = findMembership(bearer(request), now);
     if (!access) return json(response, 403, { error: 'Valid membership is required.' });
     const file = join(dataDir, 'designs', design);
     await stat(file);
-    db.prepare(`
-      UPDATE memberships
-      SET first_opened_at = COALESCE(first_opened_at, ?), last_opened_at = ?, open_count = open_count + 1
-      WHERE code_hash = ?
-    `).run(now, now, access.code_hash);
+    recordMemberOpen(access, now);
     return sendFile(request, response, file, 'private, no-store');
   }
   return json(response, 404, { error: 'Not found.' });

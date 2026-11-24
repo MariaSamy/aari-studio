@@ -4,90 +4,26 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Aari embroidery lessons and printable designs in Tamil and English.">
 <title>Aari Studio</title>
-<link rel="stylesheet" href="style.css"><script defer src="app.js"></script><script defer src="catalog.js"></script><script defer src="designs.js"></script><script defer src="ready-designs.js"></script>
+<link rel="stylesheet" href="style.css"><script defer src="app.js"></script><script defer src="catalog.js"></script><script defer src="designs.js"></script><script defer src="ready-designs.js"></script><script defer src="training.js"></script>
 </head>
 <body>
 <header class="top"><div class="bar">
 <a class="brand" href="#home"><span aria-hidden="true" class="mark">✿</span> Aari Studio</a>
 <nav aria-label="Main navigation">
 <a href="#learn" data-i="learn"></a><a href="#designs" data-i="designs"></a><a href="#ready-designs" data-i="readyNav"></a><a href="#practice" data-i="practice"></a>
-<a href="#payment" data-i="membershipNav">Membership</a>
+<a href="#payment" data-i="membershipNav">Training &amp; payment</a>
 </nav>
 <button class="language" id="language" type="button">தமிழ்</button>
 </div></header>
 <main>
 <section class="hero" id="home"><div class="hero-copy">
 <p class="kicker" data-i="art"></p><h1 data-i="hello"></h1><p class="intro" data-i="intro"></p>
-<div class="actions"><a class="button" href="#frame-setup" id="start" data-i="start"></a><a class="button secondary" href="#ready-designs" data-i="readyBrowse"></a></div>
+<div class="actions"><a class="button" href="#frame-setup" id="start" data-i="start"></a><a class="button secondary" href="#ready-designs" data-i="readyBrowse"></a><a class="button secondary" href="#payment" data-i="membershipNav">Training &amp; payment</a></div>
 </div><div class="hero-art" aria-hidden="true"></div></section>
-<section class="section" id="ready-designs" aria-labelledby="ready-title">
-<div class="design-heading"><h2 id="ready-title" data-i="readyTitle"></h2><a class="ready-pattern-link" href="#designs" data-i="readyPatterns"></a></div>
-<p class="section-intro" data-i="readyIntro"></p>
-<div id="ready-selection" class="ready-selection" hidden>
-<p id="ready-selected" role="status"></p><button type="button" class="button soft" id="ready-clear" data-i="readyClear"></button>
-</div>
-<p id="ready-save-note" class="notice" role="status"></p>
-<div id="ready-cards" class="ready-grid"></div>
-<section class="membership" id="payment" aria-labelledby="membership-title" tabindex="-1">
-<div>
-<h3 id="membership-title" data-i="membershipTitle">Professional Aari Designs</h3>
-<p data-i="membershipIntro">Get 30 days of access to the professional collection.</p>
-</div>
-<div class="membership-plan">
-<p class="membership-price"><strong>₹99</strong></p>
-<p class="membership-status" id="member-status" data-i="memberUnavailable">Online unlock is being set up. Please wait before paying.</p>
-</div>
-<div class="manual-payment" id="member-payment" hidden>
-<div class="manual-payment-qr">
-<h4 data-i="memberPay">Pay ₹99 by UPI</h4>
-<a href="upi-payment-qr.png" target="_blank" rel="noopener noreferrer">
-<img src="upi-payment-qr.png" width="328" height="328" alt="Open payment QR for Sandhiya Sandhiya" data-alt="memberQrAlt">
-</a>
-<p data-i="memberStepPay">Scan the QR in your UPI app and enter ₹99.</p>
-<p><strong>Sandhiya Sandhiya</strong><br><span>yasumozhi@oksbi</span></p>
-<a class="button soft" href="upi://pay?pa=yasumozhi%40oksbi&amp;pn=Sandhiya%20Sandhiya&amp;cu=INR&amp;am=99.00" data-i="memberOpenUpi">Open UPI app</a>
-</div>
-<form id="member-reference-form" method="post">
-<h4 data-i="memberStep2">Enter your payment ID</h4>
-<p id="member-reference-help" data-i="memberStepReference">Enter the UPI payment reference (UTR) from your receipt. The designs unlock here once Aari Studio confirms the ₹99 payment.</p>
-<label for="member-reference" data-i="memberReferenceLabel">UPI reference (UTR)</label>
-<div class="member-actions">
-<input type="text" id="member-reference" minlength="6" maxlength="48" spellcheck="false" autocomplete="off" aria-describedby="member-reference-help" required>
-<button type="submit" class="button" data-i="memberCheckPayment">Check payment</button>
-</div>
-</form>
-</div>
-<div id="member-controls" class="member-controls" hidden>
-<details id="member-code-entry">
-<summary data-i="memberExistingCode">I already have an access code</summary>
-<form id="member-form">
-<label for="member-code" data-i="memberCodeLabel">Enter access code</label>
-<div class="member-actions">
-<input type="text" id="member-code" name="member-code" maxlength="23" spellcheck="false" autocapitalize="characters" autocomplete="off" required>
-<button type="submit" class="button" data-i="memberUnlock">Unlock designs</button>
-</div>
-</form>
-</details>
-</div>
-<p id="member-message" role="status"></p>
-</section>
-<div id="premium-cards" class="ready-grid premium-grid"></div>
-<template id="ready-template">
-<article class="ready-card">
-<img alt="" width="960" height="640" loading="lazy"><span class="ready-caption"><span><strong></strong><small></small></span><span class="ready-action"></span></span>
-</article>
-</template>
-<dialog id="ready-preview" class="ready-dialog" aria-labelledby="ready-preview-title">
-<div class="ready-dialog-copy"><div><h3 id="ready-preview-title"></h3><p id="ready-preview-place"></p></div><button class="button soft" id="ready-close" type="button" data-i="readyClose" autofocus></button></div>
-<img id="ready-preview-image" alt="">
-<div class="ready-dialog-copy"><p id="ready-preview-detail"></p><button type="button" class="button" id="ready-choose" data-i="readyChoose"></button></div>
-</dialog>
-</section>
 <section class="section" id="learn">
-<h2 data-i="learn"></h2>
+<h2 data-i="freeLessons">Two free stitching lessons</h2>
 <nav class="lesson-nav" aria-label="Lessons" data-label="lessonsLabel">
-<a href="#frame-setup" data-i="frameTitle"></a><a href="#chain-stitch" data-i="lessonTitle"></a><a href="#curves-corners" data-i="curvesTitle"></a><a href="#adding-beads" data-i="beadsTitle"></a><a href="#floral-motif" data-i="flowerTitle"></a><a href="#backstitch" data-i="backstitchTitle"></a><a href="#spiral-chain" data-i="spiralTitle"></a>
-<a href="#long-short-chain" data-i="longShortTitle"></a>
+<a href="#frame-setup" data-i="frameTitle"></a><a href="#chain-stitch" data-i="lessonTitle"></a><a href="#curves-corners" data-i="curvesTitle"></a>
 </nav>
 <article class="lesson-panel" id="frame-setup" aria-labelledby="frame-title">
 <p class="kicker" data-i="frameTag"></p><h3 class="lesson-title" id="frame-title" data-i="frameTitle"></h3><p class="section-intro" data-i="frameIntro"></p>
@@ -118,52 +54,65 @@
 <div class="lesson-card"><aside><h4 data-i="tools"></h4><ul id="curves-tools"></ul><p data-i="curvesTip"></p></aside>
 <div class="steps"><img class="diagram" src="curves-corners.png" alt="" data-alt="curvesAlt" width="900" height="340">
 <ol id="curves-steps"></ol><p class="exercise" data-i="curvesExercise"></p>
-<div class="actions"><button type="button" class="button" id="curves-done" aria-pressed="false"></button><a class="button soft" href="#adding-beads" data-i="goToBeads"></a></div>
+<div class="actions"><button type="button" class="button" id="curves-done" aria-pressed="false"></button><a class="button soft" href="#payment" data-i="membershipNav"></a></div>
 </div></div></article>
-<article class="lesson-panel" id="adding-beads" aria-labelledby="beads-title" hidden>
-<p class="kicker" data-i="beadsTag"></p><h3 class="lesson-title" id="beads-title" data-i="beadsTitle"></h3><p class="section-intro" data-i="beadsIntro"></p>
-<div class="lesson-card"><aside><h4 data-i="tools"></h4><ul id="beads-tools"></ul><p data-i="beadsTip"></p></aside>
-<div class="steps">
-<figure class="stitch-demo">
-<figcaption id="beads-demo-title" data-i="beadsDemoTitle"></figcaption>
-<video id="beads-video" controls playsinline preload="none" poster="beads-demo-poster.png" width="768" height="432" aria-labelledby="beads-demo-title" aria-describedby="beads-demo-note">
-<source src="beads-demo.mp4" type="video/mp4">
-<track kind="captions" srclang="en" label="English" src="beads-demo-en.vtt" default>
-<track kind="captions" srclang="ta" label="தமிழ்" src="beads-demo-ta.vtt">
-</video>
-<p id="beads-demo-note" data-i="demoNote"></p>
-</figure>
-<ol id="beads-steps"></ol><p class="exercise" data-i="beadsExercise"></p>
-<div class="actions"><button type="button" class="button" id="beads-done" aria-pressed="false"></button><a class="button soft" href="#floral-motif" data-i="goToFlower"></a></div>
-</div></div></article>
-<article class="lesson-panel" id="floral-motif" aria-labelledby="flower-title" hidden>
-<p class="kicker" data-i="flowerTag"></p><h3 class="lesson-title" id="flower-title" data-i="flowerTitle"></h3><p class="section-intro" data-i="flowerIntro"></p>
-<div class="lesson-card"><aside><h4 data-i="tools"></h4><ul id="flower-tools"></ul><p data-i="flowerTip"></p></aside>
-<div class="steps"><img class="diagram" src="floral-motif.png" alt="" data-alt="flowerAlt" width="900" height="340" loading="lazy">
-<ol id="flower-steps"></ol><p class="exercise" data-i="flowerExercise"></p>
-<div class="actions"><button type="button" class="button" id="flower-done" aria-pressed="false"></button><a class="button soft" href="small-flower-a4.pdf" download data-i="flowerDownload"></a><a class="button soft" href="#backstitch" data-i="goToBackstitch"></a></div>
-</div></div></article>
-<article class="lesson-panel" id="backstitch" aria-labelledby="backstitch-title" hidden>
-<p class="kicker" data-i="backstitchTag"></p><h3 class="lesson-title" id="backstitch-title" data-i="backstitchTitle"></h3><p class="section-intro" data-i="backstitchIntro"></p>
-<div class="lesson-card"><aside><h4 data-i="tools"></h4><ul id="backstitch-tools"></ul><p data-i="backstitchTip"></p></aside>
-<div class="steps"><img class="diagram" src="backstitch.png" alt="" data-alt="backstitchAlt" width="900" height="300" loading="lazy">
-<ol id="backstitch-steps"></ol><p class="exercise" data-i="backstitchExercise"></p>
-<div class="actions"><button type="button" class="button" id="backstitch-done" aria-pressed="false"></button><a class="button soft" href="#spiral-chain" data-i="spiralNext"></a></div>
-</div></div></article>
-<article class="lesson-panel" id="spiral-chain" aria-labelledby="spiral-title" hidden>
-<p class="kicker" data-i="spiralTag"></p><h3 class="lesson-title" id="spiral-title" data-i="spiralTitle"></h3><p class="section-intro" data-i="spiralIntro"></p>
-<div class="lesson-card"><aside><h4 data-i="tools"></h4><ul id="spiral-tools"></ul><p data-i="spiralTip"></p></aside>
-<div class="steps"><img class="diagram" src="spiral-chain.png" alt="" data-alt="spiralAlt" width="900" height="340" loading="lazy">
-<ol id="spiral-steps"></ol><p class="exercise" data-i="spiralExercise"></p>
-<div class="actions"><button type="button" class="button" id="spiral-done" aria-pressed="false"></button><a class="button soft" href="#long-short-chain" data-i="longShortNext"></a></div>
-</div></div></article>
-<article class="lesson-panel" id="long-short-chain" aria-labelledby="long-short-title" hidden>
-<p class="kicker" data-i="longShortTag"></p><h3 class="lesson-title" id="long-short-title" data-i="longShortTitle"></h3><p class="section-intro" data-i="longShortIntro"></p>
-<div class="lesson-card"><aside><h4 data-i="tools"></h4><ul id="long-short-tools"></ul><p data-i="longShortTip"></p></aside>
-<div class="steps"><img class="diagram" src="long-short-chain.png" alt="" data-alt="longShortAlt" width="900" height="340" loading="lazy">
-<ol id="long-short-steps"></ol><p class="exercise" data-i="longShortExercise"></p>
-<button type="button" class="button" id="long-short-done" aria-pressed="false"></button>
-</div></div></article>
+</section>
+<section class="section" id="payment" aria-labelledby="membership-title" tabindex="-1">
+<div class="membership">
+<div>
+<h2 id="membership-title" data-i="membershipTitle">Aari Stitching &amp; New-Design Training</h2>
+<p data-i="membershipIntro">Learn at your own pace with 30 days of access to the training.</p>
+</div>
+<div class="membership-plan">
+<p class="membership-price"><strong>₹99</strong></p>
+<p class="membership-status" id="member-status" data-i="memberUnavailable">Training payments will open after setup.</p>
+</div>
+<ul class="training-topics">
+<li data-i="trainingStitch">Learn beadwork, floral motifs, backstitch and two chain-stitch variations.</li>
+<li data-i="trainingDesign">Plan, trace and sample an original blouse neckline design.</li>
+</ul>
+<div class="manual-payment" id="member-payment" hidden>
+<div class="manual-payment-qr">
+<h3 data-i="memberPay">Pay ₹99 by UPI</h3>
+<a href="upi-payment-qr.png" target="_blank" rel="noopener noreferrer">
+<img src="upi-payment-qr.png" width="328" height="328" alt="Open payment QR for Sandhiya Sandhiya" data-alt="memberQrAlt">
+</a>
+<p data-i="memberStepPay">Scan the QR in your UPI app and enter ₹99.</p>
+<p><strong>Sandhiya Sandhiya</strong><br><span>yasumozhi@oksbi</span></p>
+<a class="button soft" href="upi://pay?pa=yasumozhi%40oksbi&amp;pn=Sandhiya%20Sandhiya&amp;cu=INR&amp;am=99.00" data-i="memberOpenUpi">Open UPI app</a>
+</div>
+<form id="member-reference-form" method="post">
+<h3 data-i="memberStep2">Enter your payment ID</h3>
+<p id="member-reference-help" data-i="memberStepReference">Enter the UPI payment reference (UTR) from your receipt. Your lessons open here once Aari Studio confirms the ₹99 payment.</p>
+<label for="member-reference" data-i="memberReferenceLabel">UPI reference (UTR)</label>
+<div class="member-actions">
+<input type="text" id="member-reference" minlength="6" maxlength="48" spellcheck="false" autocomplete="off" aria-describedby="member-reference-help" required>
+<button type="submit" class="button" data-i="memberCheckPayment">Check payment</button>
+</div>
+</form>
+</div>
+<p id="member-message" role="status"></p>
+</div>
+<div id="training-lessons" class="training-lessons" tabindex="-1" hidden></div>
+</section>
+<section class="section" id="ready-designs" aria-labelledby="ready-title">
+<div class="design-heading"><h2 id="ready-title" data-i="readyTitle"></h2><a class="ready-pattern-link" href="#designs" data-i="readyPatterns"></a></div>
+<p class="section-intro" data-i="readyIntro"></p>
+<div id="ready-selection" class="ready-selection" hidden>
+<p id="ready-selected" role="status"></p><button type="button" class="button soft" id="ready-clear" data-i="readyClear"></button>
+</div>
+<p id="ready-save-note" class="notice" role="status"></p>
+<div id="ready-cards" class="ready-grid"></div>
+<template id="ready-template">
+<article class="ready-card">
+<img alt="" width="960" height="640" loading="lazy"><span class="ready-caption"><span><strong></strong><small></small></span><span class="ready-action"></span></span>
+</article>
+</template>
+<dialog id="ready-preview" class="ready-dialog" aria-labelledby="ready-preview-title">
+<div class="ready-dialog-copy"><div><h3 id="ready-preview-title"></h3><p id="ready-preview-place"></p></div><button class="button soft" id="ready-close" type="button" data-i="readyClose" autofocus></button></div>
+<img id="ready-preview-image" alt="">
+<div class="ready-dialog-copy"><p id="ready-preview-detail"></p><button type="button" class="button" id="ready-choose" data-i="readyChoose"></button></div>
+</dialog>
 </section>
 <section class="section" id="designs">
 <div class="design-heading"><h2 data-i="designTitle"></h2><a class="button soft" href="#design-mixer" data-i="mixerTitle"></a></div>
@@ -185,7 +134,7 @@
 </div></div></section>
 <section class="section practice" id="practice">
 <h2 data-i="practice"></h2><p data-i="local"></p>
-<ul><li><a href="#frame-setup" data-i="frameTitle"></a><span id="frame-status"></span></li><li><a href="#chain-stitch" data-i="lessonTitle"></a><span id="progress-status"></span></li><li><a href="#curves-corners" data-i="curvesTitle"></a><span id="curves-status"></span></li><li><a href="#adding-beads" data-i="beadsTitle"></a><span id="beads-status"></span></li><li><a href="#floral-motif" data-i="flowerTitle"></a><span id="flower-status"></span></li><li><a href="#backstitch" data-i="backstitchTitle"></a><span id="backstitch-status"></span></li><li><a href="#spiral-chain" data-i="spiralTitle"></a><span id="spiral-status"></span></li><li><a href="#long-short-chain" data-i="longShortTitle"></a><span id="long-short-status"></span></li><li><a href="#designs" data-i="vine"></a><span id="saved-status"></span></li></ul>
+<ul><li><a href="#frame-setup" data-i="frameTitle"></a><span id="frame-status"></span></li><li><a href="#chain-stitch" data-i="lessonTitle"></a><span id="progress-status"></span></li><li><a href="#curves-corners" data-i="curvesTitle"></a><span id="curves-status"></span></li><li><a href="#designs" data-i="vine"></a><span id="saved-status"></span></li></ul>
 <p class="notice" id="notice" role="status"></p>
 </section>
 </main><footer><div class="footer-inner"><span class="brand"><span class="mark" aria-hidden="true">✿</span> Aari Studio</span><span data-i="footer"></span></div></footer>
