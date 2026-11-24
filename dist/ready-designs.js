@@ -9,6 +9,21 @@ const readyCollection = [
     name: { en: 'Emerald Paisley Neckline', ta: 'மரகதப் பச்சை மாங்காய் கழுத்து வடிவம்' },
     detail: { en: 'Gold paisley vines and seed pearls around a U-shaped neckline.', ta: 'U வடிவக் கழுத்தைச் சுற்றித் தங்க நிற மாங்காய்க் கொடிகளும் சிறு முத்துகளும்.' },
   },
+];
+
+const premiumCollection = [
+  {
+    id: 'marigold-moth', image: 'ready-marigold-moth.webp', placement: 'neck',
+    name: { en: 'Marigold Moth Sweetheart Neckline', ta: 'சாமந்தி மஞ்சள் பட்டில் அந்துப்பூச்சிக் கழுத்து வடிவம்' },
+  },
+  {
+    id: 'turquoise-papyrus', image: 'ready-turquoise-papyrus.webp', placement: 'sleeve',
+    name: { en: 'Turquoise Papyrus Sleeve', ta: 'நீலப்பச்சைக் கையில் பப்பிரஸ் செடிகள்' },
+  },
+  {
+    id: 'denim-dogwood', image: 'ready-denim-dogwood.webp', placement: 'floralDetail',
+    name: { en: 'Denim Dogwood Yoke Sprig', ta: 'டெனிம் ஆடையின் மேற்பகுதியில் டாக்வுட் பூங்கிளை' },
+  },
   {
     id: 'indigo-peacock', image: 'ready-navy.webp', placement: 'sleeve',
     name: { en: 'Indigo Peacock Sleeve', ta: 'கருநீல மயில் கை வடிவம்' },
@@ -54,16 +69,25 @@ function renderReadyCollection() {
   byId('ready-selection').hidden = !active;
   selected.textContent = active ? `${t.readySelected} · ${active.name[lang]}` : '';
   byId('ready-save-note').textContent = active && storageError ? t.readyUnsaved : '';
-  readyCards.replaceChildren(...readyCollection.map(design => {
+  function makeCard(design, isFree) {
     const card = byId('ready-template').content.firstElementChild.cloneNode(true);
-    const button = card.querySelector('button');
-    const image = card.querySelector('img');
-    image.src = design.image;
+    const control = document.createElement(isFree ? 'button' : 'a');
+    control.className = 'ready-open';
+    card.querySelector('img').src = design.image;
     card.querySelector('strong').textContent = design.name[lang];
     card.querySelector('small').textContent = readyPlacement(design, lang);
-    card.querySelector('.ready-action').textContent = design === active ? t.readyChosen : t.readyView;
-    button.dataset.readyId = design.id;
-    button.addEventListener('click', () => {
+    const action = card.querySelector('.ready-action');
+    control.append(...card.childNodes);
+    card.append(control);
+    if (!isFree) {
+      control.href = '#payment';
+      action.textContent = t.membershipPreview;
+      return card;
+    }
+    action.textContent = design === active ? t.readyChosen : t.readyView;
+    control.type = 'button';
+    control.dataset.readyId = design.id;
+    control.addEventListener('click', () => {
       previewDesign = design;
       byId('ready-preview-title').textContent = design.name[lang];
       byId('ready-preview-place').textContent = readyPlacement(design, lang);
@@ -76,7 +100,9 @@ function renderReadyCollection() {
       readyDialog.showModal();
     });
     return card;
-  }));
+  }
+  readyCards.replaceChildren(...readyCollection.map(design => makeCard(design, true)));
+  byId('premium-cards').replaceChildren(...premiumCollection.map(design => makeCard(design, false)));
 }
 
 byId('ready-choose').addEventListener('click', () => {
