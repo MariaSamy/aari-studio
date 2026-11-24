@@ -135,6 +135,12 @@ footer{background:#f8edf1;color:var(--wine);padding:1.4rem 0}
 .membership-price{color:var(--gold);white-space:nowrap}
 .membership-price strong{font-size:1.85rem;line-height:1.1}
 .membership-status{color:#f4dae3;font-size:.94rem}
+.membership-instructions{flex:0 0 100%;border-top:1px solid #754658;padding-top:.75rem}
+.membership-instructions h4{font-size:1.1rem;margin:0 0 .5rem}
+.membership-instructions ol{margin:0;padding-inline-start:1.4rem}
+.membership-instructions li+li{margin-top:.65rem}
+.membership-instructions li::marker{color:var(--gold);font-weight:700}
+.membership-instructions li p{color:#f4dae3;margin:.15rem 0 0}
 .member-controls{flex:0 0 100%;color:var(--ink);background:#fff8f5;padding:1rem;border-radius:.7rem}
 .member-controls summary{cursor:pointer;font-weight:700;color:var(--wine);min-height:2.4rem}
 .member-payment{display:grid;grid-template-columns:minmax(0,10rem) minmax(0,1fr);gap:1rem;align-items:start;margin-bottom:1rem}
