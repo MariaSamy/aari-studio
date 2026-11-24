@@ -61,18 +61,14 @@ const readyCards = byId('ready-cards');
 const memberControls = byId('member-controls');
 const memberForm = byId('member-form');
 const referenceForm = byId('member-reference-form');
-const showQr = byId('member-show-qr');
+const paymentReference = byId('member-reference');
 const memberStorageKey = 'aari-membership-code';
-const checkoutStorageKey = 'aari-upi-checkout';
 let previewDesign;
 let memberCode;
 let memberMessage;
 let memberImageUrl;
 let memberImageLoading = false;
 let membershipAvailable = false;
-let upiAvailable = false;
-let checkout;
-let qrTimer;
 const readyPlacement = (design, lang) => copy[lang][design.placement];
 
 function showDesign(design, image, isFree) {
@@ -102,8 +98,7 @@ function renderReadyCollection() {
   selected.textContent = active ? `${t.readySelected} · ${active.name[lang]}` : '';
   byId('ready-save-note').textContent = active && storageError ? t.readyUnsaved : '';
   byId('member-message').textContent = memberMessage ? t[memberMessage] : '';
-  document.querySelector('.membership-status').hidden = upiAvailable || Boolean(memberCode);
-  byId('member-payment').hidden = !upiAvailable || Boolean(memberCode);
+  byId('member-payment').hidden = Boolean(memberCode);
   memberControls.hidden = !membershipAvailable || Boolean(memberCode);
   function makeCard(design, isFree) {
     const card = byId('ready-template').content.firstElementChild.cloneNode(true);
@@ -149,37 +144,6 @@ function saveMembership(code) {
   }
 }
 
-function saveCheckout(value) {
-  checkout = value;
-  try {
-    if (value) localStorage.setItem(checkoutStorageKey, JSON.stringify(value));
-    else localStorage.removeItem(checkoutStorageKey);
-  } catch {
-    // Payment can still be verified in the current tab.
-  }
-  renderCheckout();
-}
-
-function renderCheckout() {
-  clearTimeout(qrTimer);
-  const timeLeft = checkout ? checkout.closesAt * 1000 - Date.now() : 0;
-  const qr = byId('member-qr');
-  const image = byId('member-qr-image');
-  const imageLink = byId('member-qr-link');
-  qr.hidden = timeLeft <= 0;
-  showQr.hidden = !qr.hidden;
-  byId('member-qr-expired').hidden = !checkout || !qr.hidden;
-  referenceForm.hidden = !checkout;
-  if (qr.hidden) {
-    image.removeAttribute('src');
-    imageLink.removeAttribute('href');
-  } else {
-    image.src = checkout.qrImage;
-    imageLink.href = checkout.qrImage;
-    qrTimer = setTimeout(renderCheckout, timeLeft);
-  }
-}
-
 async function checkMembership(code) {
   try {
     const response = await sendMembershipRequest('/access', { code });
@@ -209,7 +173,7 @@ async function openMemberDesign(design) {
       saveMembership();
       memberMessage = 'memberInvalid';
       renderReadyCollection();
-      if (upiAvailable) (showQr.hidden ? byId('member-reference') : showQr).focus();
+      paymentReference.focus();
       return;
     }
     if (!response.ok) throw new Error('Could not open design.');
@@ -232,13 +196,11 @@ async function loadMembership() {
     const config = await response.json();
     if (!config.available) return;
     membershipAvailable = true;
-    upiAvailable = config.upi === true;
     renderReadyCollection();
     const stored = localStorage.getItem(memberStorageKey) || sessionStorage.getItem(memberStorageKey);
     if (stored) await checkMembership(stored);
-    if (upiAvailable && !memberCode) saveCheckout(JSON.parse(localStorage.getItem(checkoutStorageKey)));
   } catch {
-    // Static deployments display the upcoming membership message.
+    // Manual orders are available on static deployments.
   }
 }
 
@@ -250,55 +212,17 @@ async function sendMembershipRequest(path, data) {
   });
 }
 
-showQr.addEventListener('click', async () => {
-  showQr.disabled = true;
-  try {
-    const response = await sendMembershipRequest('/upi/start', {});
-    if (response.status !== 201) throw new Error('QR unavailable.');
-    saveCheckout(await response.json());
-    memberMessage = undefined;
-    byId('member-reference').focus();
-  } catch {
-    memberMessage = 'memberTryAgain';
-  } finally {
-    showQr.disabled = false;
-    byId('member-message').textContent = memberMessage ? copy[state.language][memberMessage] : '';
+paymentReference.addEventListener('input', () => paymentReference.setCustomValidity(''));
+referenceForm.addEventListener('submit', event => {
+  const reference = paymentReference.value.trim();
+  const t = copy[state.language];
+  if (!/^[A-Z0-9][A-Z0-9-]{4,46}[A-Z0-9]$/i.test(reference)) {
+    event.preventDefault();
+    paymentReference.setCustomValidity(t.memberBadReference);
+    paymentReference.reportValidity();
+    return;
   }
-});
-
-referenceForm.addEventListener('submit', async event => {
-  event.preventDefault();
-  if (!checkout) return;
-  const paymentCheckout = checkout;
-  const submit = referenceForm.querySelector('button');
-  const input = byId('member-reference');
-  submit.disabled = true;
-  showQr.disabled = true;
-  try {
-    const response = await sendMembershipRequest('/upi/verify', {
-      checkout: paymentCheckout.checkout,
-      reference: input.value.trim(),
-    });
-    if (response.status === 200) {
-      saveMembership(paymentCheckout.checkout);
-      saveCheckout();
-      input.value = '';
-      memberMessage = 'memberReady';
-    } else if (response.status === 202) {
-      memberMessage = 'memberPending';
-    } else if ([404, 409, 410].includes(response.status)) {
-      memberMessage = 'memberCheckoutMissing';
-    } else {
-      memberMessage = 'memberTryAgain';
-    }
-  } catch {
-    memberMessage = 'memberTryAgain';
-  } finally {
-    submit.disabled = false;
-    showQr.disabled = false;
-    renderReadyCollection();
-    if (memberCode) byId('premium-cards').querySelector('a').focus();
-  }
+  byId('member-whatsapp-message').value = `${t.memberWhatsappMessage} ${reference}.`;
 });
 
 memberForm.addEventListener('submit', async event => {
