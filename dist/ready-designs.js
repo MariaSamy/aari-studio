@@ -1,55 +1,23 @@
 const readyCollection = [
   {
-    id: 'burgundy-floral', image: 'hero.webp', placement: 'floralDetail',
-    name: { en: 'Burgundy Gold Florals', ta: 'அடர் சிவப்பில் தங்கப் பூக்கள்' },
-    detail: { en: 'Gold-thread vines and bead accents on burgundy fabric.', ta: 'அடர் சிவப்புத் துணியில் தங்க நூல் கொடிகளும் மணிகளும்.' },
+    id: 'navy-twin-peacock', placement: 'sleeve', image: 'gallery-navy-twin-peacock.webp',
+    name: { en: 'Navy twin-peacock sleeve', ta: 'இரு மயில்கள் கொண்ட கருநீலக் கை வடிவம்' },
   },
   {
-    id: 'emerald-paisley', image: 'ready-emerald.webp', placement: 'neck',
-    name: { en: 'Emerald Paisley Neckline', ta: 'மரகதப் பச்சை மாங்காய் கழுத்து வடிவம்' },
-    detail: { en: 'Gold paisley vines and seed pearls around a U-shaped neckline.', ta: 'U வடிவக் கழுத்தைச் சுற்றித் தங்க நிற மாங்காய்க் கொடிகளும் சிறு முத்துகளும்.' },
+    id: 'red-gold-peacock', placement: 'sleeve', image: 'gallery-red-gold-peacock.webp',
+    name: { en: 'Red and gold peacock sleeve', ta: 'சிவப்புத் துணியில் தங்க நிற மயில் கை வடிவம்' },
   },
   {
-    id: 'marigold-moth', image: 'ready-marigold-moth.webp', placement: 'neck',
-    name: { en: 'Marigold Moth Sweetheart Neckline', ta: 'சாமந்தி மஞ்சள் பட்டில் அந்துப்பூச்சிக் கழுத்து வடிவம்' },
+    id: 'magenta-lotus-pearl', placement: 'neck', image: 'gallery-magenta-lotus-pearl.webp',
+    name: { en: 'Magenta lotus and pearl neckline', ta: 'அடர் இளஞ்சிவப்புத் துணியில் தாமரையும் முத்துகளும் கொண்ட கழுத்து வடிவம்' },
   },
   {
-    id: 'turquoise-papyrus', image: 'ready-turquoise-papyrus.webp', placement: 'sleeve',
-    name: { en: 'Turquoise Papyrus Sleeve', ta: 'நீலப்பச்சைக் கையில் பப்பிரஸ் செடிகள்' },
+    id: 'green-temple-back', placement: 'back', image: 'gallery-green-temple-back.webp',
+    name: { en: 'Green temple-tower blouse back', ta: 'கோபுர வேலைப்பாடுள்ள பச்சை ரவிக்கையின் பின்புறம்' },
   },
   {
-    id: 'denim-dogwood', image: 'ready-denim-dogwood.webp', placement: 'floralDetail',
-    name: { en: 'Denim Dogwood Yoke Sprig', ta: 'டெனிம் ஆடையின் மேற்பகுதியில் டாக்வுட் பூங்கிளை' },
-  },
-  {
-    id: 'indigo-peacock', image: 'ready-navy.webp', placement: 'sleeve',
-    name: { en: 'Indigo Peacock Sleeve', ta: 'கருநீல மயில் கை வடிவம்' },
-    detail: { en: 'Peacock motifs in pale gold and teal along a curved sleeve edge.', ta: 'வளைந்த கை ஓரத்தில் வெளிர் தங்கமும் நீலப்பச்சையும் கலந்த மயில் வடிவங்கள்.' },
-  },
-  {
-    id: 'rose-jasmine', image: 'ready-rose.webp', placement: 'border',
-    name: { en: 'Rose Jasmine Border', ta: 'ரோஜா நிற மல்லிகைக் கரை' },
-    detail: { en: 'Ivory jasmine flowers, curling gold vines and pearl accents on rose silk.', ta: 'ரோஜா நிறப் பட்டில் வெண்மை மல்லிகைப் பூக்கள், தங்கக் கொடிகள், முத்துகள்.' },
-  },
-  {
-    id: 'plum-ginkgo', image: 'ready-plum-ginkgo.webp', placement: 'neck',
-    name: { en: 'Plum Ginkgo Neckline', ta: 'ஊதாப் பட்டில் ஜிங்கோ இலைக் கழுத்து வடிவம்' },
-    detail: { en: 'Lilac and silver fan-shaped ginkgo leaves frame the lower corners of a square neckline on plum silk.', ta: 'அடர் ஊதாப் பட்டில் சதுரக் கழுத்தின் கீழ் மூலைகளில் வெளிர் ஊதா மற்றும் வெள்ளி நிற விசிறி வடிவ ஜிங்கோ இலைகள்.' },
-  },
-  {
-    id: 'ochre-crane', image: 'ready-ochre-crane.webp', placement: 'sleeve',
-    name: { en: 'Ochre Crane Sleeve', ta: 'மஞ்சள் காவித் துணியில் கொக்குகள் கொண்ட கை வடிவம்' },
-    detail: { en: 'Two ivory cranes fly above rust-coloured chain-stitch swirls at the curved edge of an ochre sleeve.', ta: 'மஞ்சள் காவி நிறக் கை ஓரத்தின் வளைவில் செம்பழுப்பு நிறச் சங்கிலித் தையல் சுருள்களுக்கு மேலே இரண்டு வெண்நிறக் கொக்குகள் பறக்கின்றன.' },
-  },
-  {
-    id: 'cobalt-diamond', image: 'ready-cobalt-diamond.webp', placement: 'border',
-    name: { en: 'Cobalt Diamond Border', ta: 'அடர் நீலப் பட்டில் வைர வடிவக் கரை' },
-    detail: { en: 'Coral and copper diamonds repeat between two fine copper chain-stitch lines on cobalt-blue silk. Coral knots dot alternate diamonds.', ta: 'அடர் நீலப் பட்டில் செம்பு நிறச் சங்கிலித் தையல் கோடுகளுக்கு இடையே பவள மற்றும் செம்பு நிற வைர வடிவங்கள் தொடர்கின்றன. ஒரு வைரம் விட்டு அடுத்த வைரத்தின் நடுவில் பவள நிற நூல் முடிச்சு உள்ளது.' },
-  },
-  {
-    id: 'ivory-nasturtium', image: 'ready-ivory-nasturtium.webp', placement: 'floralDetail',
-    name: { en: 'Ivory Nasturtium Sprig', ta: 'வெண்மை லினனில் நாஸ்டர்ஷியம் பூங்கிளை' },
-    detail: { en: 'One bright orange nasturtium and two round olive-green leaves on ivory linen. Use this small motif on a pocket or a yoke.', ta: 'வெண்மை லினன் துணியில் ஓர் ஆரஞ்சு நிற நாஸ்டர்ஷியம் பூவும் இரண்டு வட்ட ஆலிவ் பச்சை இலைகளும். பையிலோ ஆடையின் மேல் பகுதியிலோ தைக்க ஏற்ற சிறிய வடிவம்.' },
+    id: 'blue-scalloped-vine', placement: 'neck', image: 'gallery-blue-scalloped-vine.webp',
+    name: { en: 'Royal blue scalloped vine neckline', ta: 'அலை வடிவப் பூங்கொடி கொண்ட நீலக் கழுத்து வடிவம்' },
   },
 ];
 

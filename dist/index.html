@@ -10,7 +10,7 @@
 <header class="top"><div class="bar">
 <a class="brand" href="#home"><span aria-hidden="true" class="mark">✿</span> Aari Studio</a>
 <nav aria-label="Main navigation">
-<a href="#learn" data-i="learn"></a><a href="#designs" data-i="designs"></a><a href="#ready-designs" data-i="readyNav"></a><a href="#practice" data-i="practice"></a>
+<a href="#learn" data-i="learn"></a><a href="#ready-designs" data-i="readyNav"></a><a href="#design-mixer" data-i="mixerTitle"></a><a href="#practice" data-i="practice"></a>
 <a href="#payment" data-i="membershipNav">Training &amp; payment</a>
 </nav>
 <button class="language" id="language" type="button">தமிழ்</button>
@@ -100,8 +100,10 @@
 <div id="training-lessons" class="training-lessons" tabindex="-1" hidden></div>
 </section>
 <section class="section" id="ready-designs" aria-labelledby="ready-title">
-<div class="design-heading"><h2 id="ready-title" data-i="readyTitle"></h2><a class="ready-pattern-link" href="#designs" data-i="readyPatterns"></a></div>
-<p class="section-intro" data-i="readyIntro"></p>
+<div class="design-heading" id="designs">
+<h2 id="ready-title" data-i="readyTitle" tabindex="-1">Ready-Made Designs</h2>
+<a class="button" id="ready-training-link" href="#training-lessons" data-i="galleryTraining" hidden></a>
+</div>
 <div id="ready-selection" class="ready-selection" hidden>
 <p id="ready-selected" role="status"></p><button type="button" class="button soft" id="ready-clear" data-i="readyClear"></button>
 </div>
@@ -118,33 +120,24 @@
 <div class="ready-dialog-copy"><p id="ready-preview-detail"></p><button type="button" class="button" id="ready-choose" data-i="readyChoose"></button></div>
 </dialog>
 </section>
-<section class="section" id="designs" aria-labelledby="design-title">
-<div class="design-heading">
-<h2 id="design-title" data-i="designTitle" tabindex="-1"></h2>
-<div class="actions">
-<a class="button" id="gallery-training-link" href="#training-lessons" data-i="galleryTraining" hidden></a>
-<a class="button soft" href="#design-mixer" data-i="mixerTitle"></a>
-</div>
-</div>
-<div class="design-fields"><label><span data-i="placementLabel"></span><select id="placement-filter"><option value="" data-i="allPlacements"></option><option value="small" data-i="small"></option><option value="sleeve" data-i="sleeve"></option><option value="neck" data-i="neck"></option><option value="border" data-i="border"></option><option value="back" data-i="back"></option></select></label><label><span data-i="levelLabel"></span><select id="level-filter"><option value="" data-i="allLevels"></option><option value="beginner" data-i="beginner"></option><option value="intermediate" data-i="intermediate"></option><option value="advanced" data-i="advanced"></option></select></label></div>
-<p id="gallery-empty" data-i="noDesigns" hidden></p><div class="gallery-grid" id="gallery-cards"></div>
-<template id="gallery-card-template"><article class="gallery-card"><div class="gallery-media"></div><div class="gallery-copy"><h3></h3><p></p><a href="#" download></a></div></article></template>
-<section class="mixer" id="design-mixer" aria-labelledby="mixer-title">
-<div class="mixer-controls"><h3 id="mixer-title" data-i="mixerTitle"></h3><p data-i="mixerIntro"></p><div class="design-fields"><label><span data-i="placementLabel"></span><select id="mix-placement"><option value="small" data-i="small"></option><option value="sleeve" data-i="sleeve"></option><option value="neck" data-i="neck"></option><option value="border" data-i="border"></option></select></label><label><span data-i="mainLabel"></span><select id="mix-main"><option value="lotus" data-i="lotus"></option><option value="paisley" data-i="paisley"></option><option value="jasmine" data-i="jasmine"></option><option value="leaf" data-i="leaf"></option><option value="bud" data-i="bud"></option></select></label><label><span data-i="accentLabel"></span><select id="mix-accent"><option value="leaf" data-i="leaf"></option><option value="bud" data-i="bud"></option><option value="lotus" data-i="lotus"></option><option value="paisley" data-i="paisley"></option><option value="jasmine" data-i="jasmine"></option></select></label><label><span data-i="paletteLabel"></span><select id="mix-palette"><option value="wine" data-i="wine"></option><option value="teal" data-i="teal"></option><option value="indigo" data-i="indigo"></option></select></label></div>
+<section class="section" id="design-mixer" aria-labelledby="mixer-title">
+<div class="mixer">
+<div class="mixer-controls"><h2 id="mixer-title" data-i="mixerTitle"></h2><p data-i="mixerIntro"></p><div class="design-fields"><label><span data-i="placementLabel"></span><select id="mix-placement"><option value="small" data-i="small"></option><option value="sleeve" data-i="sleeve"></option><option value="neck" data-i="neck"></option><option value="border" data-i="border"></option></select></label><label><span data-i="mainLabel"></span><select id="mix-main"><option value="lotus" data-i="lotus"></option><option value="paisley" data-i="paisley"></option><option value="jasmine" data-i="jasmine"></option><option value="leaf" data-i="leaf"></option><option value="bud" data-i="bud"></option></select></label><label><span data-i="accentLabel"></span><select id="mix-accent"><option value="leaf" data-i="leaf"></option><option value="bud" data-i="bud"></option><option value="lotus" data-i="lotus"></option><option value="paisley" data-i="paisley"></option><option value="jasmine" data-i="jasmine"></option></select></label><label><span data-i="paletteLabel"></span><select id="mix-palette"><option value="wine" data-i="wine"></option><option value="teal" data-i="teal"></option><option value="indigo" data-i="indigo"></option></select></label></div>
 <div class="actions"><button type="button" class="button" id="mix-surprise" data-i="surprise"></button><a class="button soft" id="mix-download" download="aari-studio-mixed-design.png" data-i="downloadImage"></a></div></div>
 <canvas id="mix-preview" width="600" height="360" role="img" data-label="previewLabel"></canvas>
 <div class="ai-panel"><h4 data-i="aiTitle"></h4><p data-i="aiText"></p>
 <div class="actions"><button type="button" class="button soft" id="ai-copy" data-i="aiCopy"></button><a class="button soft" href="https://chatgpt.com/" target="_blank" rel="noopener" data-i="openChatGPT"></a></div>
 <textarea id="ai-prompt" readonly data-label="aiPromptLabel" hidden></textarea><p id="mix-feedback" role="status"></p></div>
+</div>
 </section>
-<p class="kicker featured-pattern" data-i="designTag"></p>
-<div class="pattern-card"><div class="pattern-art"><img src="floral-sleeve.png" alt="" data-alt="vineAlt" width="1000" height="630"></div>
-<div class="pattern-copy"><h3 data-i="vine"></h3><p data-i="vineDetail"></p><p data-i="print"></p>
-<div class="actions"><a class="button" href="floral-sleeve-a4.pdf" download data-i="download"></a><button type="button" class="button soft" id="save" aria-pressed="false"></button></div>
-</div></div></section>
 <section class="section practice" id="practice">
 <h2 data-i="practice"></h2><p data-i="local"></p>
-<ul><li><a href="#frame-setup" data-i="frameTitle"></a><span id="frame-status"></span></li><li><a href="#chain-stitch" data-i="lessonTitle"></a><span id="progress-status"></span></li><li><a href="#curves-corners" data-i="curvesTitle"></a><span id="curves-status"></span></li><li><a href="#designs" data-i="vine"></a><span id="saved-status"></span></li></ul>
+<ul><li><a href="#frame-setup" data-i="frameTitle"></a><span id="frame-status"></span></li><li><a href="#chain-stitch" data-i="lessonTitle"></a><span id="progress-status"></span></li><li><a href="#curves-corners" data-i="curvesTitle"></a><span id="curves-status"></span></li><li><a href="#sleeve-practice" data-i="vine"></a><span id="saved-status"></span></li></ul>
+<div id="sleeve-practice" class="practice-downloads">
+<h3 data-i="practicePatterns">Practice patterns</h3>
+<p data-i="print"></p>
+<div class="actions"><a class="button" href="floral-sleeve-a4.pdf" download data-i="sleevePdf">Floral sleeve PDF</a><a class="button soft" href="small-flower-a4.pdf" download data-i="flowerPdf">Five-petal flower PDF</a><button type="button" class="button soft" id="save" aria-pressed="false"></button></div>
+</div>
 <p class="notice" id="notice" role="status"></p>
 </section>
 </main><footer><div class="footer-inner"><span class="brand"><span class="mark" aria-hidden="true">✿</span> Aari Studio</span><span data-i="footer"></span></div></footer>
