@@ -31,35 +31,31 @@
 <section class="membership" id="payment" aria-labelledby="membership-title" tabindex="-1">
 <div>
 <h3 id="membership-title" data-i="membershipTitle">Professional Aari Designs</h3>
-<p data-i="membershipIntro">Get 30 days of access to the professional collection.</p>
+<p data-i="membershipIntro">Order the full professional collection.</p>
 </div>
 <div class="membership-plan">
-<p class="membership-price"><strong>₹99</strong> <span data-i="membershipPeriod">/ 30 days</span></p>
-<p class="membership-status" data-i="membershipStatus">UPI payment is being set up.</p>
+<p class="membership-price"><strong>₹99</strong></p>
 </div>
-<div class="membership-instructions" id="member-payment" hidden>
-<h4 data-i="memberSteps">How to pay and unlock designs</h4>
-<ol>
-<li><strong data-i="memberPay">Pay ₹99 by UPI</strong>
-<p data-i="memberStepPay">Show the QR code and scan it in your UPI app.</p>
+<div class="manual-payment" id="member-payment">
+<div class="manual-payment-qr">
+<h4 data-i="memberPay">Pay ₹99 by UPI</h4>
+<a href="upi-payment-qr.png" target="_blank" rel="noopener noreferrer">
+<img src="upi-payment-qr.png" width="328" height="328" alt="Open payment QR for Sandhiya Sandhiya" data-alt="memberQrAlt">
+</a>
+<p data-i="memberStepPay">Scan the QR in your UPI app and enter ₹99.</p>
+<p><strong>Sandhiya Sandhiya</strong><br><span>yasumozhi@oksbi</span></p>
+<a class="button soft" href="upi://pay?pa=yasumozhi%40oksbi&amp;pn=Sandhiya%20Sandhiya&amp;cu=INR&amp;am=99.00" data-i="memberOpenUpi">Open UPI app</a>
+</div>
+<form id="member-reference-form" action="https://wa.me/917092611546" method="get" target="_blank" rel="noopener noreferrer">
+<h4 data-i="memberStep2">Send your payment ID</h4>
+<p id="member-reference-help" data-i="memberStepReference">After paying, enter the payment ID or UTR from your receipt. Send the prefilled message in WhatsApp. Aari Studio will verify the payment and send you the designs there.</p>
+<label for="member-reference" data-i="memberReferenceLabel">UPI payment ID or UTR</label>
 <div class="member-actions">
-<button type="button" class="button soft" id="member-show-qr" data-i="memberShowQr">Show payment QR</button>
+<input type="text" id="member-reference" minlength="6" maxlength="48" spellcheck="false" autocomplete="off" aria-describedby="member-reference-help" required>
+<input type="hidden" name="text" id="member-whatsapp-message">
+<button type="submit" class="button" data-i="memberSendReference">Continue to WhatsApp</button>
 </div>
-<p id="member-qr-expired" data-i="memberQrExpired" hidden></p>
-<div class="member-payment-qr" id="member-qr" hidden>
-<img id="member-qr-image" width="328" height="328" alt="Aari Studio ₹99 UPI payment QR" data-alt="memberQrAlt" referrerpolicy="no-referrer">
-<a id="member-qr-link" target="_blank" rel="noopener noreferrer" data-i="memberOpenQr">Open QR image</a>
-</div></li>
-<li><strong data-i="memberReferenceLabel">UPI transaction reference</strong>
-<p id="member-reference-help" data-i="memberStepReference">After paying, enter the 12-digit UPI reference (UTR) from your receipt. Your designs open as soon as the payment is verified.</p>
-<form id="member-reference-form" hidden>
-<label for="member-reference" data-i="memberReferenceLabel">UPI transaction reference</label>
-<div class="member-actions">
-<input type="text" id="member-reference" name="reference" inputmode="numeric" pattern="[0-9]{12}" maxlength="12" autocomplete="off" aria-describedby="member-reference-help" required>
-<button type="submit" class="button soft" data-i="memberVerify">Verify and unlock</button>
-</div>
-</form></li>
-</ol>
+</form>
 </div>
 <div id="member-controls" class="member-controls" hidden>
 <details id="member-code-entry">

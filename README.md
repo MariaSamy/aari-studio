@@ -3,7 +3,9 @@ Aari embroidery lessons in Tamil and English, with stitch videos, a design galle
 
 ## Design membership
 
-The static site shows two free designs and the names of the locked professional designs. The payment QR and reference entry appear when the Node web service is configured for Razorpay UPI QR payments. Use Node 22.13 or later and run `npm start`. The service serves the website and membership API from the same origin.
+The static site shows two free designs and the names of the locked professional designs. Customers can pay ₹99 via the studio's direct UPI QR, enter their receipt reference, and send a message to Aari Studio on WhatsApp. Confirm the reference and amount in the receiving bank or UPI app before sending the private designs. The static site does not store payment references or grant access after submission.
+
+The optional membership API requires Node 22.13 or later. Run `npm start` to serve the website and API from the same origin.
 
 Set these server-side variables in the hosting dashboard.
 
@@ -14,9 +16,9 @@ Set these server-side variables in the hosting dashboard.
 | `AARI_PAYMENT_TEST_MODE` | Set to `1` only on a separate test deployment if test keys are used. |
 | `AARI_ADMIN_TOKEN` | Optional for manual code issuance. Use an independent random secret with at least 32 characters. |
 
-### Verify a QR payment
+### Optional Razorpay QR API
 
-Visitors generate a ₹99 single-use QR, scan it, and enter the 12-digit UPI reference from their receipt. The service checks Razorpay for the payment on that QR, verifies that it was captured for ₹99, and opens the collection for 30 days starting from the payment. Each Razorpay payment can be used once. Access resumes in the same browser until expiry.
+The optional server endpoints support a separate Razorpay checkout integration. They create a ₹99 single-use QR and verify captured payments against their 12-digit UPI references before granting 30 days of access. Each Razorpay payment can be used once. The public gallery currently uses the manual UPI flow.
 
 Enable the QR product and verify a live checkout in the studio’s Razorpay account before announcing payments. Razorpay test QR codes cannot be scanned for a real UPI payment.
 
