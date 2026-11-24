@@ -1,11 +1,13 @@
 const copy = {
   en: {
-    trainingGallery: 'Training Gallery', galleryEnroll: 'Unlock all six training lessons', freeLessons: 'Two free stitching lessons', practice: 'My Practice',
-    readyNav: 'Ready-made', readyBrowse: 'Browse ready-made designs',
+    lessonThree: 'Lesson 3 · Adding beads', lessonNumber: 'Lesson',
+    continueLessonThree: 'Continue to Lesson 3', unlockLessonThree: 'Unlock Lessons 3–8 · ₹99',
+    lessonCheckoutTitle: 'Unlock Lessons 3–8', backToFreeLessons: 'Back to the free lessons',
+    trainingGallery: 'Training Gallery', freeLessons: 'Two free stitching lessons', practice: 'My Practice',
+    readyNav: 'Ready-Made Designs',
     readyTitle: 'Ready-Made Designs',
     readyView: 'View design', readyChoose: 'Choose this design', readyChosen: 'Chosen',
     readyClear: 'Clear choice', readyClose: 'Close', readySelected: 'Your choice', readyUnsaved: 'This browser could not save your choice for next time.',
-    membershipNav: 'Training & payment', membershipTitle: 'Aari Stitching & New-Design Training',
     membershipIntro: 'Learn at your own pace with 30 days of access to the training.',
     trainingBeadsDemo: 'Watch how to add a bead to a chain stitch.', trainingNecklineExample: 'Neckline reference with a centre lotus and bead accents.',
     trainingSleeveAlt: 'A floral vine with pointed leaves and five-petal flowers for sleeve practice.',
@@ -26,8 +28,6 @@ const copy = {
     memberTryAgain: 'The lessons could not load. Try the same payment ID again in a moment.',
     memberStorageUnavailable: 'Please wait to pay. Open this page in a browser that can save your training access.',
     memberExpires: 'Access until', memberRetry: 'Retry loading lessons',
-    art: 'Aari embroidery', hello: 'Learn Aari work',
-    intro: 'Practise your first stitch, then trace a floral design for a saree blouse sleeve.',
     start: 'Start learning', resume: 'Continue learning', review: 'Review lessons',
     lessonsLabel: 'Beginner lessons', frameTag: 'Before you stitch', lessonTag: 'Free lesson 1',
     frameTitle: 'Tools and frame setup', frameIntro: 'Set up a small cotton practice swatch before picking up the hook.',
@@ -82,12 +82,14 @@ const copy = {
     footer: 'Aari embroidery practice and patterns',
   },
   ta: {
-    trainingGallery: 'பயிற்சித் தொகுப்பு', galleryEnroll: 'ஆறு பயிற்சிப் பாடங்களையும் திறக்கவும்', freeLessons: 'இரண்டு இலவசத் தையல் பாடங்கள்', practice: 'என் பயிற்சி',
-    readyNav: 'தயார் வடிவங்கள்', readyBrowse: 'தயார் வடிவங்களைப் பாருங்கள்',
+    lessonThree: 'பாடம் 3 · மணிகள் சேர்த்தல்', lessonNumber: 'பாடம்',
+    continueLessonThree: 'பாடம் 3-க்குச் செல்லுங்கள்', unlockLessonThree: 'பாடங்கள் 3–8 ஐத் திறக்கவும் · ₹99',
+    lessonCheckoutTitle: 'பாடங்கள் 3–8 ஐத் திறக்கவும்', backToFreeLessons: 'இலவசப் பாடங்களுக்குத் திரும்பவும்',
+    trainingGallery: 'பயிற்சித் தொகுப்பு', freeLessons: 'இரண்டு இலவசத் தையல் பாடங்கள்', practice: 'என் பயிற்சி',
+    readyNav: 'தயார் வடிவங்கள்',
     readyTitle: 'தயார் ஆரி வடிவங்கள்',
     readyView: 'வடிவத்தைப் பார்', readyChoose: 'இந்த வடிவத்தைத் தேர்வுசெய்', readyChosen: 'தேர்வானது',
     readyClear: 'தேர்வை நீக்கு', readyClose: 'மூடு', readySelected: 'உங்கள் தேர்வு', readyUnsaved: 'அடுத்த முறை பார்க்க உங்கள் தேர்வை இந்த உலாவியில் சேமிக்க முடியவில்லை.',
-    membershipNav: 'பயிற்சி மற்றும் கட்டணம்', membershipTitle: 'ஆரி தையல் மற்றும் புதிய வடிவப் பயிற்சி',
     membershipIntro: '30 நாட்கள் உங்களுக்கு ஏற்ற வேகத்தில் பயிற்சிப் பாடங்களைக் கற்றுக்கொள்ளலாம்.',
     trainingBeadsDemo: 'சங்கிலித் தையலில் மணியை எப்படிச் சேர்ப்பது என்று பாருங்கள்.', trainingNecklineExample: 'நடுவில் தாமரையும் மணிகளும் கொண்ட கழுத்து வடிவ உதாரணம்.',
     trainingSleeveAlt: 'ரவிக்கைக் கைப் பயிற்சிக்கான கூரான இலைகளும் ஐந்து இதழ்ப் பூக்களும் கொண்ட கொடி.',
@@ -108,8 +110,6 @@ const copy = {
     memberTryAgain: 'பாடங்களைத் திறக்க முடியவில்லை. சிறிது நேரம் கழித்து அதே பரிவர்த்தனை எண்ணை உள்ளிட்டு மீண்டும் முயலுங்கள்.',
     memberStorageUnavailable: 'இப்போது பணம் செலுத்த வேண்டாம். பயிற்சி அணுகலைச் சேமிக்கக்கூடிய உலாவியில் இந்தப் பக்கத்தைத் திறக்கவும்.',
     memberExpires: 'அணுகல் முடியும் நாள்', memberRetry: 'பாடங்களை மீண்டும் திறக்க முயலுங்கள்',
-    art: 'ஆரி எம்பிராய்டரி', hello: 'ஆரி வேலை கற்போம்',
-    intro: 'முதல் தையலைப் பயிற்சி செய்து, புடவை ரவிக்கையின் கைக்கு ஒரு பூங்கொடி வடிவத்தைத் துணியில் வரையுங்கள்.',
     start: 'கற்கத் தொடங்குங்கள்', resume: 'தொடர்ந்து கற்க', review: 'பாடங்களை மீண்டும் பார்க்க',
     lessonsLabel: 'தொடக்கப் பாடங்கள்', frameTag: 'தையலுக்கு முன்', lessonTag: 'இலவசப் பாடம் 1',
     frameTitle: 'கருவிகளும் சட்டம் அமைத்தலும்', frameIntro: 'ஆரி ஊசியைப் பயன்படுத்தும் முன் பருத்தித் துண்டைச் சட்டத்தில் பொருத்திப் பழகுங்கள்.',
@@ -188,7 +188,7 @@ try {
 }
 
 function fillList(id, items) {
-  byId(id).replaceChildren(...items.map(text => {
+  byId(id)?.replaceChildren(...items.map(text => {
     const li = document.createElement('li');
     li.textContent = text;
     return li;
@@ -217,20 +217,30 @@ function renderContent() {
 function renderStatus() {
   const t = copy[state.language];
   const start = byId('start');
-  const next = lessons.find(lesson => !state[lesson.progress]);
-  start.href = next ? '#' + next.id : '#learn';
-  start.textContent = next === lessons[0] && !lessons.some(lesson => state[lesson.progress])
-    ? t.start : next ? t.resume : t.review;
+  if (start) {
+    const freeLessons = lessons.slice(1);
+    const next = freeLessons.find(lesson => !state[lesson.progress]);
+    start.href = 'learn.html#' + (next?.id ?? 'chain-stitch');
+    start.textContent = !freeLessons.some(lesson => state[lesson.progress]) ? t.start : next ? t.resume : t.review;
+  }
   for (const { progress, button, status } of lessons) {
     const complete = state[progress];
-    byId(button).textContent = complete ? t.undo : t.done;
-    byId(button).setAttribute('aria-pressed', complete);
-    byId(status).textContent = complete ? t.complete : t.incomplete;
+    const control = byId(button);
+    if (control) {
+      control.textContent = complete ? t.undo : t.done;
+      control.setAttribute('aria-pressed', complete);
+    }
+    const label = byId(status);
+    if (label) label.textContent = complete ? t.complete : t.incomplete;
   }
-  byId('save').textContent = state.saved ? t.saved : t.save;
-  byId('save').setAttribute('aria-pressed', state.saved);
-  byId('saved-status').textContent = state.saved ? t.saved : t.unsaved;
-  byId('notice').textContent = storageError ? t.storageIssue : '';
+  const save = byId('save');
+  if (save) {
+    save.textContent = state.saved ? t.saved : t.save;
+    save.setAttribute('aria-pressed', state.saved);
+    byId('saved-status').textContent = state.saved ? t.saved : t.unsaved;
+  }
+  const notice = byId('notice');
+  if (notice) notice.textContent = storageError ? t.storageIssue : '';
 }
 
 function persist() {
@@ -249,12 +259,12 @@ byId('language').addEventListener('click', () => {
   persist();
 });
 for (const { progress, button } of lessons) {
-  byId(button).addEventListener('click', () => {
+  byId(button)?.addEventListener('click', () => {
     state[progress] = !state[progress];
     persist();
   });
 }
-byId('save').addEventListener('click', () => {
+byId('save')?.addEventListener('click', () => {
   state.saved = !state.saved;
   persist();
 });
@@ -264,27 +274,45 @@ function showLesson(id) {
     if (panel.hidden) panel.querySelector('video')?.pause();
   });
   nodes('.lesson-nav a').forEach(link => {
-    if (link.hash === '#' + id) link.setAttribute('aria-current', 'location');
+    if (link.getAttribute('href') === '#' + id) link.setAttribute('aria-current', 'location');
     else link.removeAttribute('aria-current');
   });
 }
 
 const lessonIds = lessons.map(lesson => lesson.id);
 const lessonFromHash = () => location.hash.slice(1);
-window.addEventListener('hashchange', () => {
-  const id = lessonFromHash();
-  if (lessonIds.includes(id)) {
-    showLesson(id);
-    byId(id).scrollIntoView();
-  }
-});
 
-document.addEventListener('click', event => {
-  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-  const id = event.target.closest('a')?.hash.slice(1);
-  if (lessonIds.includes(id)) showLesson(id);
-});
+if (byId('learn')) {
+  window.addEventListener('hashchange', () => {
+    const id = lessonFromHash();
+    if (lessonIds.includes(id)) {
+      showLesson(id);
+      byId(id).scrollIntoView();
+    }
+  });
+  document.addEventListener('click', event => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const href = event.target.closest('a')?.getAttribute('href');
+    if (href?.startsWith('#') && lessonIds.includes(href.slice(1))) showLesson(href.slice(1));
+  });
+  showLesson(lessonIds.includes(lessonFromHash()) ? lessonFromHash() : 'chain-stitch');
+}
+
+if (byId('ready-designs')) {
+  const previousPages = {
+    'training-gallery': 'learn.html',
+    'learn': 'learn.html#learn',
+    'training-lessons': 'learn.html#training-lessons',
+    'lesson-3': 'learn.html#lesson-3',
+    'payment': 'payment.html',
+    'design-mixer': 'mixer.html',
+    'practice': 'practice.html',
+    'sleeve-practice': 'practice.html#sleeve-practice',
+  };
+  for (const id of lessonIds) previousPages[id] = 'learn.html#' + id;
+  const redirect = previousPages[lessonFromHash()];
+  if (typeof redirect === 'string') location.replace(redirect);
+}
 
 renderContent();
 renderStatus();
-showLesson(lessonIds.includes(lessonFromHash()) ? lessonFromHash() : 'frame-setup');
