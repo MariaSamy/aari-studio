@@ -39,55 +39,9 @@ function drawDesign(canvas, placement, main, accent, palette) {
   }
 }
 
-const filters = ['placement-filter', 'level-filter'];
 const mixerFields = ['mix-placement', 'mix-main', 'mix-accent', 'mix-palette'];
 const mixPreview = byId('mix-preview');
 const mixValues = () => mixerFields.map(id => byId(id).value);
-
-function showDesigns() {
-  const t = copy[state.language];
-  const [placement, level] = filters.map(id => byId(id).value);
-  const matches = galleryDesigns.filter(design =>
-    (!placement || design.placement === placement) && (!level || design.level === level));
-  byId('gallery-empty').hidden = matches.length > 0;
-  byId('gallery-cards').replaceChildren(...matches.map(design => {
-    const card = byId('gallery-card-template').content.firstElementChild.cloneNode(true);
-    const name = design.name[state.language];
-    const media = card.querySelector('.gallery-media');
-    if (design.image) {
-      const image = new Image();
-      image.src = design.image;
-      image.alt = name;
-      image.loading = 'lazy';
-      media.append(image);
-    } else {
-      const canvas = document.createElement('canvas');
-      canvas.width = 600;
-      canvas.height = 360;
-      canvas.setAttribute('role', 'img');
-      canvas.setAttribute('aria-label', name);
-      drawDesign(canvas, design.placement, design.main, design.accent, design.palette);
-      media.append(canvas);
-    }
-    card.querySelector('h3').textContent = name;
-    card.querySelector('p').textContent = [t[design.placement], t[design.level]].join(' · ');
-    const action = card.querySelector('a');
-    if (design.pdf) {
-      action.href = design.pdf;
-      action.textContent = t.download;
-    } else if (design.photo) {
-      action.href = design.image;
-      action.target = '_blank';
-      action.rel = 'noopener';
-      action.removeAttribute('download');
-      action.textContent = t.viewGalleryPhoto;
-      action.setAttribute('aria-label', t.viewGalleryPhoto + ' · ' + name);
-    } else {
-      action.remove();
-    }
-    return card;
-  }));
-}
 
 function mixDesign() {
   drawDesign(mixPreview, ...mixValues());
@@ -96,12 +50,6 @@ function mixDesign() {
   byId('mix-feedback').textContent = '';
 }
 
-function updateDesignLanguage() {
-  showDesigns();
-  byId('mix-feedback').textContent = '';
-}
-
-for (const id of filters) byId(id).addEventListener('change', showDesigns);
 for (const id of mixerFields) byId(id).addEventListener('change', mixDesign);
 byId('mix-surprise').addEventListener('click', () => {
   for (const id of ['mix-main', 'mix-accent', 'mix-palette']) {
@@ -127,6 +75,7 @@ byId('ai-copy').addEventListener('click', async () => {
     byId('mix-feedback').textContent = t.aiManual;
   }
 });
-byId('language').addEventListener('click', updateDesignLanguage);
-updateDesignLanguage();
+byId('language').addEventListener('click', () => {
+  byId('mix-feedback').textContent = '';
+});
 mixDesign();

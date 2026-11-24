@@ -12,35 +12,6 @@ const arrangements = {
   neck: { base: 'M130 58 Q156 255 300 276 Q444 255 470 58', spots: [[159,121,.67,-25],[205,204,.72,-25],[300,233,.86],[395,204,.72,25],[441,121,.67,25]] },
   border: { base: 'M35 249 H565 M35 269 H565', spots: [[110,202,.83],[205,202,.83],[300,202,.83],[395,202,.83],[490,202,.83]] },
 };
-const galleryDesigns = [
-  {
-    id: 'navy-twin-peacock', placement: 'sleeve', level: 'advanced', image: 'gallery-navy-twin-peacock.webp', photo: true,
-    name: { en: 'Navy twin-peacock sleeve', ta: 'இரு மயில்கள் கொண்ட கருநீலக் கை வடிவம்' },
-  },
-  {
-    id: 'red-gold-peacock', placement: 'sleeve', level: 'advanced', image: 'gallery-red-gold-peacock.webp', photo: true,
-    name: { en: 'Red and gold peacock sleeve', ta: 'சிவப்புத் துணியில் தங்க நிற மயில் கை வடிவம்' },
-  },
-  {
-    id: 'magenta-lotus-pearl', placement: 'neck', level: 'advanced', image: 'gallery-magenta-lotus-pearl.webp', photo: true,
-    name: { en: 'Magenta lotus and pearl neckline', ta: 'அடர் இளஞ்சிவப்புத் துணியில் தாமரையும் முத்துகளும் கொண்ட கழுத்து வடிவம்' },
-  },
-  {
-    id: 'green-temple-back', placement: 'back', level: 'advanced', image: 'gallery-green-temple-back.webp', photo: true,
-    name: { en: 'Green temple-tower blouse back', ta: 'கோபுர வேலைப்பாடுள்ள பச்சை ரவிக்கையின் பின்புறம்' },
-  },
-  {
-    id: 'blue-scalloped-vine', placement: 'neck', level: 'intermediate', image: 'gallery-blue-scalloped-vine.webp', photo: true,
-    name: { en: 'Royal blue scalloped vine neckline', ta: 'அலை வடிவப் பூங்கொடி கொண்ட நீலக் கழுத்து வடிவம்' },
-  },
-  { id: 'lotus-spiral-neckline', placement: 'neck', level: 'intermediate', name: { en: 'Lotus and spiral neckline', ta: 'தாமரையும் சுருளும் கொண்ட கழுத்து வடிவம்' }, main: 'lotus', accent: 'spiral', palette: 'wine' },
-  { id: 'sleeve-vine', placement: 'sleeve', level: 'beginner', name: { en: 'Floral sleeve vine', ta: 'கைப் பகுதிக்கான பூங்கொடி' }, image: 'floral-sleeve.png', pdf: 'floral-sleeve-a4.pdf' },
-  { id: 'practice-flower', placement: 'small', level: 'beginner', name: { en: 'Five-petal practice flower', ta: 'ஐந்து இதழ்கள் கொண்ட பூ' }, image: 'floral-motif.png', pdf: 'small-flower-a4.pdf' },
-  { id: 'lotus-medallion', placement: 'small', level: 'beginner', name: { en: 'Lotus medallion', ta: 'தாமரை வடிவம்' }, main: 'lotus', accent: 'leaf', palette: 'wine' },
-  { id: 'paisley-neckline', placement: 'neck', level: 'intermediate', name: { en: 'Paisley neckline', ta: 'மாங்காய் வடிவக் கழுத்து' }, main: 'paisley', accent: 'jasmine', palette: 'teal' },
-  { id: 'jasmine-border', placement: 'border', level: 'beginner', name: { en: 'Jasmine border', ta: 'மல்லிகைக் கரை' }, main: 'jasmine', accent: 'bud', palette: 'wine' },
-  { id: 'leaf-sleeve', placement: 'sleeve', level: 'intermediate', name: { en: 'Leaf and bud sleeve', ta: 'இலையும் மொட்டும் கொண்ட கை வடிவம்' }, main: 'leaf', accent: 'bud', palette: 'indigo' },
-];
 const palettes = {
   wine: ['#411727', '#f4cd85', '#ec91a9'],
   teal: ['#123c39', '#f4d88e', '#9cdcc5'],
