@@ -78,7 +78,10 @@ footer{background:#f8edf1;color:var(--wine);padding:1.4rem 0}
 .design-fields label{display:grid;flex:1 1 165px;max-width:250px;gap:.3rem;font-weight:650}
 .design-fields select{appearance:none;width:100%;min-height:46px;padding:.55rem 2rem .55rem .65rem;border:1px solid #b891a2;border-radius:.55rem;color:var(--ink);background:linear-gradient(45deg,transparent 48%,var(--wine) 52%) right 15px center/6px 6px no-repeat,linear-gradient(135deg,var(--wine) 48%,transparent 52%) right 9px center/6px 6px no-repeat,#fff;font:inherit}
 .mixer{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start;gap:1.15rem;padding:clamp(1rem,3vw,2rem);border:1px solid var(--line);border-radius:1rem;background:#fff}
-.mixer h2{font-size:clamp(1.55rem,3vw,2rem)}
+.mixer,.mixer-gate{margin-top:1.35rem}
+.mixer-gate{padding:clamp(1rem,3vw,2rem);border:1px solid var(--line);border-radius:1rem;background:#fff}
+.mixer-gate p{margin:0;color:var(--muted)}
+.mixer[hidden],.mixer-gate[hidden]{display:none}
 .mixer canvas{display:block;width:100%;height:auto;border-radius:.7rem}
 .ai-panel{grid-column:1/-1;border-top:1px solid var(--line);padding-top:1rem}
 .ai-panel h4,.ai-panel p{margin:0 0 .55rem}

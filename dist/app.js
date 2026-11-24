@@ -1,8 +1,10 @@
 const copy = {
   en: {
     lessonThree: 'Lesson 3 · Adding beads', lessonNumber: 'Lesson',
-    continueLessonThree: 'Continue to Lesson 3', unlockLessonThree: 'Unlock Lessons 3–8 · ₹99',
-    lessonCheckoutTitle: 'Unlock Lessons 3–8', backToFreeLessons: 'Back to the free lessons',
+    continueLessonThree: 'Continue to Lesson 3', unlockLessonThree: 'Unlock Lesson 3 onward · ₹99',
+    lessonCheckoutTitle: 'Unlock training and Design Mixer', backToFreeLessons: 'Back to the free lessons',
+    mixerAccessNote: 'The ₹99 pass opens Design Mixer and Lesson 3 onward for 30 days.',
+    mixerUnlock: 'Unlock Design Mixer · ₹99', mixerAccessIncluded: 'Use Design Mixer with the same pass.',
     trainingGallery: 'Training Gallery', freeLessons: 'Two free stitching lessons', practice: 'My Practice',
     readyNav: 'Ready-Made Designs',
     readyTitle: 'Ready-Made Designs',
@@ -83,8 +85,10 @@ const copy = {
   },
   ta: {
     lessonThree: 'பாடம் 3 · மணிகள் சேர்த்தல்', lessonNumber: 'பாடம்',
-    continueLessonThree: 'பாடம் 3-க்குச் செல்லுங்கள்', unlockLessonThree: 'பாடங்கள் 3–8 ஐத் திறக்கவும் · ₹99',
-    lessonCheckoutTitle: 'பாடங்கள் 3–8 ஐத் திறக்கவும்', backToFreeLessons: 'இலவசப் பாடங்களுக்குத் திரும்பவும்',
+    continueLessonThree: 'பாடம் 3-க்குச் செல்லுங்கள்', unlockLessonThree: 'பாடம் 3 முதல் திறக்கவும் · ₹99',
+    lessonCheckoutTitle: 'பயிற்சியையும் வடிவக் கலவைக் கருவியையும் திறக்கவும்', backToFreeLessons: 'இலவசப் பாடங்களுக்குத் திரும்பவும்',
+    mixerAccessNote: '₹99 செலுத்தி 30 நாட்களுக்கு வடிவக் கலவைக் கருவியையும் பாடம் 3 முதல் உள்ள பாடங்களையும் பயன்படுத்துங்கள்.',
+    mixerUnlock: 'வடிவக் கலவைக் கருவியைத் திறக்கவும் · ₹99', mixerAccessIncluded: 'இதே கட்டணத்தில் வடிவக் கலவைக் கருவியையும் பயன்படுத்தலாம்.',
     trainingGallery: 'பயிற்சித் தொகுப்பு', freeLessons: 'இரண்டு இலவசத் தையல் பாடங்கள்', practice: 'என் பயிற்சி',
     readyNav: 'தயார் வடிவங்கள்',
     readyTitle: 'தயார் ஆரி வடிவங்கள்',
