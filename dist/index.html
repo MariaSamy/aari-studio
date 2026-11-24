@@ -118,8 +118,14 @@
 <div class="ready-dialog-copy"><p id="ready-preview-detail"></p><button type="button" class="button" id="ready-choose" data-i="readyChoose"></button></div>
 </dialog>
 </section>
-<section class="section" id="designs">
-<div class="design-heading"><h2 data-i="designTitle"></h2><a class="button soft" href="#design-mixer" data-i="mixerTitle"></a></div>
+<section class="section" id="designs" aria-labelledby="design-title">
+<div class="design-heading">
+<h2 id="design-title" data-i="designTitle" tabindex="-1"></h2>
+<div class="actions">
+<a class="button" id="gallery-training-link" href="#training-lessons" data-i="galleryTraining" hidden></a>
+<a class="button soft" href="#design-mixer" data-i="mixerTitle"></a>
+</div>
+</div>
 <div class="design-fields"><label><span data-i="placementLabel"></span><select id="placement-filter"><option value="" data-i="allPlacements"></option><option value="small" data-i="small"></option><option value="sleeve" data-i="sleeve"></option><option value="neck" data-i="neck"></option><option value="border" data-i="border"></option></select></label><label><span data-i="levelLabel"></span><select id="level-filter"><option value="" data-i="allLevels"></option><option value="beginner" data-i="beginner"></option><option value="intermediate" data-i="intermediate"></option></select></label></div>
 <p id="gallery-empty" data-i="noDesigns" hidden></p><div class="gallery-grid" id="gallery-cards"></div>
 <template id="gallery-card-template"><article class="gallery-card"><div class="gallery-media"></div><div class="gallery-copy"><h3></h3><p></p><a href="#" download></a></div></article></template>

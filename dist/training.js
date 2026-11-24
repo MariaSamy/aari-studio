@@ -22,6 +22,7 @@ function renderTraining() {
   byId('member-payment').hidden = active || !trainingAccess;
   trainingRetry.hidden = !(active && !course && memberMessage === 'memberTryAgain');
   trainingLessons.hidden = !active || !course;
+  byId('gallery-training-link').hidden = trainingLessons.hidden;
   if (trainingLessons.hidden) {
     trainingLessons.replaceChildren();
     return;
@@ -138,7 +139,9 @@ referenceForm.addEventListener('submit', async event => {
     memberMessage = 'memberReady';
     checkTrainingExpiry();
     renderTraining();
-    trainingLessons.focus();
+    location.hash = 'designs';
+    byId('designs').scrollIntoView();
+    byId('design-title').focus({ preventScroll: true });
   } catch {
     memberMessage = 'memberTryAgain';
   } finally {
