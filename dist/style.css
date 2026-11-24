@@ -136,6 +136,7 @@ footer{background:#f8edf1;color:var(--wine);padding:1.4rem 0}
 .membership-price strong{font-size:1.85rem;line-height:1.1}
 .manual-payment{flex:0 0 100%;display:grid;grid-template-columns:minmax(0, 1fr) minmax(0, 1.4fr);gap:1rem;background:#fff8f5;color:var(--ink);padding:clamp(.9rem, 3vw, 1.45rem);border-radius:.7rem}
 .manual-payment[hidden]{display:none}
+.membership-status{color:#f4dae3;font-size:.94rem}
 .manual-payment h4{margin:0 0 .5rem;font-size:1.1rem}
 .manual-payment p{color:#64515a;margin:.35rem 0 .7rem;overflow-wrap:anywhere}
 .manual-payment-qr img{display:block;width:min(100%, 12rem);height:auto;background:white;border:1px solid var(--line);border-radius:.5rem}

@@ -69,6 +69,10 @@ let memberMessage;
 let memberImageUrl;
 let memberImageLoading = false;
 let membershipAvailable = false;
+let manualUpiAvailable = false;
+let paymentCheck;
+let paymentTimer;
+const manualClaimKey = 'aari-manual-claim-key';
 const readyPlacement = (design, lang) => copy[lang][design.placement];
 
 function showDesign(design, image, isFree) {
@@ -98,7 +102,8 @@ function renderReadyCollection() {
   selected.textContent = active ? `${t.readySelected} · ${active.name[lang]}` : '';
   byId('ready-save-note').textContent = active && storageError ? t.readyUnsaved : '';
   byId('member-message').textContent = memberMessage ? t[memberMessage] : '';
-  byId('member-payment').hidden = Boolean(memberCode);
+  byId('member-payment').hidden = !manualUpiAvailable || Boolean(memberCode);
+  byId('member-status').hidden = manualUpiAvailable || Boolean(memberCode);
   memberControls.hidden = !membershipAvailable || Boolean(memberCode);
   function makeCard(design, isFree) {
     const card = byId('ready-template').content.firstElementChild.cloneNode(true);
@@ -196,6 +201,7 @@ async function loadMembership() {
     const config = await response.json();
     if (!config.available) return;
     membershipAvailable = true;
+    manualUpiAvailable = config.manualUpi === true;
     renderReadyCollection();
     const stored = localStorage.getItem(memberStorageKey) || sessionStorage.getItem(memberStorageKey);
     if (stored) await checkMembership(stored);
@@ -212,17 +218,82 @@ async function sendMembershipRequest(path, data) {
   });
 }
 
-paymentReference.addEventListener('input', () => paymentReference.setCustomValidity(''));
+function stopCheckingPayment() {
+  clearTimeout(paymentTimer);
+  paymentCheck = undefined;
+}
+
+async function verifyDirectPayment(check) {
+  const submit = referenceForm.querySelector('button');
+  submit.disabled = true;
+  try {
+    const response = await sendMembershipRequest('/manual/claim', check);
+    if (paymentCheck !== check || memberCode) return;
+    if (response.status === 200) {
+      saveMembership(check.code);
+      try {
+        localStorage.removeItem(manualClaimKey);
+      } catch {
+        // Access is already saved in memory.
+      }
+      stopCheckingPayment();
+      paymentReference.value = '';
+      memberMessage = 'memberReady';
+      renderReadyCollection();
+      byId('premium-cards').querySelector('a').focus();
+    } else if (response.status === 202 || response.status === 429) {
+      memberMessage = 'memberPending';
+      paymentTimer = setTimeout(() => verifyDirectPayment(check), 15000);
+    } else {
+      stopCheckingPayment();
+      memberMessage = response.status === 409 ? 'memberReferenceUsed' : 'memberTryAgain';
+    }
+  } catch {
+    if (paymentCheck !== check) return;
+    stopCheckingPayment();
+    memberMessage = 'memberTryAgain';
+  } finally {
+    submit.disabled = false;
+    byId('member-message').textContent = memberMessage ? copy[state.language][memberMessage] : '';
+  }
+}
+
+paymentReference.addEventListener('input', () => {
+  paymentReference.setCustomValidity('');
+  stopCheckingPayment();
+  memberMessage = undefined;
+  byId('member-message').textContent = '';
+});
 referenceForm.addEventListener('submit', event => {
+  event.preventDefault();
+  if (!manualUpiAvailable || memberCode) return;
   const reference = paymentReference.value.trim();
   const t = copy[state.language];
   if (!/^[A-Z0-9][A-Z0-9-]{4,46}[A-Z0-9]$/i.test(reference)) {
-    event.preventDefault();
     paymentReference.setCustomValidity(t.memberBadReference);
     paymentReference.reportValidity();
     return;
   }
-  byId('member-whatsapp-message').value = `${t.memberWhatsappMessage} ${reference}.`;
+  clearTimeout(paymentTimer);
+  let code = paymentCheck?.code;
+  if (!code) {
+    try {
+      code = localStorage.getItem(manualClaimKey);
+    } catch {
+      // This tab can still claim a payment when browser storage is unavailable.
+    }
+    if (!/^[A-F0-9]{20}$/.test(code ?? '')) {
+      code = Array.from(crypto.getRandomValues(new Uint8Array(10)), byte =>
+        byte.toString(16).padStart(2, '0')).join('').toUpperCase();
+      try {
+        localStorage.setItem(manualClaimKey, code);
+      } catch {
+        // Keep the random claim key in memory for this tab.
+      }
+    }
+  }
+  paymentCheck = { reference, code };
+  verifyDirectPayment(paymentCheck);
 });
 
 memberForm.addEventListener('submit', async event => {

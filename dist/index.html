@@ -31,12 +31,13 @@
 <section class="membership" id="payment" aria-labelledby="membership-title" tabindex="-1">
 <div>
 <h3 id="membership-title" data-i="membershipTitle">Professional Aari Designs</h3>
-<p data-i="membershipIntro">Order the full professional collection.</p>
+<p data-i="membershipIntro">Get 30 days of access to the professional collection.</p>
 </div>
 <div class="membership-plan">
 <p class="membership-price"><strong>₹99</strong></p>
+<p class="membership-status" id="member-status" data-i="memberUnavailable">Online unlock is being set up. Please wait before paying.</p>
 </div>
-<div class="manual-payment" id="member-payment">
+<div class="manual-payment" id="member-payment" hidden>
 <div class="manual-payment-qr">
 <h4 data-i="memberPay">Pay ₹99 by UPI</h4>
 <a href="upi-payment-qr.png" target="_blank" rel="noopener noreferrer">
@@ -46,14 +47,13 @@
 <p><strong>Sandhiya Sandhiya</strong><br><span>yasumozhi@oksbi</span></p>
 <a class="button soft" href="upi://pay?pa=yasumozhi%40oksbi&amp;pn=Sandhiya%20Sandhiya&amp;cu=INR&amp;am=99.00" data-i="memberOpenUpi">Open UPI app</a>
 </div>
-<form id="member-reference-form" action="https://wa.me/917092611546" method="get" target="_blank" rel="noopener noreferrer">
-<h4 data-i="memberStep2">Send your payment ID</h4>
-<p id="member-reference-help" data-i="memberStepReference">After paying, enter the payment ID or UTR from your receipt. Send the prefilled message in WhatsApp. Aari Studio will verify the payment and send you the designs there.</p>
-<label for="member-reference" data-i="memberReferenceLabel">UPI payment ID or UTR</label>
+<form id="member-reference-form" method="post">
+<h4 data-i="memberStep2">Enter your payment ID</h4>
+<p id="member-reference-help" data-i="memberStepReference">Enter the UPI payment reference (UTR) from your receipt. The designs unlock here once Aari Studio confirms the ₹99 payment.</p>
+<label for="member-reference" data-i="memberReferenceLabel">UPI reference (UTR)</label>
 <div class="member-actions">
 <input type="text" id="member-reference" minlength="6" maxlength="48" spellcheck="false" autocomplete="off" aria-describedby="member-reference-help" required>
-<input type="hidden" name="text" id="member-whatsapp-message">
-<button type="submit" class="button" data-i="memberSendReference">Continue to WhatsApp</button>
+<button type="submit" class="button" data-i="memberCheckPayment">Check payment</button>
 </div>
 </form>
 </div>
