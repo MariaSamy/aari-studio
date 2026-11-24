@@ -13,44 +13,44 @@ const readyCollection = [
 
 const premiumCollection = [
   {
-    id: 'marigold-moth', image: 'ready-marigold-moth.webp', placement: 'neck',
+    id: 'marigold-moth', placement: 'neck',
     name: { en: 'Marigold Moth Sweetheart Neckline', ta: 'சாமந்தி மஞ்சள் பட்டில் அந்துப்பூச்சிக் கழுத்து வடிவம்' },
   },
   {
-    id: 'turquoise-papyrus', image: 'ready-turquoise-papyrus.webp', placement: 'sleeve',
+    id: 'turquoise-papyrus', placement: 'sleeve',
     name: { en: 'Turquoise Papyrus Sleeve', ta: 'நீலப்பச்சைக் கையில் பப்பிரஸ் செடிகள்' },
   },
   {
-    id: 'denim-dogwood', image: 'ready-denim-dogwood.webp', placement: 'floralDetail',
+    id: 'denim-dogwood', placement: 'floralDetail',
     name: { en: 'Denim Dogwood Yoke Sprig', ta: 'டெனிம் ஆடையின் மேற்பகுதியில் டாக்வுட் பூங்கிளை' },
   },
   {
-    id: 'indigo-peacock', image: 'ready-navy.webp', placement: 'sleeve',
+    id: 'indigo-peacock', placement: 'sleeve',
     name: { en: 'Indigo Peacock Sleeve', ta: 'கருநீல மயில் கை வடிவம்' },
     detail: { en: 'Peacock motifs in pale gold and teal along a curved sleeve edge.', ta: 'வளைந்த கை ஓரத்தில் வெளிர் தங்கமும் நீலப்பச்சையும் கலந்த மயில் வடிவங்கள்.' },
   },
   {
-    id: 'rose-jasmine', image: 'ready-rose.webp', placement: 'border',
+    id: 'rose-jasmine', placement: 'border',
     name: { en: 'Rose Jasmine Border', ta: 'ரோஜா நிற மல்லிகைக் கரை' },
     detail: { en: 'Ivory jasmine flowers, curling gold vines and pearl accents on rose silk.', ta: 'ரோஜா நிறப் பட்டில் வெண்மை மல்லிகைப் பூக்கள், தங்கக் கொடிகள், முத்துகள்.' },
   },
   {
-    id: 'plum-ginkgo', image: 'ready-plum-ginkgo.webp', placement: 'neck',
+    id: 'plum-ginkgo', placement: 'neck',
     name: { en: 'Plum Ginkgo Neckline', ta: 'ஊதாப் பட்டில் ஜிங்கோ இலைக் கழுத்து வடிவம்' },
     detail: { en: 'Lilac and silver fan-shaped ginkgo leaves frame the lower corners of a square neckline on plum silk.', ta: 'அடர் ஊதாப் பட்டில் சதுரக் கழுத்தின் கீழ் மூலைகளில் வெளிர் ஊதா மற்றும் வெள்ளி நிற விசிறி வடிவ ஜிங்கோ இலைகள்.' },
   },
   {
-    id: 'ochre-crane', image: 'ready-ochre-crane.webp', placement: 'sleeve',
+    id: 'ochre-crane', placement: 'sleeve',
     name: { en: 'Ochre Crane Sleeve', ta: 'மஞ்சள் காவித் துணியில் கொக்குகள் கொண்ட கை வடிவம்' },
     detail: { en: 'Two ivory cranes fly above rust-coloured chain-stitch swirls at the curved edge of an ochre sleeve.', ta: 'மஞ்சள் காவி நிறக் கை ஓரத்தின் வளைவில் செம்பழுப்பு நிறச் சங்கிலித் தையல் சுருள்களுக்கு மேலே இரண்டு வெண்நிறக் கொக்குகள் பறக்கின்றன.' },
   },
   {
-    id: 'cobalt-diamond', image: 'ready-cobalt-diamond.webp', placement: 'border',
+    id: 'cobalt-diamond', placement: 'border',
     name: { en: 'Cobalt Diamond Border', ta: 'அடர் நீலப் பட்டில் வைர வடிவக் கரை' },
     detail: { en: 'Coral and copper diamonds repeat between two fine copper chain-stitch lines on cobalt-blue silk. Coral knots dot alternate diamonds.', ta: 'அடர் நீலப் பட்டில் செம்பு நிறச் சங்கிலித் தையல் கோடுகளுக்கு இடையே பவள மற்றும் செம்பு நிற வைர வடிவங்கள் தொடர்கின்றன. ஒரு வைரம் விட்டு அடுத்த வைரத்தின் நடுவில் பவள நிற நூல் முடிச்சு உள்ளது.' },
   },
   {
-    id: 'ivory-nasturtium', image: 'ready-ivory-nasturtium.webp', placement: 'floralDetail',
+    id: 'ivory-nasturtium', placement: 'floralDetail',
     name: { en: 'Ivory Nasturtium Sprig', ta: 'வெண்மை லினனில் நாஸ்டர்ஷியம் பூங்கிளை' },
     detail: { en: 'One bright orange nasturtium and two round olive-green leaves on ivory linen. Use this small motif on a pocket or a yoke.', ta: 'வெண்மை லினன் துணியில் ஓர் ஆரஞ்சு நிற நாஸ்டர்ஷியம் பூவும் இரண்டு வட்ட ஆலிவ் பச்சை இலைகளும். பையிலோ ஆடையின் மேல் பகுதியிலோ தைக்க ஏற்ற சிறிய வடிவம்.' },
   },
@@ -60,12 +60,19 @@ const readyDialog = byId('ready-preview');
 const readyCards = byId('ready-cards');
 const memberControls = byId('member-controls');
 const memberForm = byId('member-form');
+const referenceForm = byId('member-reference-form');
+const showQr = byId('member-show-qr');
 const memberStorageKey = 'aari-membership-code';
+const checkoutStorageKey = 'aari-upi-checkout';
 let previewDesign;
 let memberCode;
 let memberMessage;
 let memberImageUrl;
 let memberImageLoading = false;
+let membershipAvailable = false;
+let upiAvailable = false;
+let checkout;
+let qrTimer;
 const readyPlacement = (design, lang) => copy[lang][design.placement];
 
 function showDesign(design, image, isFree) {
@@ -95,11 +102,16 @@ function renderReadyCollection() {
   selected.textContent = active ? `${t.readySelected} · ${active.name[lang]}` : '';
   byId('ready-save-note').textContent = active && storageError ? t.readyUnsaved : '';
   byId('member-message').textContent = memberMessage ? t[memberMessage] : '';
+  document.querySelector('.membership-status').hidden = upiAvailable || Boolean(memberCode);
+  byId('member-payment').hidden = !upiAvailable || Boolean(memberCode);
+  memberControls.hidden = !membershipAvailable || Boolean(memberCode);
   function makeCard(design, isFree) {
     const card = byId('ready-template').content.firstElementChild.cloneNode(true);
     const control = document.createElement(isFree ? 'button' : 'a');
     control.className = 'ready-open';
-    card.querySelector('img').src = design.image;
+    const image = card.querySelector('img');
+    if (isFree) image.src = design.image;
+    else image.remove();
     card.querySelector('strong').textContent = design.name[lang];
     card.querySelector('small').textContent = readyPlacement(design, lang);
     const action = card.querySelector('.ready-action');
@@ -129,22 +141,48 @@ function renderReadyCollection() {
 function saveMembership(code) {
   memberCode = code;
   try {
-    if (code) sessionStorage.setItem(memberStorageKey, code);
-    else sessionStorage.removeItem(memberStorageKey);
+    if (code) localStorage.setItem(memberStorageKey, code);
+    else localStorage.removeItem(memberStorageKey);
+    sessionStorage.removeItem(memberStorageKey);
   } catch {
     // The code remains usable until the page is closed or refreshed.
   }
-  memberForm.hidden = Boolean(code);
-  byId('member-payment').hidden = Boolean(code);
+}
+
+function saveCheckout(value) {
+  checkout = value;
+  try {
+    if (value) localStorage.setItem(checkoutStorageKey, JSON.stringify(value));
+    else localStorage.removeItem(checkoutStorageKey);
+  } catch {
+    // Payment can still be verified in the current tab.
+  }
+  renderCheckout();
+}
+
+function renderCheckout() {
+  clearTimeout(qrTimer);
+  const timeLeft = checkout ? checkout.closesAt * 1000 - Date.now() : 0;
+  const qr = byId('member-qr');
+  const image = byId('member-qr-image');
+  const imageLink = byId('member-qr-link');
+  qr.hidden = timeLeft <= 0;
+  showQr.hidden = !qr.hidden;
+  byId('member-qr-expired').hidden = !checkout || !qr.hidden;
+  referenceForm.hidden = !checkout;
+  if (qr.hidden) {
+    image.removeAttribute('src');
+    imageLink.removeAttribute('href');
+  } else {
+    image.src = checkout.qrImage;
+    imageLink.href = checkout.qrImage;
+    qrTimer = setTimeout(renderCheckout, timeLeft);
+  }
 }
 
 async function checkMembership(code) {
   try {
-    const response = await fetch('/api/membership/access', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ code }),
-    });
+    const response = await sendMembershipRequest('/access', { code });
     if (response.ok) {
       saveMembership(code);
       memberMessage = 'memberReady';
@@ -171,7 +209,7 @@ async function openMemberDesign(design) {
       saveMembership();
       memberMessage = 'memberInvalid';
       renderReadyCollection();
-      byId('member-code').focus();
+      if (upiAvailable) (showQr.hidden ? byId('member-reference') : showQr).focus();
       return;
     }
     if (!response.ok) throw new Error('Could not open design.');
@@ -193,15 +231,75 @@ async function loadMembership() {
     if (!response.ok) return;
     const config = await response.json();
     if (!config.available) return;
-    byId('member-contact').href = config.contact;
-    memberControls.hidden = false;
-    document.querySelector('.membership-status').hidden = true;
-    const stored = sessionStorage.getItem(memberStorageKey);
+    membershipAvailable = true;
+    upiAvailable = config.upi === true;
+    renderReadyCollection();
+    const stored = localStorage.getItem(memberStorageKey) || sessionStorage.getItem(memberStorageKey);
     if (stored) await checkMembership(stored);
+    if (upiAvailable && !memberCode) saveCheckout(JSON.parse(localStorage.getItem(checkoutStorageKey)));
   } catch {
     // Static deployments display the upcoming membership message.
   }
 }
+
+async function sendMembershipRequest(path, data) {
+  return fetch('/api/membership' + path, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+}
+
+showQr.addEventListener('click', async () => {
+  showQr.disabled = true;
+  try {
+    const response = await sendMembershipRequest('/upi/start', {});
+    if (response.status !== 201) throw new Error('QR unavailable.');
+    saveCheckout(await response.json());
+    memberMessage = undefined;
+    byId('member-reference').focus();
+  } catch {
+    memberMessage = 'memberTryAgain';
+  } finally {
+    showQr.disabled = false;
+    byId('member-message').textContent = memberMessage ? copy[state.language][memberMessage] : '';
+  }
+});
+
+referenceForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  if (!checkout) return;
+  const paymentCheckout = checkout;
+  const submit = referenceForm.querySelector('button');
+  const input = byId('member-reference');
+  submit.disabled = true;
+  showQr.disabled = true;
+  try {
+    const response = await sendMembershipRequest('/upi/verify', {
+      checkout: paymentCheckout.checkout,
+      reference: input.value.trim(),
+    });
+    if (response.status === 200) {
+      saveMembership(paymentCheckout.checkout);
+      saveCheckout();
+      input.value = '';
+      memberMessage = 'memberReady';
+    } else if (response.status === 202) {
+      memberMessage = 'memberPending';
+    } else if ([404, 409, 410].includes(response.status)) {
+      memberMessage = 'memberCheckoutMissing';
+    } else {
+      memberMessage = 'memberTryAgain';
+    }
+  } catch {
+    memberMessage = 'memberTryAgain';
+  } finally {
+    submit.disabled = false;
+    showQr.disabled = false;
+    renderReadyCollection();
+    if (memberCode) byId('premium-cards').querySelector('a').focus();
+  }
+});
 
 memberForm.addEventListener('submit', async event => {
   event.preventDefault();
