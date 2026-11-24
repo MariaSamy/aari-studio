@@ -65,23 +65,25 @@
 </div>
 <div class="membership-plan">
 <p class="membership-price"><strong>₹99</strong></p>
-<p class="membership-status" id="member-status" data-i="memberUnavailable">Training payments will open after setup.</p>
 </div>
 <ul class="training-topics">
 <li data-i="trainingStitch">Learn beadwork, floral motifs, backstitch and two chain-stitch variations.</li>
 <li data-i="trainingDesign">Plan, trace and sample an original blouse neckline design.</li>
 </ul>
-<div class="manual-payment" id="member-payment" hidden>
+<div class="manual-payment" id="member-payment">
 <div class="manual-payment-qr">
-<h3 data-i="memberPay">Pay ₹99 by UPI</h3>
-<a href="upi-payment-qr.png" target="_blank" rel="noopener noreferrer">
-<img src="upi-payment-qr.png" width="328" height="328" alt="Open payment QR for Sandhiya Sandhiya" data-alt="memberQrAlt">
+<h3 data-i="memberPay">Google Pay QR code</h3>
+<p class="payment-preview" id="member-status" data-i="memberUnavailable">Checkout is closed. Please wait to pay until the payment ID form is available.</p>
+<a id="member-qr-link" target="_blank" rel="noopener noreferrer">
+<img src="upi-payment-qr.png" width="328" height="328" alt="Google Pay QR code for Sandhiya Sandhiya" data-alt="memberQrAlt">
 </a>
+<div id="member-payment-actions" hidden>
 <p data-i="memberStepPay">Scan the QR in your UPI app and enter ₹99.</p>
 <p><strong>Sandhiya Sandhiya</strong><br><span>yasumozhi@oksbi</span></p>
 <a class="button soft" href="upi://pay?pa=yasumozhi%40oksbi&amp;pn=Sandhiya%20Sandhiya&amp;cu=INR&amp;am=99.00" data-i="memberOpenUpi">Open UPI app</a>
 </div>
-<form id="member-reference-form" method="post">
+</div>
+<form id="member-reference-form" method="post" hidden>
 <h3 data-i="memberStep2">Enter your payment ID</h3>
 <p id="member-reference-help" data-i="memberStepReference">Enter the UPI payment reference (UTR) from your receipt. Your lessons open here once Aari Studio confirms the ₹99 payment.</p>
 <label for="member-reference" data-i="memberReferenceLabel">UPI reference (UTR)</label>

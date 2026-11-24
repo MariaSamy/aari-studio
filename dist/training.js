@@ -13,8 +13,13 @@ let paymentTimer;
 function renderTraining() {
   const t = copy[state.language];
   byId('member-message').textContent = memberMessage ? t[memberMessage] : '';
-  byId('member-payment').hidden = !manualUpiAvailable || Boolean(course);
+  byId('member-payment').hidden = Boolean(course);
   byId('member-status').hidden = manualUpiAvailable;
+  byId('member-payment-actions').hidden = !manualUpiAvailable;
+  referenceForm.hidden = !manualUpiAvailable;
+  const qrLink = byId('member-qr-link');
+  if (manualUpiAvailable) qrLink.href = qrLink.querySelector('img').getAttribute('src');
+  else qrLink.removeAttribute('href');
   trainingLessons.hidden = !course;
   if (!course) {
     trainingLessons.replaceChildren();
