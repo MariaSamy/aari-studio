@@ -2,120 +2,20 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Aari embroidery lessons and printable designs in Tamil and English.">
-<title>Aari Studio</title>
-<link rel="stylesheet" href="style.css"><script defer src="app.js"></script><script defer src="catalog.js"></script><script defer src="designs.js"></script><script defer src="ready-designs.js"></script><script defer src="training.js"></script>
+<meta name="description" content="Aari embroidery designs and stitching lessons in Tamil and English.">
+<title>Aari Studio · Ready-Made Designs</title>
+<link rel="stylesheet" href="style.css?v=gallery-first"><script defer src="app.js?v=gallery-first"></script><script defer src="ready-designs.js"></script><script defer src="training.js?v=gallery-first"></script>
 </head>
 <body>
 <header class="top"><div class="bar">
-<a class="brand" href="#home"><span aria-hidden="true" class="mark">✿</span> Aari Studio</a>
-<nav aria-label="Main navigation">
-<a href="#training-gallery" data-i="trainingGallery">Training Gallery</a><a href="#ready-designs" data-i="readyNav"></a><a href="#design-mixer" data-i="mixerTitle"></a><a href="#practice" data-i="practice"></a>
-<a href="#payment" data-i="membershipNav">Training &amp; payment</a>
-</nav>
+<a class="brand" href="./"><span aria-hidden="true" class="mark">✿</span> Aari Studio</a>
+<nav aria-label="Main navigation"><a href="./" data-i="readyNav" aria-current="page">Ready-Made Designs</a><a href="learn.html#chain-stitch" data-i="trainingGallery">Training Gallery</a><a href="mixer.html" data-i="mixerTitle">Design Mixer</a><a href="practice.html" data-i="practice">My Practice</a></nav>
 <button class="language" id="language" type="button">தமிழ்</button>
 </div></header>
 <main>
-<section class="hero" id="home"><div class="hero-copy">
-<p class="kicker" data-i="art"></p><h1 data-i="hello"></h1><p class="intro" data-i="intro"></p>
-<div class="actions"><a class="button" href="#frame-setup" id="start" data-i="start"></a><a class="button secondary" href="#ready-designs" data-i="readyBrowse"></a><a class="button secondary" href="#payment" data-i="membershipNav">Training &amp; payment</a></div>
-</div><div class="hero-art" aria-hidden="true"></div></section>
-<section class="section" id="training-gallery" aria-labelledby="training-gallery-title">
-<h2 id="training-gallery-title" data-i="trainingGallery">Training Gallery</h2>
-<div id="learn">
-<h3 data-i="freeLessons">Two free stitching lessons</h3>
-<nav class="lesson-nav" aria-label="Lessons" data-label="lessonsLabel">
-<a href="#frame-setup" data-i="frameTitle"></a><a href="#chain-stitch" data-i="lessonTitle"></a><a href="#curves-corners" data-i="curvesTitle"></a>
-</nav>
-<article class="lesson-panel" id="frame-setup" aria-labelledby="frame-title">
-<p class="kicker" data-i="frameTag"></p><h3 class="lesson-title" id="frame-title" data-i="frameTitle"></h3><p class="section-intro" data-i="frameIntro"></p>
-<div class="lesson-card"><aside><h4 data-i="tools"></h4><ul id="frame-tools"></ul><p data-i="frameTip"></p></aside>
-<div class="steps"><img class="diagram" src="frame-setup.png" alt="" data-alt="frameAlt" width="900" height="340">
-<ol id="frame-steps"></ol><p class="exercise" data-i="frameExercise"></p>
-<div class="actions"><button type="button" class="button" id="frame-done" aria-pressed="false"></button><a class="button soft" href="#chain-stitch" data-i="nextLesson"></a></div>
-</div></div></article>
-<article class="lesson-panel" id="chain-stitch" aria-labelledby="chain-title" hidden>
-<p class="kicker" data-i="lessonTag"></p><h3 class="lesson-title" id="chain-title" data-i="lessonTitle"></h3><p class="section-intro" data-i="lessonIntro"></p>
-<div class="lesson-card"><aside><h4 data-i="tools"></h4><ul id="tools"></ul><p data-i="setup"></p></aside>
-<div class="steps">
-<figure class="stitch-demo">
-<figcaption id="demo-title" data-i="demoTitle"></figcaption>
-<video id="stitch-video" controls playsinline preload="none" poster="chain-stitch-demo-poster.png" width="768" height="432" aria-labelledby="demo-title" aria-describedby="demo-note">
-<source src="chain-stitch-demo.mp4" type="video/mp4">
-<track kind="captions" srclang="en" label="English" src="chain-stitch-demo-en.vtt" default>
-<track kind="captions" srclang="ta" label="தமிழ்" src="chain-stitch-demo-ta.vtt">
-</video>
-<p id="demo-note" data-i="demoNote"></p>
-</figure>
-<img class="diagram" src="chain-stitch.png" alt="" data-alt="diagramAlt" width="900" height="300">
-<ol id="steps"></ol><p class="exercise" data-i="exercise"></p>
-<div class="actions"><button type="button" class="button" id="done" aria-pressed="false"></button><a class="button soft" href="#curves-corners" data-i="goToCurves"></a></div>
-</div></div></article>
-<article class="lesson-panel" id="curves-corners" aria-labelledby="curves-title" hidden>
-<p class="kicker" data-i="curvesTag"></p><h3 class="lesson-title" id="curves-title" data-i="curvesTitle"></h3><p class="section-intro" data-i="curvesIntro"></p>
-<div class="lesson-card"><aside><h4 data-i="tools"></h4><ul id="curves-tools"></ul><p data-i="curvesTip"></p></aside>
-<div class="steps"><img class="diagram" src="curves-corners.png" alt="" data-alt="curvesAlt" width="900" height="340">
-<ol id="curves-steps"></ol><p class="exercise" data-i="curvesExercise"></p>
-<div class="actions"><button type="button" class="button" id="curves-done" aria-pressed="false"></button><a class="button soft" href="#payment" data-i="membershipNav"></a></div>
-</div></div></article>
-<div class="training-practice">
-<img class="diagram" src="floral-sleeve.png" alt="" data-alt="trainingSleeveAlt" width="1000" height="630" loading="lazy">
-<div>
-<h4 data-i="vine">Floral sleeve vine</h4>
-<p data-i="trainingSleeveIntro">Trace the sleeve pattern and practise the chain stitch on the stem and leaves.</p>
-<a class="button soft" href="floral-sleeve-a4.pdf" download data-i="sleevePdf">Floral sleeve PDF</a>
-</div>
-</div>
-</div>
-<div id="training-lessons" class="training-lessons" tabindex="-1" hidden></div>
-<a class="button" id="training-enroll-link" href="#payment" data-i="galleryEnroll">Unlock all six training lessons</a>
-<button class="button soft" id="training-gallery-retry" type="button" data-i="memberRetry" hidden>Retry loading lessons</button>
-</section>
-<section class="section" id="payment" aria-labelledby="membership-title" tabindex="-1">
-<div class="membership">
-<div>
-<h2 id="membership-title" data-i="membershipTitle">Aari Stitching &amp; New-Design Training</h2>
-<p data-i="membershipIntro">Learn at your own pace with 30 days of access to the training.</p>
-</div>
-<div class="membership-plan">
-<p class="membership-price"><strong>₹99</strong></p>
-</div>
-<ul class="training-topics">
-<li data-i="trainingStitch">Learn beadwork, floral motifs, backstitch and two chain-stitch variations.</li>
-<li data-i="trainingDesign">Plan, trace and sample an original blouse neckline design.</li>
-</ul>
-<noscript><p>Enable JavaScript and reopen this page before paying.</p></noscript>
-<div class="manual-payment" id="member-payment" hidden>
-<div class="manual-payment-qr">
-<h3 data-i="memberPay">1. Pay ₹99 by UPI</h3>
-<a href="upi-payment-qr.png" target="_blank" rel="noopener noreferrer">
-<img src="upi-payment-qr.png" width="328" height="328" alt="Google Pay QR code for Sandhiya Sandhiya" data-alt="memberQrAlt">
-</a>
-<div>
-<p data-i="memberStepPay">Scan the QR in your UPI app and enter ₹99.</p>
-<p><strong>Sandhiya Sandhiya</strong><br><span>yasumozhi@oksbi</span></p>
-<a class="button soft" href="upi://pay?pa=yasumozhi%40oksbi&amp;pn=Sandhiya%20Sandhiya&amp;cu=INR&amp;am=99.00" data-i="memberOpenUpi">Open UPI app</a>
-</div>
-</div>
-<form id="member-reference-form" method="post">
-<h3 data-i="memberStep2">2. Enter your payment ID</h3>
-<p id="member-reference-help" data-i="memberStepReference">After paying, enter the UPI transaction ID from your receipt to open the lessons for 30 days. Return on this same browser to continue.</p>
-<label for="member-reference" data-i="memberReferenceLabel">UPI reference (UTR)</label>
-<div class="member-actions">
-<input type="text" id="member-reference" minlength="6" maxlength="48" spellcheck="false" autocomplete="off" aria-describedby="member-reference-help" required>
-<button type="submit" class="button" data-i="memberUnlock" disabled>Unlock lessons</button>
-</div>
-<p data-i="memberTrust">This works on trust. Please use the ID from your own ₹99 payment.</p>
-</form>
-</div>
-<p id="member-message" role="status"></p>
-<button id="training-retry" class="button secondary" type="button" data-i="memberRetry" hidden>Retry loading lessons</button>
-</div>
-</section>
 <section class="section" id="ready-designs" aria-labelledby="ready-title">
 <div class="design-heading" id="designs">
-<h2 id="ready-title" data-i="readyTitle" tabindex="-1">Ready-Made Designs</h2>
-<a class="button" id="ready-training-link" href="#training-lessons" data-i="galleryTraining" hidden></a>
+<h1 class="page-title" id="ready-title" data-i="readyTitle" tabindex="-1">Ready-Made Designs</h1>
 </div>
 <div id="ready-selection" class="ready-selection" hidden>
 <p id="ready-selected" role="status"></p><button type="button" class="button soft" id="ready-clear" data-i="readyClear"></button>
@@ -132,26 +32,11 @@
 <img id="ready-preview-image" alt="">
 <div class="ready-dialog-copy"><p id="ready-preview-detail"></p><button type="button" class="button" id="ready-choose" data-i="readyChoose"></button></div>
 </dialog>
-</section>
-<section class="section" id="design-mixer" aria-labelledby="mixer-title">
-<div class="mixer">
-<div class="mixer-controls"><h2 id="mixer-title" data-i="mixerTitle"></h2><p data-i="mixerIntro"></p><div class="design-fields"><label><span data-i="placementLabel"></span><select id="mix-placement"><option value="small" data-i="small"></option><option value="sleeve" data-i="sleeve"></option><option value="neck" data-i="neck"></option><option value="border" data-i="border"></option></select></label><label><span data-i="mainLabel"></span><select id="mix-main"><option value="lotus" data-i="lotus"></option><option value="paisley" data-i="paisley"></option><option value="jasmine" data-i="jasmine"></option><option value="leaf" data-i="leaf"></option><option value="bud" data-i="bud"></option></select></label><label><span data-i="accentLabel"></span><select id="mix-accent"><option value="leaf" data-i="leaf"></option><option value="bud" data-i="bud"></option><option value="lotus" data-i="lotus"></option><option value="paisley" data-i="paisley"></option><option value="jasmine" data-i="jasmine"></option></select></label><label><span data-i="paletteLabel"></span><select id="mix-palette"><option value="wine" data-i="wine"></option><option value="teal" data-i="teal"></option><option value="indigo" data-i="indigo"></option></select></label></div>
-<div class="actions"><button type="button" class="button" id="mix-surprise" data-i="surprise"></button><a class="button soft" id="mix-download" download="aari-studio-mixed-design.png" data-i="downloadImage"></a></div></div>
-<canvas id="mix-preview" width="600" height="360" role="img" data-label="previewLabel"></canvas>
-<div class="ai-panel"><h4 data-i="aiTitle"></h4><p data-i="aiText"></p>
-<div class="actions"><button type="button" class="button soft" id="ai-copy" data-i="aiCopy"></button><a class="button soft" href="https://chatgpt.com/" target="_blank" rel="noopener" data-i="openChatGPT"></a></div>
-<textarea id="ai-prompt" readonly data-label="aiPromptLabel" hidden></textarea><p id="mix-feedback" role="status"></p></div>
+<div class="gallery-start actions">
+<a class="button" id="start" href="learn.html#chain-stitch" data-i="start">Start learning</a>
+<a class="button soft" id="ready-training-link" href="learn.html#lesson-3" data-i="continueLessonThree" hidden>Continue to Lesson 3</a>
 </div>
-</section>
-<section class="section practice" id="practice">
-<h2 data-i="practice"></h2><p data-i="local"></p>
-<ul><li><a href="#frame-setup" data-i="frameTitle"></a><span id="frame-status"></span></li><li><a href="#chain-stitch" data-i="lessonTitle"></a><span id="progress-status"></span></li><li><a href="#curves-corners" data-i="curvesTitle"></a><span id="curves-status"></span></li><li><a href="#sleeve-practice" data-i="vine"></a><span id="saved-status"></span></li></ul>
-<div id="sleeve-practice" class="practice-downloads">
-<h3 data-i="practicePatterns">Practice patterns</h3>
-<p data-i="print"></p>
-<div class="actions"><a class="button" href="floral-sleeve-a4.pdf" download data-i="sleevePdf">Floral sleeve PDF</a><a class="button soft" href="small-flower-a4.pdf" download data-i="flowerPdf">Five-petal flower PDF</a><button type="button" class="button soft" id="save" aria-pressed="false"></button></div>
-</div>
-<p class="notice" id="notice" role="status"></p>
 </section>
 </main><footer><div class="footer-inner"><span class="brand"><span class="mark" aria-hidden="true">✿</span> Aari Studio</span><span data-i="footer"></span></div></footer>
-</body></html>
+</body>
+</html>

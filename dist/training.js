@@ -1,8 +1,7 @@
 const trainingLessons = byId('training-lessons');
 const referenceForm = byId('member-reference-form');
 const paymentReference = byId('member-reference');
-const trainingSubmit = referenceForm.querySelector('button');
-const trainingRetry = byId('training-retry');
+const trainingSubmit = referenceForm?.querySelector('button');
 const galleryRetry = byId('training-gallery-retry');
 const trainingAccessKey = 'aari-training-access';
 const trainingDay = 24 * 60 * 60 * 1000;
@@ -112,12 +111,22 @@ function buildLessonMedia(lesson, media, t) {
 function renderTraining() {
   const t = copy[state.language];
   const active = hasTrainingAccess();
-  byId('member-message').textContent = memberMessage ? t[memberMessage] : '';
-  byId('member-payment').hidden = active || !trainingAccess;
-  trainingRetry.hidden = galleryRetry.hidden = !(active && !course && memberMessage === 'memberTryAgain');
+  const message = byId('member-message');
+  if (message) message.textContent = memberMessage ? t[memberMessage] : '';
+  const readyLink = byId('ready-training-link');
+  if (readyLink) readyLink.hidden = !active;
+  if (referenceForm) {
+    byId('member-payment').hidden = active || !trainingAccess;
+    byId('checkout-continue').hidden = !active;
+  }
+  if (!trainingLessons) return;
+
+  galleryRetry.hidden = !(active && !course && memberMessage === 'memberTryAgain');
   byId('training-enroll-link').hidden = active;
+  for (const id of ['lesson-three-tab', 'next-paid-lesson']) {
+    byId(id).href = active ? '#lesson-3' : 'payment.html';
+  }
   trainingLessons.hidden = !active || !course;
-  byId('ready-training-link').hidden = trainingLessons.hidden;
   if (trainingLessons.hidden) {
     trainingLessons.replaceChildren();
     return;
@@ -129,15 +138,15 @@ function renderTraining() {
   const date = new Intl.DateTimeFormat(state.language === 'ta' ? 'ta-IN' : 'en-IN', { dateStyle: 'long' });
   expiry.textContent = t.memberExpires + ' ' + date.format(trainingAccess.expiresAt);
   const locale = course[state.language];
-  const openLesson = trainingLessons.querySelector('details[open]')?.dataset.lesson;
+  const openLesson = trainingLessons.querySelector('details[open]')?.id;
   const lessons = locale.map((lesson, index) => {
     const panel = document.createElement('details');
-    panel.dataset.lesson = String(index);
-    panel.open = openLesson ? openLesson === panel.dataset.lesson : index === 0;
+    panel.id = 'lesson-' + (index + 3);
+    panel.open = openLesson ? openLesson === panel.id : index === 0;
     const title = document.createElement('summary');
     const media = trainingMedia[lesson.id];
     const titleText = document.createElement('span');
-    titleText.textContent = lesson.title;
+    titleText.textContent = t.lessonNumber + ' ' + (index + 3) + ' · ' + lesson.title;
     if (media) {
       const preview = document.createElement('img');
       preview.className = 'training-preview';
@@ -172,6 +181,20 @@ function renderTraining() {
   trainingLessons.replaceChildren(heading, expiry, ...lessons);
 }
 
+function openPaidLessonFromHash() {
+  if (!trainingLessons) return;
+  const hash = location.hash;
+  if (!hasTrainingAccess() && /^(?:#training-lessons|#lesson-[3-8])$/.test(hash)) {
+    location.replace('payment.html');
+    return;
+  }
+  if (trainingLessons.hidden) return;
+  const target = byId(hash.slice(1));
+  if (!target || !trainingLessons.contains(target)) return;
+  if (target instanceof HTMLDetailsElement) target.open = true;
+  target.scrollIntoView();
+}
+
 function readTrainingAccess() {
   const raw = localStorage.getItem(trainingAccessKey);
   if (!raw) return { expiresAt: 0, usedReferences: [] };
@@ -200,6 +223,7 @@ async function showExistingTraining() {
     memberMessage = 'memberTryAgain';
   }
   renderTraining();
+  openPaidLessonFromHash();
 }
 
 function checkTrainingExpiry() {
@@ -213,13 +237,13 @@ function checkTrainingExpiry() {
   renderTraining();
 }
 
-paymentReference.addEventListener('input', () => {
+paymentReference?.addEventListener('input', () => {
   paymentReference.setCustomValidity('');
   memberMessage = undefined;
   byId('member-message').textContent = '';
 });
 
-referenceForm.addEventListener('submit', async event => {
+referenceForm?.addEventListener('submit', async event => {
   event.preventDefault();
   if (trainingSubmit.disabled || hasTrainingAccess()) return;
   const reference = paymentReference.value.trim().toUpperCase();
@@ -249,9 +273,7 @@ referenceForm.addEventListener('submit', async event => {
     memberMessage = 'memberReady';
     checkTrainingExpiry();
     renderTraining();
-    location.hash = 'ready-designs';
-    byId('ready-designs').scrollIntoView();
-    byId('ready-title').focus({ preventScroll: true });
+    location.assign('./#ready-designs');
   } catch {
     memberMessage = 'memberTryAgain';
   } finally {
@@ -265,7 +287,7 @@ function initTraining() {
     if (!crypto.subtle) throw new Error('This browser does not support payment reference hashing.');
     trainingAccess = readTrainingAccess();
     localStorage.setItem(trainingAccessKey, JSON.stringify(trainingAccess));
-    trainingSubmit.disabled = false;
+    if (trainingSubmit) trainingSubmit.disabled = false;
   } catch {
     trainingAccess = undefined;
     memberMessage = 'memberStorageUnavailable';
@@ -274,10 +296,11 @@ function initTraining() {
   }
   checkTrainingExpiry();
   renderTraining();
-  if (hasTrainingAccess()) showExistingTraining();
+  if (trainingLessons && hasTrainingAccess()) showExistingTraining();
+  else openPaidLessonFromHash();
 }
 
-trainingRetry.addEventListener('click', showExistingTraining);
-galleryRetry.addEventListener('click', showExistingTraining);
+galleryRetry?.addEventListener('click', showExistingTraining);
+window.addEventListener('hashchange', openPaidLessonFromHash);
 byId('language').addEventListener('click', renderTraining);
 initTraining();

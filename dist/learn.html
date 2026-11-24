@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Aari embroidery designs and stitching lessons in Tamil and English.">
+<title>Training Gallery · Aari Studio</title>
+<link rel="stylesheet" href="style.css?v=gallery-first"><script defer src="app.js?v=gallery-first"></script><script defer src="training.js?v=gallery-first"></script>
+</head>
+<body>
+<header class="top"><div class="bar">
+<a class="brand" href="./"><span aria-hidden="true" class="mark">✿</span> Aari Studio</a>
+<nav aria-label="Main navigation"><a href="./" data-i="readyNav">Ready-Made Designs</a><a href="learn.html#chain-stitch" data-i="trainingGallery" aria-current="page">Training Gallery</a><a href="mixer.html" data-i="mixerTitle">Design Mixer</a><a href="practice.html" data-i="practice">My Practice</a></nav>
+<button class="language" id="language" type="button">தமிழ்</button>
+</div></header>
+<main>
+<section class="section" id="training-gallery" aria-labelledby="training-gallery-title">
+<h1 class="page-title" id="training-gallery-title" data-i="trainingGallery">Training Gallery</h1>
+<div id="learn">
+<h3 data-i="freeLessons">Two free stitching lessons</h3>
+<nav class="lesson-nav" aria-label="Lessons" data-label="lessonsLabel">
+<a href="#chain-stitch" data-i="lessonTitle">Straight chain stitch</a><a href="#curves-corners" data-i="curvesTitle">Curves and corners</a><a href="payment.html" id="lesson-three-tab" data-i="lessonThree">Lesson 3 · Adding beads</a><a href="#frame-setup" data-i="frameTitle">Tools and frame setup</a>
+</nav>
+<article class="lesson-panel" id="frame-setup" aria-labelledby="frame-title" hidden>
+<p class="kicker" data-i="frameTag"></p><h3 class="lesson-title" id="frame-title" data-i="frameTitle"></h3><p class="section-intro" data-i="frameIntro"></p>
+<div class="lesson-card"><aside><h4 data-i="tools"></h4><ul id="frame-tools"></ul><p data-i="frameTip"></p></aside>
+<div class="steps"><img class="diagram" src="frame-setup.png" alt="" data-alt="frameAlt" width="900" height="340">
+<ol id="frame-steps"></ol><p class="exercise" data-i="frameExercise"></p>
+<div class="actions"><button type="button" class="button" id="frame-done" aria-pressed="false"></button><a class="button soft" href="#chain-stitch" data-i="nextLesson"></a></div>
+</div></div></article>
+<article class="lesson-panel" id="chain-stitch" aria-labelledby="chain-title">
+<p class="kicker" data-i="lessonTag"></p><h3 class="lesson-title" id="chain-title" data-i="lessonTitle"></h3><p class="section-intro" data-i="lessonIntro"></p>
+<div class="lesson-card"><aside><h4 data-i="tools"></h4><ul id="tools"></ul><p data-i="setup"></p></aside>
+<div class="steps">
+<figure class="stitch-demo">
+<figcaption id="demo-title" data-i="demoTitle"></figcaption>
+<video id="stitch-video" controls playsinline preload="none" poster="chain-stitch-demo-poster.png" width="768" height="432" aria-labelledby="demo-title" aria-describedby="demo-note">
+<source src="chain-stitch-demo.mp4" type="video/mp4">
+<track kind="captions" srclang="en" label="English" src="chain-stitch-demo-en.vtt" default>
+<track kind="captions" srclang="ta" label="தமிழ்" src="chain-stitch-demo-ta.vtt">
+</video>
+<p id="demo-note" data-i="demoNote"></p>
+</figure>
+<img class="diagram" src="chain-stitch.png" alt="" data-alt="diagramAlt" width="900" height="300">
+<ol id="steps"></ol><p class="exercise" data-i="exercise"></p>
+<div class="actions"><button type="button" class="button" id="done" aria-pressed="false"></button><a class="button soft" href="#curves-corners" data-i="goToCurves"></a></div>
+</div></div></article>
+<article class="lesson-panel" id="curves-corners" aria-labelledby="curves-title" hidden>
+<p class="kicker" data-i="curvesTag"></p><h3 class="lesson-title" id="curves-title" data-i="curvesTitle"></h3><p class="section-intro" data-i="curvesIntro"></p>
+<div class="lesson-card"><aside><h4 data-i="tools"></h4><ul id="curves-tools"></ul><p data-i="curvesTip"></p></aside>
+<div class="steps"><img class="diagram" src="curves-corners.png" alt="" data-alt="curvesAlt" width="900" height="340">
+<ol id="curves-steps"></ol><p class="exercise" data-i="curvesExercise"></p>
+<div class="actions"><button type="button" class="button" id="curves-done" aria-pressed="false"></button><a class="button soft" id="next-paid-lesson" href="payment.html" data-i="continueLessonThree">Continue to Lesson 3</a></div>
+</div></div></article>
+<div class="training-practice">
+<img class="diagram" src="floral-sleeve.png" alt="" data-alt="trainingSleeveAlt" width="1000" height="630" loading="lazy">
+<div>
+<h4 data-i="vine">Floral sleeve vine</h4>
+<p data-i="trainingSleeveIntro">Trace the sleeve pattern and practise the chain stitch on the stem and leaves.</p>
+<a class="button soft" href="floral-sleeve-a4.pdf" download data-i="sleevePdf">Floral sleeve PDF</a>
+</div>
+</div>
+</div>
+<div id="training-lessons" class="training-lessons" tabindex="-1" hidden></div>
+<a class="button" id="training-enroll-link" href="payment.html" data-i="unlockLessonThree">Unlock Lessons 3–8 · ₹99</a>
+<p class="notice" id="member-message" role="status"></p>
+<button class="button soft" id="training-gallery-retry" type="button" data-i="memberRetry" hidden>Retry loading lessons</button>
+</section>
+</main><footer><div class="footer-inner"><span class="brand"><span class="mark" aria-hidden="true">✿</span> Aari Studio</span><span data-i="footer"></span></div></footer>
+</body>
+</html>
