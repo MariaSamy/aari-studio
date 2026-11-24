@@ -9,6 +9,21 @@ const readyCollection = [
     name: { en: 'Emerald Paisley Neckline', ta: 'மரகதப் பச்சை மாங்காய் கழுத்து வடிவம்' },
     detail: { en: 'Gold paisley vines and seed pearls around a U-shaped neckline.', ta: 'U வடிவக் கழுத்தைச் சுற்றித் தங்க நிற மாங்காய்க் கொடிகளும் சிறு முத்துகளும்.' },
   },
+];
+
+const premiumCollection = [
+  {
+    id: 'marigold-moth', image: 'ready-marigold-moth.webp', placement: 'neck',
+    name: { en: 'Marigold Moth Sweetheart Neckline', ta: 'சாமந்தி மஞ்சள் பட்டில் அந்துப்பூச்சிக் கழுத்து வடிவம்' },
+  },
+  {
+    id: 'turquoise-papyrus', image: 'ready-turquoise-papyrus.webp', placement: 'sleeve',
+    name: { en: 'Turquoise Papyrus Sleeve', ta: 'நீலப்பச்சைக் கையில் பப்பிரஸ் செடிகள்' },
+  },
+  {
+    id: 'denim-dogwood', image: 'ready-denim-dogwood.webp', placement: 'floralDetail',
+    name: { en: 'Denim Dogwood Yoke Sprig', ta: 'டெனிம் ஆடையின் மேற்பகுதியில் டாக்வுட் பூங்கிளை' },
+  },
   {
     id: 'indigo-peacock', image: 'ready-navy.webp', placement: 'sleeve',
     name: { en: 'Indigo Peacock Sleeve', ta: 'கருநீல மயில் கை வடிவம்' },
@@ -43,8 +58,33 @@ const readyCollection = [
 
 const readyDialog = byId('ready-preview');
 const readyCards = byId('ready-cards');
+const memberControls = byId('member-controls');
+const memberForm = byId('member-form');
+const memberStorageKey = 'aari-membership-code';
 let previewDesign;
+let memberCode;
+let memberMessage;
+let memberImageUrl;
+let memberImageLoading = false;
 const readyPlacement = (design, lang) => copy[lang][design.placement];
+
+function showDesign(design, image, isFree) {
+  const lang = state.language;
+  const t = copy[lang];
+  previewDesign = design;
+  byId('ready-preview-title').textContent = design.name[lang];
+  byId('ready-preview-place').textContent = readyPlacement(design, lang);
+  byId('ready-preview-detail').textContent = design.detail?.[lang] || '';
+  const preview = byId('ready-preview-image');
+  preview.src = image;
+  preview.alt = design.detail?.[lang] || design.name[lang];
+  const choose = byId('ready-choose');
+  const chosen = design.id === state.readyChoice;
+  choose.hidden = !isFree;
+  choose.disabled = !isFree || chosen;
+  choose.textContent = chosen ? t.readyChosen : t.readyChoose;
+  readyDialog.showModal();
+}
 
 function renderReadyCollection() {
   const lang = state.language;
@@ -54,30 +94,134 @@ function renderReadyCollection() {
   byId('ready-selection').hidden = !active;
   selected.textContent = active ? `${t.readySelected} · ${active.name[lang]}` : '';
   byId('ready-save-note').textContent = active && storageError ? t.readyUnsaved : '';
-  readyCards.replaceChildren(...readyCollection.map(design => {
+  byId('member-message').textContent = memberMessage ? t[memberMessage] : '';
+  function makeCard(design, isFree) {
     const card = byId('ready-template').content.firstElementChild.cloneNode(true);
-    const button = card.querySelector('button');
-    const image = card.querySelector('img');
-    image.src = design.image;
+    const control = document.createElement(isFree ? 'button' : 'a');
+    control.className = 'ready-open';
+    card.querySelector('img').src = design.image;
     card.querySelector('strong').textContent = design.name[lang];
     card.querySelector('small').textContent = readyPlacement(design, lang);
-    card.querySelector('.ready-action').textContent = design === active ? t.readyChosen : t.readyView;
-    button.dataset.readyId = design.id;
-    button.addEventListener('click', () => {
-      previewDesign = design;
-      byId('ready-preview-title').textContent = design.name[lang];
-      byId('ready-preview-place').textContent = readyPlacement(design, lang);
-      byId('ready-preview-detail').textContent = design.detail[lang];
-      const preview = byId('ready-preview-image');
-      preview.src = design.image;
-      preview.alt = design.detail[lang];
-      byId('ready-choose').textContent = design === active ? t.readyChosen : t.readyChoose;
-      byId('ready-choose').disabled = design === active;
-      readyDialog.showModal();
-    });
+    const action = card.querySelector('.ready-action');
+    control.append(...card.childNodes);
+    card.append(control);
+    if (!isFree) {
+      control.href = '#payment';
+      action.textContent = memberCode ? t.memberOpen : t.membershipPreview;
+      if (memberCode) {
+        control.addEventListener('click', event => {
+          event.preventDefault();
+          openMemberDesign(design);
+        });
+      }
+      return card;
+    }
+    action.textContent = design === active ? t.readyChosen : t.readyView;
+    control.type = 'button';
+    control.dataset.readyId = design.id;
+    control.addEventListener('click', () => showDesign(design, design.image, true));
     return card;
-  }));
+  }
+  readyCards.replaceChildren(...readyCollection.map(design => makeCard(design, true)));
+  byId('premium-cards').replaceChildren(...premiumCollection.map(design => makeCard(design, false)));
 }
+
+function saveMembership(code) {
+  memberCode = code;
+  try {
+    if (code) sessionStorage.setItem(memberStorageKey, code);
+    else sessionStorage.removeItem(memberStorageKey);
+  } catch {
+    // The code remains usable until the page is closed or refreshed.
+  }
+  memberForm.hidden = Boolean(code);
+  byId('member-payment').hidden = Boolean(code);
+}
+
+async function checkMembership(code) {
+  try {
+    const response = await fetch('/api/membership/access', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code }),
+    });
+    if (response.ok) {
+      saveMembership(code);
+      memberMessage = 'memberReady';
+    } else if (response.status === 403) {
+      saveMembership();
+      memberMessage = 'memberInvalid';
+    } else {
+      memberMessage = 'memberTryAgain';
+    }
+  } catch {
+    memberMessage = 'memberTryAgain';
+  }
+  renderReadyCollection();
+}
+
+async function openMemberDesign(design) {
+  if (memberImageLoading || readyDialog.open) return;
+  memberImageLoading = true;
+  try {
+    const response = await fetch(`/api/membership/designs/${design.id}`, {
+      headers: { Authorization: `Bearer ${memberCode}` },
+    });
+    if (response.status === 403) {
+      saveMembership();
+      memberMessage = 'memberInvalid';
+      renderReadyCollection();
+      byId('member-code').focus();
+      return;
+    }
+    if (!response.ok) throw new Error('Could not open design.');
+    const image = await response.blob();
+    if (readyDialog.open) return;
+    memberImageUrl = URL.createObjectURL(image);
+    showDesign(design, memberImageUrl, false);
+  } catch {
+    memberMessage = 'memberTryAgain';
+    byId('member-message').textContent = copy[state.language][memberMessage];
+  } finally {
+    memberImageLoading = false;
+  }
+}
+
+async function loadMembership() {
+  try {
+    const response = await fetch('/api/membership/config');
+    if (!response.ok) return;
+    const config = await response.json();
+    if (!config.available) return;
+    byId('member-contact').href = config.contact;
+    memberControls.hidden = false;
+    document.querySelector('.membership-status').hidden = true;
+    const stored = sessionStorage.getItem(memberStorageKey);
+    if (stored) await checkMembership(stored);
+  } catch {
+    // Static deployments display the upcoming membership message.
+  }
+}
+
+memberForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  const code = byId('member-code');
+  const submit = memberForm.querySelector('button');
+  submit.disabled = true;
+  await checkMembership(code.value.trim().toUpperCase().replaceAll('-', ''));
+  submit.disabled = false;
+  if (memberCode) {
+    code.value = '';
+    byId('premium-cards').querySelector('a').focus();
+  }
+});
+
+readyDialog.addEventListener('close', () => {
+  if (!memberImageUrl) return;
+  URL.revokeObjectURL(memberImageUrl);
+  byId('ready-preview-image').removeAttribute('src');
+  memberImageUrl = undefined;
+});
 
 byId('ready-choose').addEventListener('click', () => {
   state.readyChoice = previewDesign.id;
@@ -96,3 +240,4 @@ byId('ready-clear').addEventListener('click', () => {
 byId('ready-close').addEventListener('click', () => readyDialog.close());
 byId('language').addEventListener('click', renderReadyCollection);
 renderReadyCollection();
+loadMembership();

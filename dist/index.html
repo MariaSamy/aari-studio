@@ -11,7 +11,7 @@
 <a class="brand" href="#home"><span aria-hidden="true" class="mark">✿</span> Aari Studio</a>
 <nav aria-label="Main navigation">
 <a href="#learn" data-i="learn"></a><a href="#designs" data-i="designs"></a><a href="#ready-designs" data-i="readyNav"></a><a href="#practice" data-i="practice"></a>
-<a href="#payment" data-i="paymentTitle">Pay by UPI</a>
+<a href="#payment" data-i="membershipNav">Membership</a>
 </nav>
 <button class="language" id="language" type="button">தமிழ்</button>
 </div></header>
@@ -28,11 +28,44 @@
 </div>
 <p id="ready-save-note" class="notice" role="status"></p>
 <div id="ready-cards" class="ready-grid"></div>
+<section class="membership" id="payment" aria-labelledby="membership-title" tabindex="-1">
+<div>
+<h3 id="membership-title" data-i="membershipTitle">Professional Aari Designs</h3>
+<p data-i="membershipIntro">Explore the collection below. Full designs open with a membership when subscriptions launch.</p>
+</div>
+<div class="membership-plan">
+<p class="membership-price"><strong>₹99</strong> <span data-i="membershipPeriod">/ month</span></p>
+<p class="membership-status" data-i="membershipStatus">Subscriptions opening soon</p>
+</div>
+<div id="member-controls" class="member-controls" hidden>
+<details id="member-payment">
+<summary data-i="memberPay">Pay ₹99 by UPI</summary>
+<div class="member-payment">
+<img src="upi-payment-qr.png" width="328" height="328" loading="lazy" alt="UPI payment QR code for Sandhiya Sandhiya" data-alt="memberQrAlt">
+<div>
+<p><strong>Sandhiya Sandhiya</strong><br>yasumozhi@oksbi</p>
+<p data-i="memberPaymentNote"></p>
+<div class="member-actions">
+<a class="button" href="upi://pay?pa=yasumozhi%40oksbi&amp;pn=Sandhiya%20Sandhiya&amp;cu=INR&amp;am=99.00" data-i="memberOpenUpi"></a>
+<a class="button soft" id="member-contact" data-i="memberRequestCode"></a>
+</div>
+</div>
+</div>
+</details>
+<form id="member-form">
+<label for="member-code" data-i="memberCodeLabel">Enter access code</label>
+<div class="member-actions">
+<input type="text" id="member-code" name="member-code" maxlength="23" spellcheck="false" autocapitalize="characters" autocomplete="off" required>
+<button type="submit" class="button" data-i="memberUnlock">Unlock designs</button>
+</div>
+</form>
+<p id="member-message" role="status"></p>
+</div>
+</section>
+<div id="premium-cards" class="ready-grid premium-grid"></div>
 <template id="ready-template">
 <article class="ready-card">
-<button type="button" class="ready-open">
 <img alt="" width="960" height="640" loading="lazy"><span class="ready-caption"><span><strong></strong><small></small></span><span class="ready-action"></span></span>
-</button>
 </article>
 </template>
 <dialog id="ready-preview" class="ready-dialog" aria-labelledby="ready-preview-title">
@@ -145,22 +178,6 @@
 <h2 data-i="practice"></h2><p data-i="local"></p>
 <ul><li><a href="#frame-setup" data-i="frameTitle"></a><span id="frame-status"></span></li><li><a href="#chain-stitch" data-i="lessonTitle"></a><span id="progress-status"></span></li><li><a href="#curves-corners" data-i="curvesTitle"></a><span id="curves-status"></span></li><li><a href="#adding-beads" data-i="beadsTitle"></a><span id="beads-status"></span></li><li><a href="#floral-motif" data-i="flowerTitle"></a><span id="flower-status"></span></li><li><a href="#backstitch" data-i="backstitchTitle"></a><span id="backstitch-status"></span></li><li><a href="#spiral-chain" data-i="spiralTitle"></a><span id="spiral-status"></span></li><li><a href="#long-short-chain" data-i="longShortTitle"></a><span id="long-short-status"></span></li><li><a href="#designs" data-i="vine"></a><span id="saved-status"></span></li></ul>
 <p class="notice" id="notice" role="status"></p>
-</section>
-<section class="section" id="payment" aria-labelledby="payment-title">
-<h2 id="payment-title" data-i="paymentTitle">Pay by UPI</h2>
-<p class="section-intro" data-i="paymentIntro">Use this option once you have agreed on an order and amount with Aari Studio.</p>
-<div class="payment-card">
-<img src="upi-payment-qr.png" width="328" height="328" loading="lazy" alt="UPI payment QR code for Sandhiya Sandhiya" data-alt="paymentQrAlt">
-<div class="payment-copy">
-<p data-i="paymentMethod">Scan the QR code or open your UPI app on your phone.</p>
-<dl>
-<dt data-i="paymentRecipient">Recipient</dt><dd>Sandhiya Sandhiya</dd>
-<dt data-i="paymentUpiId">UPI ID</dt><dd>yasumozhi@oksbi</dd>
-</dl>
-<p data-i="paymentCheck">Check the recipient and enter the agreed amount. Keep your UPI transaction reference for order confirmation.</p>
-<div class="actions"><a class="button" href="upi://pay?pa=yasumozhi%40oksbi&amp;pn=Sandhiya%20Sandhiya&amp;cu=INR" data-i="paymentOpen">Open UPI app</a></div>
-</div>
-</div>
 </section>
 </main><footer><div class="footer-inner"><span class="brand"><span class="mark" aria-hidden="true">✿</span> Aari Studio</span><span data-i="footer"></span></div></footer>
 </body></html>
