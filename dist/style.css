@@ -145,7 +145,6 @@ footer{background:#f8edf1;color:var(--wine);padding:1.4rem 0}
 .manual-payment h3{margin:0 0 .5rem;font-size:1.1rem}
 .manual-payment p{color:#64515a;margin:.35rem 0 .7rem;overflow-wrap:anywhere}
 .manual-payment-qr img{display:block;width:min(100%, 12rem);height:auto;background:white;border:1px solid var(--line);border-radius:.5rem}
-.manual-payment .payment-preview{color:var(--wine);font-weight:700}
 .manual-payment label{font-weight:700}
 @media(max-width:600px){.manual-payment{grid-template-columns:minmax(0, 1fr)}.manual-payment form{border-top:1px solid var(--line);padding-top:1rem}}
 .member-actions{display:flex;align-items:center;flex-wrap:wrap;gap:.65rem;margin-top:.45rem}
