@@ -3,6 +3,8 @@ const referenceForm = byId('member-reference-form');
 const paymentReference = byId('member-reference');
 const trainingSubmit = referenceForm?.querySelector('button');
 const galleryRetry = byId('training-gallery-retry');
+const mixerTool = byId('mixer-tool');
+const checkoutFromMixer = new URLSearchParams(location.search).get('from') === 'mixer';
 const trainingAccessKey = 'aari-training-access';
 const trainingDay = 24 * 60 * 60 * 1000;
 const trainingDuration = 30 * trainingDay;
@@ -117,7 +119,16 @@ function renderTraining() {
   if (readyLink) readyLink.hidden = !active;
   if (referenceForm) {
     byId('member-payment').hidden = active || !trainingAccess;
-    byId('checkout-continue').hidden = !active;
+    const continueLink = byId('checkout-continue');
+    continueLink.hidden = !active;
+    if (checkoutFromMixer) {
+      continueLink.href = 'mixer.html';
+      continueLink.textContent = t.mixerTitle;
+    }
+  }
+  if (mixerTool) {
+    mixerTool.hidden = !active;
+    byId('mixer-locked').hidden = active;
   }
   if (!trainingLessons) return;
 
@@ -184,7 +195,7 @@ function renderTraining() {
 function openPaidLessonFromHash() {
   if (!trainingLessons) return;
   const hash = location.hash;
-  if (!hasTrainingAccess() && /^(?:#training-lessons|#lesson-[3-8])$/.test(hash)) {
+  if (!hasTrainingAccess() && /^(?:#training-lessons|#lesson-(?:[3-9]|[1-9][0-9]+))$/.test(hash)) {
     location.replace('payment.html');
     return;
   }
@@ -273,7 +284,7 @@ referenceForm?.addEventListener('submit', async event => {
     memberMessage = 'memberReady';
     checkTrainingExpiry();
     renderTraining();
-    location.assign('./#ready-designs');
+    location.assign(checkoutFromMixer ? 'mixer.html' : './#ready-designs');
   } catch {
     memberMessage = 'memberTryAgain';
   } finally {

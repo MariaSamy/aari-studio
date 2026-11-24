@@ -4,7 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Aari embroidery designs and stitching lessons in Tamil and English.">
 <title>Design Mixer · Aari Studio</title>
-<link rel="stylesheet" href="style.css?v=gallery-first"><script defer src="app.js?v=gallery-first"></script><script defer src="catalog.js"></script><script defer src="designs.js"></script>
+<link rel="stylesheet" href="style.css?v=mixer-access"><script defer src="app.js?v=mixer-access"></script><script defer src="catalog.js"></script><script defer src="designs.js"></script><script defer src="training.js?v=mixer-access"></script>
 </head>
 <body>
 <header class="top"><div class="bar">
@@ -14,8 +14,13 @@
 </div></header>
 <main>
 <section class="section" id="design-mixer" aria-labelledby="mixer-title">
-<div class="mixer">
-<div class="mixer-controls"><h1 class="page-title" id="mixer-title" data-i="mixerTitle">Design Mixer</h1><p data-i="mixerIntro"></p><div class="design-fields"><label><span data-i="placementLabel"></span><select id="mix-placement"><option value="small" data-i="small"></option><option value="sleeve" data-i="sleeve"></option><option value="neck" data-i="neck"></option><option value="border" data-i="border"></option></select></label><label><span data-i="mainLabel"></span><select id="mix-main"><option value="lotus" data-i="lotus"></option><option value="paisley" data-i="paisley"></option><option value="jasmine" data-i="jasmine"></option><option value="leaf" data-i="leaf"></option><option value="bud" data-i="bud"></option></select></label><label><span data-i="accentLabel"></span><select id="mix-accent"><option value="leaf" data-i="leaf"></option><option value="bud" data-i="bud"></option><option value="lotus" data-i="lotus"></option><option value="paisley" data-i="paisley"></option><option value="jasmine" data-i="jasmine"></option></select></label><label><span data-i="paletteLabel"></span><select id="mix-palette"><option value="wine" data-i="wine"></option><option value="teal" data-i="teal"></option><option value="indigo" data-i="indigo"></option></select></label></div>
+<h1 class="page-title" id="mixer-title" data-i="mixerTitle">Design Mixer</h1>
+<div class="mixer-gate" id="mixer-locked">
+<p data-i="mixerAccessNote">The ₹99 pass opens Design Mixer and Lesson 3 onward for 30 days.</p>
+<div class="actions"><a class="button" href="payment.html?from=mixer" data-i="mixerUnlock">Unlock Design Mixer · ₹99</a><a class="button soft" href="learn.html#chain-stitch" data-i="backToFreeLessons">Back to the free lessons</a></div>
+</div>
+<div class="mixer" id="mixer-tool" hidden>
+<div class="mixer-controls"><p data-i="mixerIntro"></p><div class="design-fields"><label><span data-i="placementLabel"></span><select id="mix-placement"><option value="small" data-i="small"></option><option value="sleeve" data-i="sleeve"></option><option value="neck" data-i="neck"></option><option value="border" data-i="border"></option></select></label><label><span data-i="mainLabel"></span><select id="mix-main"><option value="lotus" data-i="lotus"></option><option value="paisley" data-i="paisley"></option><option value="jasmine" data-i="jasmine"></option><option value="leaf" data-i="leaf"></option><option value="bud" data-i="bud"></option></select></label><label><span data-i="accentLabel"></span><select id="mix-accent"><option value="leaf" data-i="leaf"></option><option value="bud" data-i="bud"></option><option value="lotus" data-i="lotus"></option><option value="paisley" data-i="paisley"></option><option value="jasmine" data-i="jasmine"></option></select></label><label><span data-i="paletteLabel"></span><select id="mix-palette"><option value="wine" data-i="wine"></option><option value="teal" data-i="teal"></option><option value="indigo" data-i="indigo"></option></select></label></div>
 <div class="actions"><button type="button" class="button" id="mix-surprise" data-i="surprise"></button><a class="button soft" id="mix-download" download="aari-studio-mixed-design.png" data-i="downloadImage"></a></div></div>
 <canvas id="mix-preview" width="600" height="360" role="img" data-label="previewLabel"></canvas>
 <div class="ai-panel"><h4 data-i="aiTitle"></h4><p data-i="aiText"></p>
