@@ -127,9 +127,20 @@ footer{background:#f8edf1;color:var(--wine);padding:1.4rem 0}
 .manual-payment[hidden]{display:none}
 .training-topics{flex:0 0 100%;margin:0;padding-inline-start:1.25rem}
 .training-topics li+li{margin-top:.4rem}
+#learn{margin-top:1.25rem;scroll-margin-top:1rem}
+.training-practice{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:1rem;margin-top:1.2rem;padding:1rem;border:1px solid var(--line);border-radius:.85rem;background:white}
+.training-practice .diagram{max-width:360px;border-radius:.55rem}
+#training-enroll-link,#training-gallery-retry{margin-top:1.2rem}
+#training-enroll-link[hidden],#training-gallery-retry[hidden]{display:none}
 .training-lessons:not([hidden]){display:grid;gap:1rem;margin-top:1.2rem}
 .training-lessons details{padding:1rem;background:white;border:1px solid var(--line);border-radius:.85rem}
-.training-lessons summary{font-weight:750;color:var(--wine);cursor:pointer}
+.training-lessons summary{display:flex;align-items:center;gap:.75rem;font-weight:750;color:var(--wine);cursor:pointer}
+.training-lessons summary::after{content:"";width:.5rem;height:.5rem;margin-left:auto;flex:none;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg)}
+.training-lessons details[open] summary::after{transform:rotate(225deg)}
+.training-preview{width:104px;height:68px;flex:none;object-fit:contain;border-radius:.5rem;background:var(--pink)}
+.training-lesson-media{max-width:640px;margin:1rem 0}
+.training-lesson-media figcaption,.training-lesson-media .button{margin-top:.55rem}
+@media(max-width:520px){.training-practice{grid-template-columns:minmax(0,1fr)}.training-preview{width:72px;height:52px}}
 .training-lessons li+li{margin-top:.5rem}
 .manual-payment h3{margin:0 0 .5rem;font-size:1.1rem}
 .manual-payment p{color:#64515a;margin:.35rem 0 .7rem;overflow-wrap:anywhere}

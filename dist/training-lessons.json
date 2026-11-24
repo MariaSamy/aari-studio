@@ -1,6 +1,7 @@
 {
   "en": [
     {
+      "id": "beads",
       "title": "Adding beads",
       "goal": "Practise a short row, adding one bead to each chain loop.",
       "steps": [
@@ -12,6 +13,7 @@
       "check": "Test one bead first. Its hole should let the hook and the thread loop pass through smoothly."
     },
     {
+      "id": "flower",
       "title": "Stitch a small flower",
       "goal": "Use short chain stitches to outline five petals, then add a bead in the centre.",
       "steps": [
@@ -23,6 +25,7 @@
       "check": "Keep the fabric flat and use shorter stitches on the tight curve at the tip of each petal."
     },
     {
+      "id": "backstitch",
       "title": "Backstitch",
       "goal": "Make a continuous outline with a regular embroidery needle. Try it on a straight line before outlining a leaf.",
       "steps": [
@@ -34,6 +37,7 @@
       "check": "Use a light touch so the fabric stays flat. Shorten the stitches around curves."
     },
     {
+      "id": "spiral",
       "title": "Spiral chain stitch",
       "goal": "Use your Aari hook to stitch a continuous spiral with even spacing between the turns.",
       "steps": [
@@ -45,6 +49,7 @@
       "check": "Use shorter stitches close to the centre. Keep the spiral wide enough that neighbouring turns stay separate."
     },
     {
+      "id": "long-short",
       "title": "Alternating long and short chain stitch",
       "goal": "Use an Aari hook to stitch a straight chain that repeats one long loop and one short loop.",
       "steps": [
@@ -57,6 +62,7 @@
       "check": "Keep the cotton taut and pull the loops gently. Aim for the same loop width throughout the row."
     },
     {
+      "id": "neckline",
       "title": "Draft and stitch a new blouse neckline",
       "goal": "Make an original indigo and gold neckline using leaves, a centre lotus and spaced bead accents.",
       "steps": [
@@ -72,6 +78,7 @@
   ],
   "ta": [
     {
+      "id": "beads",
       "title": "மணிகள் சேர்த்தல்",
       "goal": "ஒவ்வொரு சங்கிலி வளையத்திலும் ஒரு மணியைச் சேர்த்து, ஒரு சிறிய வரிசை தைத்துப் பழகுங்கள்.",
       "steps": [
@@ -83,6 +90,7 @@
       "check": "முதலில் ஒரு மணியைச் சோதியுங்கள். அதன் துளை வழியாக ஊசியும் நூல் வளையமும் எளிதாகச் செல்ல வேண்டும்."
     },
     {
+      "id": "flower",
       "title": "சிறிய பூ தைப்போம்",
       "goal": "சிறிய சங்கிலித் தையல்களால் ஐந்து இதழ்களின் வெளிக்கோட்டைத் தைத்து, நடுவில் ஒரு மணியைச் சேருங்கள்.",
       "steps": [
@@ -94,6 +102,7 @@
       "check": "துணியைச் சுருக்கமில்லாமல் வைத்துக்கொள்ளுங்கள். இதழின் நுனி வளைவில் சிறிய தையல்களைப் போடுங்கள்."
     },
     {
+      "id": "backstitch",
       "title": "பின் தையல்",
       "goal": "சாதாரண எம்பிராய்டரி ஊசியால் இடைவெளியில்லாத வெளிக்கோடு தையுங்கள். முதலில் நேர்கோட்டிலும் பிறகு இலையின் வெளிக்கோட்டிலும் பயிற்சி செய்யுங்கள்.",
       "steps": [
@@ -105,6 +114,7 @@
       "check": "துணி சுருங்காதபடி நூலை மெதுவாக இழுங்கள். வளைவுகளில் சிறிய தையல்களைப் போடுங்கள்."
     },
     {
+      "id": "spiral",
       "title": "சுருள் சங்கிலித் தையல்",
       "goal": "ஆரி ஊசியால் சுருள் வடிவில் தொடர்ந்து தையுங்கள். சுருளின் சுற்றுகளுக்கிடையே சமமான இடைவெளி விடுங்கள்.",
       "steps": [
@@ -116,6 +126,7 @@
       "check": "நடுவில் சிறிய தையல்களைப் போடுங்கள். அடுத்தடுத்த சுற்றுகள் ஒன்றை ஒன்று தொடாமல் இடைவெளி விடுங்கள்."
     },
     {
+      "id": "long-short",
       "title": "நீளமும் குறுகியதும் மாறி வரும் சங்கிலித் தையல்",
       "goal": "ஆரி ஊசியால் நேர்கோட்டில் ஒரு நீளமான வளையம், ஒரு குறுகிய வளையம் என மாறி மாறிச் சங்கிலித் தையல் போடுங்கள்.",
       "steps": [
@@ -128,6 +139,7 @@
       "check": "துணியைத் தளராமல் வைத்துக்கொண்டு நூலை மெதுவாக இழுங்கள். வரிசை முழுவதும் வளையங்களின் அகலம் ஒரே அளவில் இருக்கட்டும்."
     },
     {
+      "id": "neckline",
       "title": "புதிய ரவிக்கைக் கழுத்து வடிவத்தை வரைந்து தையுங்கள்",
       "goal": "இலைகள், நடுவில் ஒரு தாமரை மற்றும் இடைவெளியுடன் தங்க நிற மணிகளைப் பயன்படுத்தி நீலம் மற்றும் தங்க நிறத்தில் சொந்த வடிவம் உருவாக்குங்கள்.",
       "steps": [
