@@ -143,13 +143,12 @@ footer{background:#f8edf1;color:var(--wine);padding:1.4rem 0}
 .membership-instructions li p{color:#f4dae3;margin:.15rem 0 0}
 .member-controls{flex:0 0 100%;color:var(--ink);background:#fff8f5;padding:1rem;border-radius:.7rem}
 .member-controls summary{cursor:pointer;font-weight:700;color:var(--wine);min-height:2.4rem}
-.member-payment{display:grid;grid-template-columns:minmax(0,10rem) minmax(0,1fr);gap:1rem;align-items:start;margin-bottom:1rem}
-.member-payment img{width:100%;max-width:10rem;height:auto}
+.member-payment-qr img{display:block;width:min(100%,15rem);height:auto;margin:.75rem 0;background:white;border-radius:.5rem}
+#member-reference-form{margin-top:.5rem}
 .member-actions{display:flex;align-items:center;flex-wrap:wrap;gap:.65rem;margin-top:.45rem}
 .member-actions input{min-height:46px;min-width:0;width:min(100%,17rem);font:inherit;padding:.5rem .7rem;border:1px solid var(--line);border-radius:.55rem;color:var(--ink);background:white}
 .member-controls form label{font-weight:700}
 #member-message:empty{display:none}
-@media(max-width:520px){.member-payment{grid-template-columns:minmax(0,1fr)}}
 .premium-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 @media(max-width:850px){.premium-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:620px){.ready-grid{grid-template-columns:minmax(0,1fr)}.bar nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 .5rem}}

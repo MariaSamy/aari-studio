@@ -2,7 +2,7 @@ import { createHash, randomBytes, timingSafeEqual } from 'node:crypto';
 import { createReadStream } from 'node:fs';
 import { mkdir, stat } from 'node:fs/promises';
 import { createServer } from 'node:http';
-import { dirname, extname, join, resolve, sep } from 'node:path';
+import { extname, join, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { DatabaseSync } from 'node:sqlite';
 import { pipeline } from 'node:stream/promises';
@@ -11,6 +11,12 @@ const publicDir = fileURLToPath(new URL('../dist', import.meta.url));
 const dataDir = resolve(process.env.AARI_DATA_DIR || 'data');
 const adminToken = process.env.AARI_ADMIN_TOKEN?.trim();
 const contact = parseContact(process.env.AARI_MEMBERSHIP_CONTACT_URL);
+const keyId = process.env.RAZORPAY_KEY_ID?.trim();
+const keySecret = process.env.RAZORPAY_KEY_SECRET?.trim();
+const razorpayEnabled = Boolean(keyId && keySecret &&
+  (keyId.startsWith('rzp_live_') ||
+    (keyId.startsWith('rzp_test_') && process.env.AARI_PAYMENT_TEST_MODE === '1')));
+const qrPath = '/payments/qr_codes';
 const designFiles = new Map([
   ['marigold-moth', 'ready-marigold-moth.webp'],
   ['turquoise-papyrus', 'ready-turquoise-papyrus.webp'],
@@ -38,11 +44,10 @@ const mimeTypes = {
 };
 
 let db;
-if (adminToken && !contact) throw new Error('Set AARI_MEMBERSHIP_CONTACT_URL to enable membership.');
-if (contact && (!adminToken || adminToken.length < 32)) {
+if (contact && !razorpayEnabled && (!adminToken || adminToken.length < 32)) {
   throw new Error('Set AARI_ADMIN_TOKEN to a secret of at least 32 characters.');
 }
-if (contact) {
+if (razorpayEnabled || contact) {
   if (dataDir === publicDir || dataDir.startsWith(publicDir + sep)) {
     throw new Error('AARI_DATA_DIR must be outside dist.');
   }
@@ -64,6 +69,14 @@ if (contact) {
       first_opened_at INTEGER,
       last_opened_at INTEGER,
       open_count INTEGER NOT NULL DEFAULT 0
+    ) STRICT;
+    CREATE TABLE IF NOT EXISTS upi_checkouts (
+      checkout_hash TEXT PRIMARY KEY,
+      qr_id TEXT NOT NULL UNIQUE,
+      closes_at INTEGER NOT NULL,
+      checked_at INTEGER NOT NULL DEFAULT 0,
+      payment_id TEXT UNIQUE,
+      payment_reference TEXT
     ) STRICT;
   `);
 }
@@ -129,6 +142,105 @@ function findMembership(code, now) {
     .get(codeHash(normalized), now);
 }
 
+async function razorpay(path, data) {
+  const response = await fetch('https://api.razorpay.com/v1' + path, {
+    method: data ? 'POST' : 'GET',
+    headers: {
+      Authorization: 'Basic ' + Buffer.from(keyId + ':' + keySecret).toString('base64'),
+      ...(data ? { 'Content-Type': 'application/json' } : {}),
+    },
+    body: data ? JSON.stringify(data) : undefined,
+    redirect: 'error',
+    signal: AbortSignal.timeout(8000),
+  });
+  if (!response.ok) throw new Error('Payment provider returned HTTP ' + response.status);
+  return response.json();
+}
+
+let qrWindow = 0;
+let qrCount = 0;
+
+async function startUpiCheckout(request, response, now) {
+  await readJson(request);
+  const minute = Math.floor(now / 60);
+  if (minute !== qrWindow) {
+    qrWindow = minute;
+    qrCount = 0;
+  }
+  if (qrCount >= 30) return json(response, 429, { error: 'Try again in a minute.' });
+  qrCount += 1;
+  const qr = await razorpay(qrPath, {
+    type: 'upi_qr',
+    name: 'Aari Studio',
+    usage: 'single_use',
+    fixed_amount: true,
+    payment_amount: priceInPaise,
+    description: '30 days of Aari Studio professional designs',
+    close_by: now + 20 * 60,
+  });
+  const image = new URL(qr.image_url);
+  const trusted = ['razorpay.com', 'rzp.io', 'rzp.page'].some(host =>
+    image.hostname === host || image.hostname.endsWith('.' + host));
+  if (!/^qr_[A-Za-z0-9]+$/.test(qr.id) || !trusted ||
+      !['http:', 'https:'].includes(image.protocol) || image.username || image.password || image.port ||
+      !Number.isSafeInteger(qr.close_by) || qr.close_by <= now ||
+      qr.payment_amount !== priceInPaise || qr.usage !== 'single_use' || qr.fixed_amount !== true) {
+    throw new Error('Unexpected payment QR response.');
+  }
+  image.protocol = 'https:';
+  const checkout = randomBytes(10).toString('hex').toUpperCase();
+  db.prepare('INSERT INTO upi_checkouts (checkout_hash, qr_id, closes_at) VALUES (?, ?, ?)')
+    .run(codeHash(checkout), qr.id, qr.close_by);
+  return json(response, 201, { checkout, qrImage: image.href, closesAt: qr.close_by });
+}
+
+async function verifyUpiCheckout(request, response, now) {
+  const { checkout, reference } = await readJson(request);
+  if (typeof checkout !== 'string' || !/^[A-F0-9]{20}$/.test(checkout) ||
+      typeof reference !== 'string' || !/^\d{12}$/.test(reference)) {
+    return json(response, 400, { error: 'Enter the 12-digit UPI reference.' });
+  }
+  const hash = codeHash(checkout);
+  const order = db.prepare('SELECT * FROM upi_checkouts WHERE checkout_hash = ?').get(hash);
+  if (!order) return json(response, 404, { error: 'Payment session not found.' });
+  if (order.payment_id) {
+    const access = order.payment_reference === reference && findMembership(checkout, now);
+    return access ? json(response, 200, { expiresAt: access.expires_at })
+      : json(response, 409, { error: 'This payment cannot open the collection.' });
+  }
+  const check = db.prepare('UPDATE upi_checkouts SET checked_at = ? WHERE checkout_hash = ? AND checked_at <= ?')
+    .run(now, hash, now - 5);
+  if (!check.changes) return json(response, 429, { error: 'Try again in a few seconds.' });
+  const result = await razorpay(qrPath + '/' + order.qr_id + '/payments?count=10');
+  const payment = result.items.find(item =>
+    /^pay_[A-Za-z0-9]+$/.test(item.id) &&
+    item.method === 'upi' && item.status === 'captured' && item.amount === priceInPaise &&
+    item.currency === 'INR' && item.amount_refunded === 0 &&
+    item.acquirer_data?.rrn === reference && Number.isSafeInteger(item.created_at));
+  if (!payment) return json(response, 202, { status: 'unconfirmed' });
+  const expiresAt = payment.created_at + monthInSeconds;
+  if (expiresAt <= now) return json(response, 410, { error: 'This payment is past its membership period.' });
+  db.exec('BEGIN');
+  try {
+    const seen = db.prepare('SELECT checkout_hash FROM upi_checkouts WHERE payment_id = ?').get(payment.id);
+    if (seen && seen.checkout_hash !== hash) {
+      db.exec('ROLLBACK');
+      return json(response, 409, { error: 'This payment was already used.' });
+    }
+    if (!seen) {
+      db.prepare('UPDATE upi_checkouts SET payment_id = ?, payment_reference = ? WHERE checkout_hash = ?')
+        .run(payment.id, reference, hash);
+      db.prepare('INSERT INTO memberships (code_hash, payment_reference, amount_paise, issued_at, expires_at) VALUES (?, ?, ?, ?, ?)')
+        .run(hash, payment.id, priceInPaise, payment.created_at, expiresAt);
+    }
+    db.exec('COMMIT');
+  } catch (error) {
+    db.exec('ROLLBACK');
+    throw error;
+  }
+  return json(response, 200, { expiresAt });
+}
+
 async function sendFile(request, response, path, cacheControl) {
   const size = (await stat(path)).size;
   const range = request.headers.range;
@@ -157,12 +269,18 @@ async function sendFile(request, response, path, cacheControl) {
 
 async function membership(request, response, path) {
   if (path === '/config' && request.method === 'GET') {
-    return json(response, 200, db ? { available: true, contact } : { available: false });
+    return json(response, 200, { available: Boolean(db), upi: Boolean(db && razorpayEnabled) });
   }
   if (!db) return json(response, 503, { error: 'Membership is unavailable.' });
   const now = Math.floor(Date.now() / 1000);
+  if (razorpayEnabled && request.method === 'POST') {
+    if (path === '/upi/start') return startUpiCheckout(request, response, now);
+    if (path === '/upi/verify') return verifyUpiCheckout(request, response, now);
+  }
   if (path === '/codes' && request.method === 'POST') {
-    if (!isAdmin(request)) return json(response, 401, { error: 'Admin access is required.' });
+    if (!adminToken || adminToken.length < 32 || !isAdmin(request)) {
+      return json(response, 401, { error: 'Admin access is required.' });
+    }
     const body = await readJson(request);
     const reference = typeof body.reference === 'string' ? body.reference.trim().toUpperCase() : '';
     if (!/^[A-Z0-9-]{6,48}$/.test(reference) || body.amountPaise !== priceInPaise) {
