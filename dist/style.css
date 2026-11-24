@@ -85,6 +85,8 @@ footer{background:#f8edf1;color:var(--wine);padding:1.4rem 0}
 .stitch-demo p{margin:.45rem 0 0;color:var(--muted);font-size:.93rem}
 
 .design-heading{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.8rem}
+.design-heading .actions{margin-top:0}
+#gallery-training-link[hidden]{display:none}
 .design-fields{display:flex;flex-wrap:wrap;gap:.8rem;margin:1rem 0}
 .design-fields label{display:grid;flex:1 1 165px;max-width:250px;gap:.3rem;font-weight:650}
 .design-fields select{appearance:none;width:100%;min-height:46px;padding:.55rem 2rem .55rem .65rem;border:1px solid #b891a2;border-radius:.55rem;color:var(--ink);background:linear-gradient(45deg,transparent 48%,var(--wine) 52%) right 15px center/6px 6px no-repeat,linear-gradient(135deg,var(--wine) 48%,transparent 52%) right 9px center/6px 6px no-repeat,#fff;font:inherit}
