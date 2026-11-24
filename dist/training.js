@@ -3,6 +3,7 @@ const referenceForm = byId('member-reference-form');
 const paymentReference = byId('member-reference');
 const trainingSubmit = referenceForm.querySelector('button');
 const trainingRetry = byId('training-retry');
+const galleryRetry = byId('training-gallery-retry');
 const trainingAccessKey = 'aari-training-access';
 const trainingDay = 24 * 60 * 60 * 1000;
 const trainingDuration = 30 * trainingDay;
@@ -11,8 +12,101 @@ let course;
 let memberMessage;
 let expiryTimer;
 
+const trainingMedia = {
+  beads: { image: 'beads-demo-poster.png', video: 'beads-demo' },
+  flower: {
+    image: 'floral-motif.png', pdf: 'small-flower-a4.pdf',
+    alt: {
+      en: 'A five-petal tracing, a stitched outline and a gold bead in the centre.',
+      ta: 'வரைந்த ஐந்து இதழ்கள், தைத்த வெளிக்கோடு, நடுவில் தங்க நிற மணி.',
+    },
+  },
+  backstitch: {
+    image: 'backstitch.png',
+    alt: {
+      en: 'Three steps showing how to come up ahead and stitch back to the previous hole.',
+      ta: 'ஊசியை முன்னால் எடுத்து முந்தைய துளைக்குப் பின்னோக்கித் தைக்கும் மூன்று படிகள்.',
+    },
+  },
+  spiral: {
+    image: 'spiral-chain.png',
+    alt: {
+      en: 'A spiral guide with short chain stitches at the centre and wider turns farther out.',
+      ta: 'நடுவில் சிறிய சங்கிலித் தையல்களும் வெளிப்புறத்தில் அகலமான வளைவுகளும் உள்ள சுருள்.',
+    },
+  },
+  'long-short': {
+    image: 'long-short-chain.png',
+    alt: {
+      en: 'A row of chain stitches alternating between long and short loops.',
+      ta: 'நீண்ட மற்றும் குறுகிய வளையங்கள் மாறி வரும் சங்கிலித் தையல் வரிசை.',
+    },
+  },
+  neckline: {
+    image: 'gallery-magenta-lotus-pearl.webp',
+    alt: {
+      en: 'A magenta blouse neckline with a centred gold lotus, paired leaf motifs and pearl accents.',
+      ta: 'நடுவில் தங்க நிறத் தாமரையும் இருபுற இலை வடிவங்களும் முத்துகளும் கொண்ட அடர் இளஞ்சிவப்பு ரவிக்கை.',
+    },
+  },
+};
+
 function hasTrainingAccess() {
   return trainingAccess?.expiresAt > Date.now();
+}
+
+function buildLessonMedia(lesson, media, t) {
+  const figure = document.createElement('figure');
+  figure.className = 'training-lesson-media';
+  if (media.video) {
+    figure.classList.add('stitch-demo');
+    const video = document.createElement('video');
+    video.controls = true;
+    video.playsInline = true;
+    video.preload = 'none';
+    video.poster = media.image;
+    video.width = 768;
+    video.height = 432;
+    video.setAttribute('aria-label', lesson.title);
+    const source = document.createElement('source');
+    source.src = media.video + '.mp4';
+    source.type = 'video/mp4';
+    video.append(source);
+    for (const [lang, label] of [['en', 'English'], ['ta', 'தமிழ்']]) {
+      const track = document.createElement('track');
+      track.kind = 'captions';
+      track.srclang = lang;
+      track.label = label;
+      track.src = media.video + '-' + lang + '.vtt';
+      track.default = lang === state.language;
+      video.append(track);
+    }
+    const caption = document.createElement('figcaption');
+    caption.textContent = t.trainingBeadsDemo;
+    figure.append(video, caption);
+    return figure;
+  }
+
+  const image = document.createElement('img');
+  image.className = 'diagram';
+  image.src = media.image;
+  image.alt = media.alt[state.language];
+  image.loading = 'lazy';
+  figure.append(image);
+  if (lesson.id === 'neckline') {
+    const caption = document.createElement('figcaption');
+    caption.textContent = t.trainingNecklineExample;
+    figure.append(caption);
+  }
+  if (media.pdf) {
+    const link = document.createElement('a');
+    link.className = 'button soft';
+    link.href = media.pdf;
+    link.download = '';
+    link.textContent = t.flowerPdf;
+    figure.append(link);
+  }
+  return figure;
 }
 
 function renderTraining() {
@@ -20,7 +114,8 @@ function renderTraining() {
   const active = hasTrainingAccess();
   byId('member-message').textContent = memberMessage ? t[memberMessage] : '';
   byId('member-payment').hidden = active || !trainingAccess;
-  trainingRetry.hidden = !(active && !course && memberMessage === 'memberTryAgain');
+  trainingRetry.hidden = galleryRetry.hidden = !(active && !course && memberMessage === 'memberTryAgain');
+  byId('training-enroll-link').hidden = active;
   trainingLessons.hidden = !active || !course;
   byId('ready-training-link').hidden = trainingLessons.hidden;
   if (trainingLessons.hidden) {
@@ -40,7 +135,20 @@ function renderTraining() {
     panel.dataset.lesson = String(index);
     panel.open = openLesson ? openLesson === panel.dataset.lesson : index === 0;
     const title = document.createElement('summary');
-    title.textContent = lesson.title;
+    const media = trainingMedia[lesson.id];
+    const titleText = document.createElement('span');
+    titleText.textContent = lesson.title;
+    if (media) {
+      const preview = document.createElement('img');
+      preview.className = 'training-preview';
+      preview.src = media.image;
+      preview.alt = '';
+      preview.loading = 'lazy';
+      preview.width = 104;
+      preview.height = 68;
+      title.append(preview);
+    }
+    title.append(titleText);
     const goal = document.createElement('p');
     goal.textContent = lesson.goal;
     const steps = document.createElement('ol');
@@ -56,7 +164,9 @@ function renderTraining() {
     exercise.append(label, ' ', lesson.exercise);
     const check = document.createElement('p');
     check.textContent = lesson.check;
-    panel.append(title, goal, steps, exercise, check);
+    panel.append(title, goal);
+    if (media) panel.append(buildLessonMedia(lesson, media, t));
+    panel.append(steps, exercise, check);
     return panel;
   });
   trainingLessons.replaceChildren(heading, expiry, ...lessons);
@@ -168,5 +278,6 @@ function initTraining() {
 }
 
 trainingRetry.addEventListener('click', showExistingTraining);
+galleryRetry.addEventListener('click', showExistingTraining);
 byId('language').addEventListener('click', renderTraining);
 initTraining();

@@ -10,7 +10,7 @@
 <header class="top"><div class="bar">
 <a class="brand" href="#home"><span aria-hidden="true" class="mark">✿</span> Aari Studio</a>
 <nav aria-label="Main navigation">
-<a href="#learn" data-i="learn"></a><a href="#ready-designs" data-i="readyNav"></a><a href="#design-mixer" data-i="mixerTitle"></a><a href="#practice" data-i="practice"></a>
+<a href="#training-gallery" data-i="trainingGallery">Training Gallery</a><a href="#ready-designs" data-i="readyNav"></a><a href="#design-mixer" data-i="mixerTitle"></a><a href="#practice" data-i="practice"></a>
 <a href="#payment" data-i="membershipNav">Training &amp; payment</a>
 </nav>
 <button class="language" id="language" type="button">தமிழ்</button>
@@ -20,8 +20,10 @@
 <p class="kicker" data-i="art"></p><h1 data-i="hello"></h1><p class="intro" data-i="intro"></p>
 <div class="actions"><a class="button" href="#frame-setup" id="start" data-i="start"></a><a class="button secondary" href="#ready-designs" data-i="readyBrowse"></a><a class="button secondary" href="#payment" data-i="membershipNav">Training &amp; payment</a></div>
 </div><div class="hero-art" aria-hidden="true"></div></section>
-<section class="section" id="learn">
-<h2 data-i="freeLessons">Two free stitching lessons</h2>
+<section class="section" id="training-gallery" aria-labelledby="training-gallery-title">
+<h2 id="training-gallery-title" data-i="trainingGallery">Training Gallery</h2>
+<div id="learn">
+<h3 data-i="freeLessons">Two free stitching lessons</h3>
 <nav class="lesson-nav" aria-label="Lessons" data-label="lessonsLabel">
 <a href="#frame-setup" data-i="frameTitle"></a><a href="#chain-stitch" data-i="lessonTitle"></a><a href="#curves-corners" data-i="curvesTitle"></a>
 </nav>
@@ -56,6 +58,18 @@
 <ol id="curves-steps"></ol><p class="exercise" data-i="curvesExercise"></p>
 <div class="actions"><button type="button" class="button" id="curves-done" aria-pressed="false"></button><a class="button soft" href="#payment" data-i="membershipNav"></a></div>
 </div></div></article>
+<div class="training-practice">
+<img class="diagram" src="floral-sleeve.png" alt="" data-alt="trainingSleeveAlt" width="1000" height="630" loading="lazy">
+<div>
+<h4 data-i="vine">Floral sleeve vine</h4>
+<p data-i="trainingSleeveIntro">Trace the sleeve pattern and practise the chain stitch on the stem and leaves.</p>
+<a class="button soft" href="floral-sleeve-a4.pdf" download data-i="sleevePdf">Floral sleeve PDF</a>
+</div>
+</div>
+</div>
+<div id="training-lessons" class="training-lessons" tabindex="-1" hidden></div>
+<a class="button" id="training-enroll-link" href="#payment" data-i="galleryEnroll">Unlock all six training lessons</a>
+<button class="button soft" id="training-gallery-retry" type="button" data-i="memberRetry" hidden>Retry loading lessons</button>
 </section>
 <section class="section" id="payment" aria-labelledby="membership-title" tabindex="-1">
 <div class="membership">
@@ -97,7 +111,6 @@
 <p id="member-message" role="status"></p>
 <button id="training-retry" class="button secondary" type="button" data-i="memberRetry" hidden>Retry loading lessons</button>
 </div>
-<div id="training-lessons" class="training-lessons" tabindex="-1" hidden></div>
 </section>
 <section class="section" id="ready-designs" aria-labelledby="ready-title">
 <div class="design-heading" id="designs">
