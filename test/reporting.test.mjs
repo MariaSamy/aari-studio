@@ -6,6 +6,7 @@ import { mkdtemp, rm } from 'node:fs/promises';
 import net from 'node:net';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { DatabaseSync } from 'node:sqlite';
 import { setTimeout as delay } from 'node:timers/promises';
 import test from 'node:test';
 
@@ -21,6 +22,7 @@ test('protects reporting, separates records and retains them across a restart', 
   const data = await mkdtemp(join(tmpdir(), 'aari-reporting-'));
   const port = await availablePort();
   const origin = 'http://127.0.0.1:' + port;
+  const storefront = 'https://aari-studio-designs.onrender.com';
   const key = randomBytes(32).toString('base64url');
   const authorization = 'Basic ' + Buffer.from('owner:' + key).toString('base64');
   let server;
@@ -51,7 +53,8 @@ test('protects reporting, separates records and retains them across a restart', 
         PORT: String(port),
         AARI_REPORTING_OWNER_KEY: enabled ? key : '',
         AARI_REPORTING_DATA_DIR: data,
-        AARI_REPORTING_ORIGIN: origin,
+        AARI_REPORTING_ORIGIN: storefront,
+        AARI_REPORTING_ADMIN_ORIGIN: origin,
       },
       stdio: ['ignore', 'ignore', 'pipe'],
     });
@@ -66,7 +69,8 @@ test('protects reporting, separates records and retains them across a restart', 
   const browserId = randomUUID();
   const event = '/api/reporting/event';
   const payment = '/admin/reporting/payments';
-  const bankEntry = { reference: 'AARI-TEST-8012', amountPaise: 9900, bankCreditMatched: true };
+  const bankEntry = { reference: 'AARI-TEST-8012', amountPaise: 9900, bankCreditMatched: true, creditDate: '2026-01-01' };
+  const report = body => post(event, body, null, storefront);
   try {
     await start(false);
     assert.equal((await get('/admin')).status, 404);
@@ -74,8 +78,14 @@ test('protects reporting, separates records and retains them across a restart', 
     assert.equal((await get('/payment.html')).status, 200);
     await stop();
 
+    const oldDatabase = new DatabaseSync(join(data, 'reporting.sqlite'));
+    oldDatabase.exec(`CREATE TABLE reporting_payments (
+      reference_hash TEXT PRIMARY KEY, reference_suffix TEXT NOT NULL,
+      amount INTEGER NOT NULL CHECK (amount = 9900), recorded_at TEXT NOT NULL
+    ) STRICT;`);
+    oldDatabase.close();
     await start();
-    for (const route of ['/admin', '/admin/reporting.js', '/admin/reporting/summary']) {
+    for (const route of ['/admin', '/admin/reporting.js', '/admin/reporting.css', '/admin/reporting/summary']) {
       const unauthorized = await get(route);
       assert.equal(unauthorized.status, 401);
       assert.match(unauthorized.headers.get('www-authenticate'), /^Basic /);
@@ -84,27 +94,43 @@ test('protects reporting, separates records and retains them across a restart', 
     assert.match(await (await get('/admin', authorization)).text(), /Owner reporting/);
     assert.match(await (await get('/reporting-client.js')).text(), /aari:training-unlocked/);
     const initial = await summary();
-    assert.deepEqual([initial.trackedBrowsers, initial.unverifiedUnlocks, initial.confirmedPayments], [0, 0, 0]);
+    assert.deepEqual([initial.trackedBrowsers, initial.pageOpens, initial.unverifiedUnlocks, initial.confirmedPayments], [0, 0, 0, 0]);
+    const preflight = await fetch(origin + event, { method: 'OPTIONS', headers: { Origin: storefront } });
+    assert.equal(preflight.status, 204);
+    assert.equal(preflight.headers.get('access-control-allow-origin'), storefront);
     assert.equal((await post(event, { browserId, event: 'visit' }, null, 'https://other.invalid')).status, 403);
-    assert.equal((await post(event, { browserId: 'invalid', event: 'visit' })).status, 400);
-    for (const id of [browserId, browserId, randomUUID()]) {
-      assert.equal((await post(event, { browserId: id, event: 'visit' })).status, 204);
+    assert.equal((await report({ browserId: 'invalid', event: 'visit' })).status, 400);
+    assert.equal((await report({ browserId, event: 'visit', eventId: randomUUID(), section: 'admin' })).status, 400);
+    const visit = { browserId, event: 'visit', eventId: randomUUID(), section: 'designs' };
+    for (const data of [visit, visit, { ...visit, eventId: randomUUID(), section: 'checkout' },
+      { ...visit, browserId: randomUUID(), eventId: randomUUID() }]) {
+      assert.equal((await report(data)).status, 204);
     }
     const unlock = { browserId, event: 'unlock', eventId: randomUUID() };
-    assert.equal((await post(event, unlock)).status, 204);
-    assert.equal((await post(event, unlock)).status, 204);
+    assert.equal((await report(unlock)).status, 204);
+    assert.equal((await report(unlock)).status, 204);
     const seen = await summary();
-    assert.deepEqual([seen.trackedBrowsers, seen.unverifiedUnlocks, seen.confirmedPayments], [2, 1, 0]);
+    assert.deepEqual([seen.trackedBrowsers, seen.pageOpens, seen.unverifiedUnlocks, seen.confirmedPayments], [2, 3, 1, 0]);
+    assert.deepEqual(seen.bySection, [
+      { section: 'checkout', opens: 1, browsers: 1 },
+      { section: 'designs', opens: 2, browsers: 2 },
+    ]);
 
     assert.equal((await post(payment, bankEntry)).status, 401);
     assert.equal((await post(payment, bankEntry, authorization, 'https://other.invalid')).status, 403);
     assert.equal((await post(payment, { ...bankEntry, bankCreditMatched: false }, authorization)).status, 400);
     assert.equal((await post(payment, { ...bankEntry, amountPaise: 100 }, authorization)).status, 400);
+    assert.equal((await post(payment, { ...bankEntry, creditDate: '2026-02-30' }, authorization)).status, 400);
+    assert.equal((await post(payment, { ...bankEntry, creditDate: '9999-01-01' }, authorization)).status, 400);
     assert.equal((await post(payment, bankEntry, authorization)).status, 201);
     assert.equal((await post(payment, { ...bankEntry, reference: ' aari-test-8012 ' }, authorization)).status, 409);
     const recorded = await summary();
     assert.deepEqual([recorded.trackedBrowsers, recorded.unverifiedUnlocks, recorded.confirmedPayments], [2, 1, 1]);
+    assert.equal(recorded.confirmedAmountPaise, 9900);
     assert.equal(recorded.recentPayments[0].referenceSuffix, '8012');
+    assert.equal(recorded.recentPayments[0].amountPaise, 9900);
+    assert.equal(recorded.recentPayments[0].creditDate, '2026-01-01');
+    assert.deepEqual(recorded.recentActivity.map(entry => entry.kind).sort(), ['payment', 'unlock', 'view', 'view', 'view']);
     assert.doesNotMatch(JSON.stringify(recorded), /AARI-TEST-8012/);
 
     await stop();
