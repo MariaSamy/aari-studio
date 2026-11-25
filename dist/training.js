@@ -14,7 +14,7 @@ let memberMessage;
 let expiryTimer;
 
 const trainingMedia = {
-  beads: { image: 'beads-demo-poster.png', video: 'beads-demo' },
+  beads: { image: 'beads-demo-poster.png', video: 'beads-demo', caption: 'trainingBeadsDemo' },
   flower: {
     image: 'floral-motif.png', pdf: 'small-flower-a4.pdf',
     alt: {
@@ -50,6 +50,11 @@ const trainingMedia = {
       ta: 'நடுவில் தங்க நிறத் தாமரையும் இருபுற இலை வடிவங்களும் முத்துகளும் கொண்ட அடர் இளஞ்சிவப்பு ரவிக்கை.',
     },
   },
+  'chain-row-fill': {
+    image: 'leaf-fill-demo-poster.png',
+    video: 'leaf-fill-demo',
+    caption: 'trainingLeafFillDemo',
+  },
 };
 
 function hasTrainingAccess() {
@@ -83,7 +88,7 @@ function buildLessonMedia(lesson, media, t) {
       video.append(track);
     }
     const caption = document.createElement('figcaption');
-    caption.textContent = t.trainingBeadsDemo;
+    caption.textContent = t[media.caption];
     figure.append(video, caption);
     return figure;
   }
