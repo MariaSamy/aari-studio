@@ -19,6 +19,31 @@ const readyCollection = [
     id: 'blue-scalloped-vine', placement: 'neck', image: 'gallery-blue-scalloped-vine.webp',
     name: { en: 'Royal blue scalloped vine neckline', ta: 'அலை வடிவப் பூங்கொடி கொண்ட நீலக் கழுத்து வடிவம்' },
   },
+  {
+    id: 'maroon-gold-arch', placement: 'sleeve', image: 'gallery-maroon-gold-arch.webp',
+    name: { en: 'Maroon and gold arch sleeves', ta: 'மரூன் நிறக் கைகளில் தங்க நிற வளைவுகள்' },
+    detail: { en: 'Gold beadwork outlines the arches and forms a diamond lattice along the cuffs.', ta: 'தங்க நிற மணிகள் வளைவுகளின் ஓரங்களை அலங்கரிக்கின்றன. கை ஓரத்தில் வைர வடிவ வலைப்பின்னல் உள்ளது.' },
+  },
+  {
+    id: 'wine-jhumka', placement: 'sleeve', image: 'gallery-wine-jhumka.webp',
+    name: { en: 'Deep maroon jhumka sleeves', ta: 'அடர் மரூன் நிற ஜிமிக்கி கை வடிவம்' },
+    detail: { en: 'Jhumka motifs hang inside pointed arches above round medallions and beaded cuffs.', ta: 'கூர்முனை வளைவுகளுக்குள் ஜிமிக்கி வடிவங்கள் தொங்குகின்றன. கை ஓரங்களில் வட்ட வடிவங்களும் மணி வேலைப்பாடும் உள்ளன.' },
+  },
+  {
+    id: 'emerald-floral-lattice', placement: 'sleeve', image: 'gallery-emerald-floral-lattice.webp',
+    name: { en: 'Emerald floral lattice sleeves', ta: 'மரகதப் பச்சைக் கைகளில் பூவும் கட்ட வடிவமும்' },
+    detail: { en: 'Gold floral vines and green stones sit between bands of gold lattice and leaf motifs.', ta: 'தங்க நிறப் பூங்கொடிகளும் பச்சைக் கற்களும் கட்ட வடிவப் பட்டைகளையும் இலை வடிவங்களையும் அலங்கரிக்கின்றன.' },
+  },
+  {
+    id: 'pink-brocade-cuff', placement: 'sleeve', image: 'gallery-pink-brocade-cuff.webp',
+    name: { en: 'Bright pink blouse with a gold brocade cuff', ta: 'தங்க நிறச் சரிகைக் கை ஓரமுள்ள பளிச்சிடும் இளஞ்சிவப்பு ரவிக்கை' },
+    detail: { en: 'Small gold motifs are scattered above a wide brocade cuff edged with beading.', ta: 'மணிகள் பதித்த அகன்ற சரிகைக் கை ஓரத்துக்கு மேலே சிறிய தங்க நிற வடிவங்கள் பரவலாக உள்ளன.' },
+  },
+  {
+    id: 'teal-floral-neckline', placement: 'neck', image: 'gallery-teal-floral-neckline.webp',
+    name: { en: 'Teal blouse with a floral neckline', ta: 'பூ வேலைப்பாடு கொண்ட நீலப்பச்சை ரவிக்கைக் கழுத்து' },
+    detail: { en: 'Red and gold embroidery frames the neckline, and small floral sprigs decorate the blouse.', ta: 'சிவப்பும் தங்க நிறமும் கலந்த வேலைப்பாடு கழுத்தைச் சுற்றியுள்ளது. சிறு பூங்கிளைகள் ரவிக்கையை அலங்கரிக்கின்றன.' },
+  },
 ];
 
 const readyDialog = byId('ready-preview');
