@@ -55,6 +55,11 @@ const trainingMedia = {
     video: 'leaf-fill-demo',
     caption: 'trainingLeafFillDemo',
   },
+  'gold-cord-couching': {
+    image: 'gold-cord-demo-poster.png',
+    video: 'gold-cord-demo',
+    caption: 'trainingGoldCordDemo',
+  },
 };
 
 function hasTrainingAccess() {
