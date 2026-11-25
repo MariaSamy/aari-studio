@@ -152,7 +152,7 @@ export async function openReporting(publicDir) {
       json(response, 403, { error: 'Record payments from the owner dashboard.' });
       return true;
     }
-    const body = await readJson(request);
+    const body = await readJson(request, event ? ['application/json', 'text/plain'] : undefined);
     const now = new Date().toISOString();
     if (payment) {
       const value = typeof body.reference === 'string' ? body.reference.trim().toUpperCase() : '';

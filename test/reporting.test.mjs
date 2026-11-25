@@ -28,9 +28,9 @@ test('protects reporting, separates records and retains them across a restart', 
   let server;
   let diagnostics;
   const get = (route, auth) => fetch(origin + route, { headers: auth ? { Authorization: auth } : {} });
-  const post = (route, body, auth, originHeader = origin) => fetch(origin + route, {
+  const post = (route, body, auth, originHeader = origin, contentType = 'application/json') => fetch(origin + route, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', Origin: originHeader, ...(auth ? { Authorization: auth } : {}) },
+    headers: { 'Content-Type': contentType, Origin: originHeader, ...(auth ? { Authorization: auth } : {}) },
     body: JSON.stringify(body),
   });
   const summary = async () => {
@@ -70,7 +70,7 @@ test('protects reporting, separates records and retains them across a restart', 
   const event = '/api/reporting/event';
   const payment = '/admin/reporting/payments';
   const bankEntry = { reference: 'AARI-TEST-8012', amountPaise: 9900, bankCreditMatched: true, creditDate: '2026-01-01' };
-  const report = body => post(event, body, null, storefront);
+  const report = body => post(event, body, null, storefront, 'text/plain; charset=UTF-8');
   try {
     await start(false);
     assert.equal((await get('/admin')).status, 404);
@@ -118,6 +118,7 @@ test('protects reporting, separates records and retains them across a restart', 
 
     assert.equal((await post(payment, bankEntry)).status, 401);
     assert.equal((await post(payment, bankEntry, authorization, 'https://other.invalid')).status, 403);
+    assert.equal((await post(payment, bankEntry, authorization, origin, 'text/plain')).status, 400);
     assert.equal((await post(payment, { ...bankEntry, bankCreditMatched: false }, authorization)).status, 400);
     assert.equal((await post(payment, { ...bankEntry, amountPaise: 100 }, authorization)).status, 400);
     assert.equal((await post(payment, { ...bankEntry, creditDate: '2026-02-30' }, authorization)).status, 400);

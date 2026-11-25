@@ -127,8 +127,9 @@ function json(response, status, data) {
   response.end(JSON.stringify(data));
 }
 
-async function readJson(request) {
-  if (request.headers['content-type']?.split(';')[0].trim() !== 'application/json') {
+async function readJson(request, allowedTypes = ['application/json']) {
+  const type = request.headers['content-type']?.split(';')[0].trim();
+  if (!allowedTypes.includes(type)) {
     throw new Error('Expected JSON.');
   }
   const chunks = [];

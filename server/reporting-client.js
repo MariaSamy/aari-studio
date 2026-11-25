@@ -22,9 +22,9 @@
   function report(event) {
     const data = { browserId, event, eventId: crypto.randomUUID() };
     if (event === 'visit') data.section = section;
+    // A string body avoids a CORS preflight when checkout immediately navigates.
     fetch(endpoint, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
       credentials: 'omit',
       keepalive: true,
