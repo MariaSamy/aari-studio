@@ -100,6 +100,32 @@
       ],
       "exercise": "Couch one shallow curve and one tighter curve. Compare how closely you need to space the holding stitches.",
       "check": "The cord should lie flat with no kinks or loose ends. Pull the holding stitches just enough to secure it."
+    },
+    {
+      "id": "whipped-chain-border",
+      "title": "Whip an Aari chain-stitch border",
+      "goal": "Wrap a second thread around an Aari chain to give the border a two-colour twist.",
+      "steps": [
+        "Draw a 5 cm line on framed scrap cotton. Stitch it with even Aari chain loops and secure the last loop.",
+        "Thread a blunt embroidery needle with a contrasting colour. Bring it up beside the first loop and slide it under both strands of that loop, keeping the needle above the cloth.",
+        "Pass the needle under each successive loop from the same side. Pull gently so each wrap rests against the chain.",
+        "Take the needle down beside the last loop and secure the wrapping thread on the back."
+      ],
+      "exercise": "Stitch two 5 cm borders. Wrap the first with one strand of floss and the second with two. Compare how much of the base colour shows.",
+      "check": "Look for one wrap per loop, all slanting the same way. The fabric should stay flat."
+    },
+    {
+      "id": "overlapping-sequin-border",
+      "title": "Stitch an overlapping sequin border",
+      "goal": "Use flat sequins to make a narrow border with a consistent overlap.",
+      "steps": [
+        "On framed scrap cotton, draw a line and mark eight dots 4 mm apart. Set out eight flat, 6 mm sequins with centre holes.",
+        "Bring a fine embroidery needle up at the first dot and slide on a sequin. Take the needle down just beyond its rim, toward the next dot, to hold it flat.",
+        "Bring the needle up at the next dot and add a second sequin. Its rim should overlap the first. Stitch it down in the same direction and repeat to the end.",
+        "Secure the last sequin with a second stitch from its centre over a different part of the rim. Fasten the thread on the back."
+      ],
+      "exercise": "Make one row of eight sequins on a straight line and another along a gentle curve. Keep the centre marks evenly spaced along both guides.",
+      "check": "Check that each sequin overlaps its neighbour by about 2 mm on the straight row. Brush the rows lightly with a fingertip to check for loose or tilted sequins."
     }
   ],
   "ta": [
@@ -203,6 +229,32 @@
       ],
       "exercise": "ஒரு மென்மையான வளைவிலும் ஒரு கூரான வளைவிலும் சரட்டைப் பதியுங்கள். இரண்டிலும் சிறு தையல்களின் இடைவெளியை ஒப்பிடுங்கள்.",
       "check": "சரடு முறுக்கோ தளர்ந்த முனையோ இல்லாமல் தட்டையாக இருக்க வேண்டும். சரட்டைப் பிடிக்கும் அளவிற்கு மட்டும் நூலை இழுங்கள்."
+    },
+    {
+      "id": "whipped-chain-border",
+      "title": "ஆரி சங்கிலித் தையல் கரையில் நூல் சுற்றுதல்",
+      "goal": "ஆரி சங்கிலித் தையலைச் சுற்றி வேறு நிற நூலைக் கோத்து இரு நிறக் கரை உருவாக்குங்கள்.",
+      "steps": [
+        "சட்டத்தில் பொருத்திய பருத்தித் துண்டில் 5 செ.மீ. கோடு வரையுங்கள். சம அளவிலான ஆரி சங்கிலி வளையங்களைத் தைத்து, கடைசி வளையத்தைப் பிடித்து முடிக்கவும்.",
+        "மழுங்கிய முனையுள்ள எம்பிராய்டரி ஊசியில் வேறு நிற நூலைக் கோத்துக்கொள்ளுங்கள். முதல் வளையத்தின் அருகில் ஊசியை மேலே எடுத்து, வளையத்தின் இரு நூல்களுக்கும் அடியில் செலுத்துங்கள். ஊசி துணிக்குள் குத்தாமல் மேலேயே செல்லட்டும்.",
+        "அடுத்தடுத்த வளையங்களிலும் அதே பக்கத்திலிருந்து ஊசியை அடியில் செலுத்துங்கள். சுற்றிய நூல் சங்கிலியோடு படியும்படி மெதுவாக இழுங்கள்.",
+        "கடைசி வளையத்தின் அருகில் ஊசியைத் துணிக்குள் இறக்கி, பின்புறத்தில் சுற்றிய நூலை முடிக்கவும்."
+      ],
+      "exercise": "தலா 5 செ.மீ. நீளமுள்ள இரண்டு கரைகளைத் தையுங்கள். முதல் கரையில் எம்பிராய்டரி நூலின் ஒரு இழையையும் இரண்டாவது கரையில் இரண்டு இழைகளையும் சுற்றுங்கள். அடிப்படை நூலின் நிறம் எவ்வளவு தெரிகிறது என்று ஒப்பிடுங்கள்.",
+      "check": "ஒவ்வொரு வளையத்திலும் ஒரு சுற்று இருக்கிறதா, எல்லாச் சுற்றுகளும் ஒரே திசையில் சாய்ந்துள்ளனவா என்று பாருங்கள். துணி சுருக்கமில்லாமல் இருக்க வேண்டும்."
+    },
+    {
+      "id": "overlapping-sequin-border",
+      "title": "ஒன்றன்மேல் ஒன்று படியும் சீக்வின் கரை தைத்தல்",
+      "goal": "தட்டையான சீக்வின்கள் சீராக ஒன்றன்மேல் ஒன்று படியும்படி குறுகிய கரை தையுங்கள்.",
+      "steps": [
+        "சட்டத்தில் பொருத்திய பருத்தித் துண்டில் கோடு வரைந்து, 4 மி.மீ. இடைவெளியில் எட்டுப் புள்ளிகளைக் குறியுங்கள். நடுவில் துளையுள்ள 6 மி.மீ. விட்டமுடைய எட்டுத் தட்டையான சீக்வின்களை எடுத்துக்கொள்ளுங்கள்.",
+        "முதல் புள்ளியில் மெல்லிய எம்பிராய்டரி ஊசியை மேலே எடுத்து ஒரு சீக்வினைக் கோத்துக்கொள்ளுங்கள். அது தட்டையாக அமர, அடுத்த புள்ளியை நோக்கி அதன் ஓரத்துக்கு வெளியே ஊசியைக் கீழே செலுத்துங்கள்.",
+        "அடுத்த புள்ளியில் ஊசியை மேலே எடுத்து இரண்டாவது சீக்வினைக் கோத்துக்கொள்ளுங்கள். அதன் ஓரம் முதல் சீக்வின்மேல் சிறிது படியட்டும். அதே திசையில் அதைப் பிடித்துத் தைத்து, வரிசையின் இறுதிவரை தொடருங்கள்.",
+        "கடைசி சீக்வினின் நடுவிலிருந்து அதன் ஓரத்தில் வேறொரு இடத்துக்கு மேலும் ஒரு தையல் போடுங்கள். துணியின் பின்புறத்தில் நூலை முடிக்கவும்."
+      ],
+      "exercise": "எட்டு சீக்வின்களை ஒரு நேர்கோட்டிலும், மேலும் எட்டு சீக்வின்களை ஒரு மென்மையான வளைவிலும் தையுங்கள். இரண்டு கோடுகளிலும் நடுப்புள்ளிகளுக்கு இடையே சம இடைவெளி விடுங்கள்.",
+      "check": "நேரான வரிசையில் அடுத்தடுத்த சீக்வின்கள் சுமார் 2 மி.மீ. ஒன்றன்மேல் ஒன்று படிய வேண்டும். தளர்ந்த அல்லது சாய்ந்த சீக்வின்கள் உள்ளனவா என்று விரல் நுனியால் மெதுவாகத் தடவிப் பாருங்கள்."
     }
   ]
 }
