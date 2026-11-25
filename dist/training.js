@@ -289,6 +289,7 @@ referenceForm?.addEventListener('submit', async event => {
       const access = { expiresAt: Date.now() + trainingDuration, usedReferences: [...saved.usedReferences, hash] };
       localStorage.setItem(trainingAccessKey, JSON.stringify(access));
       trainingAccess = access;
+      document.dispatchEvent(new Event('aari:training-unlocked'));
     }
     paymentReference.value = '';
     memberMessage = 'memberReady';
