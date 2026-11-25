@@ -1,0 +1,32 @@
+.reporting-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+  gap: .75rem;
+}
+
+.reporting-metrics div {
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: .6rem;
+  background: var(--cream);
+}
+
+.reporting-metrics dt { font-weight: 700; }
+.reporting-metrics dd { margin: .2rem 0 0; font-size: 1.6rem; color: var(--wine); }
+
+#record-payment input:not([type="checkbox"]) {
+  max-width: 100%;
+  padding: .45rem .6rem;
+  min-height: 2.5rem;
+  border: 1px solid var(--line);
+  border-radius: .4rem;
+  background: white;
+  color: var(--ink);
+  font: inherit;
+}
+
+.reporting-table { overflow-x: auto; margin-block: 1rem; }
+.reporting-table table { width: 100%; border-collapse: collapse; }
+.reporting-table caption { text-align: start; font-size: 1.1rem; font-weight: 700; padding-block: .4rem; }
+.reporting-table th, .reporting-table td { text-align: start; padding: .55rem .7rem; border-bottom: 1px solid var(--line); }
+.reporting-table thead { background: var(--pink); }

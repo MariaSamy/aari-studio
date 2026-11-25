@@ -6,8 +6,10 @@ import { extname, join, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { DatabaseSync } from 'node:sqlite';
 import { pipeline } from 'node:stream/promises';
+import { openReporting } from './reporting.mjs';
 
 const publicDir = fileURLToPath(new URL('../dist', import.meta.url));
+const reporting = await openReporting(publicDir);
 const dataDir = resolve(process.env.AARI_DATA_DIR || 'data');
 const adminToken = process.env.AARI_ADMIN_TOKEN?.trim();
 const contact = parseContact(process.env.AARI_MEMBERSHIP_CONTACT_URL);
@@ -125,8 +127,9 @@ function json(response, status, data) {
   response.end(JSON.stringify(data));
 }
 
-async function readJson(request) {
-  if (request.headers['content-type']?.split(';')[0].trim() !== 'application/json') {
+async function readJson(request, allowedTypes = ['application/json']) {
+  const type = request.headers['content-type']?.split(';')[0].trim();
+  if (!allowedTypes.includes(type)) {
     throw new Error('Expected JSON.');
   }
   const chunks = [];
@@ -426,6 +429,7 @@ const server = createServer(async (request, response) => {
   response.setHeader('X-Content-Type-Options', 'nosniff');
   try {
     const path = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
+    if (reporting && await reporting(request, response, path, readJson, json)) return;
     if (manualUpi && request.method === 'GET' && path === '/admin/payments') {
       const page = fileURLToPath(new URL('./payments.html', import.meta.url));
       return await sendFile(request, response, page, 'no-store');

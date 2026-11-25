@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aari Studio · Owner reporting</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/admin/reporting.css">
+  <script defer src="/admin/reporting.js"></script>
+</head>
+<body>
+  <header class="top"><div class="bar"><a class="brand" href="/">Aari Studio</a></div></header>
+  <main>
+    <section class="section" aria-labelledby="reporting-title">
+      <h1 class="page-title" id="reporting-title">Owner reporting</h1>
+      <p id="measurement-period"></p>
+      <dl class="reporting-metrics">
+        <div><dt>Tracked unique browsers</dt><dd id="tracked-browsers">—</dd></div>
+        <div><dt>Page opens</dt><dd id="page-opens">—</dd></div>
+        <div><dt>Unverified training unlocks</dt><dd id="unverified-unlocks">—</dd></div>
+        <div><dt>Confirmed ₹99 payments</dt><dd id="confirmed-payments">—</dd></div>
+        <div><dt>Confirmed payments total</dt><dd id="confirmed-total">—</dd></div>
+      </dl>
+      <p>Counts cover browsers observed since measurement began. Repeat opens count as page opens. Clearing site data can make a return visit count as a new browser.</p>
+      <p id="summary-problem" role="status"></p>
+      <button type="button" class="button soft" id="refresh-metrics">Refresh counts</button>
+    </section>
+    <section class="section" aria-labelledby="payment-title">
+      <h2 id="payment-title">Record a ₹99 payment</h2>
+      <p>Match the transaction reference to an incoming ₹99 credit in your bank or UPI app. Recording it updates this report only.</p>
+      <form id="record-payment">
+        <p>
+          <label for="reference">UPI transaction reference</label>
+          <input id="reference" minlength="6" maxlength="48" pattern="[A-Za-z0-9][A-Za-z0-9\-]{4,46}[A-Za-z0-9]" autocomplete="off" required>
+        </p>
+        <p><label for="credit-date">Date shown on the bank credit</label> <input id="credit-date" type="date" required></p>
+        <p><label><input id="matched" type="checkbox" required> I matched this reference to an incoming ₹99 credit.</label></p>
+        <button class="button" type="submit">Record payment</button>
+      </form>
+      <p id="record-message" role="status"></p>
+      <div class="reporting-table">
+        <table>
+          <caption>Recently recorded payments</caption>
+          <thead><tr><th scope="col">UPI reference ending</th><th scope="col">Amount</th><th scope="col">Credit date</th><th scope="col">Recorded in dashboard</th></tr></thead>
+          <tbody id="recent-payments"></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="section" aria-labelledby="activity-title">
+      <h2 id="activity-title">Site activity</h2>
+      <div class="reporting-table">
+        <table>
+          <caption>Page opens by section</caption>
+          <thead><tr><th scope="col">Section</th><th scope="col">Opens</th><th scope="col">Tracked browsers</th></tr></thead>
+          <tbody id="page-activity"></tbody>
+        </table>
+      </div>
+      <div class="reporting-table">
+        <table>
+          <caption>Recent activity</caption>
+          <thead><tr><th scope="col">Activity</th><th scope="col">Time (India)</th></tr></thead>
+          <tbody id="recent-activity"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
