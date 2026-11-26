@@ -60,6 +60,20 @@ const trainingMedia = {
     video: 'gold-cord-demo',
     caption: 'trainingGoldCordDemo',
   },
+  'curved-leaf-border': {
+    image: 'gallery-purple-peacock-leaf-neckline.webp',
+    alt: {
+      en: 'Green leaf shapes outlined in gold follow a curved neckline on purple fabric.',
+      ta: 'ஊதாத் துணியில் கழுத்து வளைவைத் தொடர்ந்து தங்க நிற ஓரமிட்ட பச்சை இலை வடிவங்கள் உள்ளன.',
+    },
+  },
+  'beaded-rosette': {
+    image: 'gallery-mint-paisley-lattice-sleeve.webp',
+    alt: {
+      en: 'Small circular gold-bead flowers surround the central paisley on a mint-green sleeve.',
+      ta: 'இளம்பச்சைக் கையின் நடுவிலுள்ள மாங்காய் வடிவத்தைச் சுற்றிச் சிறிய வட்டமான தங்க நிற மணிப்பூக்கள் உள்ளன.',
+    },
+  },
 };
 
 function hasTrainingAccess() {

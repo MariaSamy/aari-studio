@@ -152,6 +152,32 @@
       ],
       "exercise": "Stitch two teardrops. Give one a single padding layer and the other two layers at the widest point. Compare their height under light from the side.",
       "check": "The top layer should cover the padding. The tip should stay neat and the surrounding fabric should lie flat."
+    },
+    {
+      "id": "curved-leaf-border",
+      "title": "Stitch a leaf border around a neckline curve",
+      "goal": "Use an Aari hook and two thread colours to space small leaves evenly around a curved border.",
+      "steps": [
+        "Draw a 10 cm neckline curve on framed cotton. Draw a second curve about 4 mm outside it as a guide for the leaf bases.",
+        "Follow the outer curve with a flexible tape and mark six bases about 12 mm apart. Draw a leaf about 8 mm long at each mark, with its tip pointing outward and slightly along the curve.",
+        "Chain-stitch the inner curve in gold thread. Outline each leaf from its base around the tip and back to the base. Use shorter loops at the tip, then secure the last loop at the base.",
+        "Fill each leaf with short green chain-stitch rows that follow the leaf's length. Leave a slim gold edge visible and end the fill just before the tip to keep it sharp."
+      ],
+      "exercise": "Stitch three leaves along a gentle bend and three around a tighter bend. Check the spacing along the curved guide with a flexible tape.",
+      "check": "The gaps between the bases should look even. The leaves should follow the bend, with distinct tips and a flat gold outline."
+    },
+    {
+      "id": "beaded-rosette",
+      "title": "Make a six-bead rosette for a blouse sleeve",
+      "goal": "Use a fine beading needle to make a small flower with six evenly spaced bead petals around a centre bead.",
+      "steps": [
+        "Stretch a cotton swatch and mark a centre dot. Lay out one 4 mm centre bead and six matching 3 mm beads around it. Mark where each outer bead will sit.",
+        "Anchor beading thread on the back. Bring the needle up at one end of the centre bead, pass through its hole and take the needle down at the other end. Stitch through the bead a second time to secure it.",
+        "Attach the six outer beads one at a time. Start at the top, then stitch the opposite bead at the bottom before adding the remaining two pairs. Aim the holes of the outer beads toward the centre.",
+        "Keep each stitch snug enough to hold the bead flat. Weave the thread under the stitches on the back and trim it."
+      ],
+      "exercise": "Make three rosettes in a row with the centres 2 cm apart. Try a contrasting centre bead in the middle rosette.",
+      "check": "Each rosette should have six evenly spaced petals. Gently brush the beads with your fingertip. They should stay in position and the fabric should lie flat."
     }
   ],
   "ta": [
@@ -307,6 +333,32 @@
       ],
       "exercise": "இரண்டு துளி வடிவங்களைத் தையுங்கள். ஒன்றில் ஓர் அடுக்கும் மற்றொன்றின் அகலமான பகுதியில் இரண்டு அடுக்குகளும் போடுங்கள். பக்கவாட்டில் வெளிச்சம் படும்போது அவற்றின் உயரத்தை ஒப்பிடுங்கள்.",
       "check": "மேல் தையல்கள் அடித்தையல்களை முழுமையாக மூட வேண்டும். நுனி சீராகவும் சுற்றியுள்ள துணி சுருக்கமின்றியும் இருக்க வேண்டும்."
+    },
+    {
+      "id": "curved-leaf-border",
+      "title": "கழுத்து வளைவைச் சுற்றி இலைக் கரை தைத்தல்",
+      "goal": "ஆரி ஊசியையும் இரு நிற நூல்களையும் பயன்படுத்தி, வளைந்த கரையில் சிறிய இலைகளைச் சம இடைவெளியில் தைக்கக் கற்றுக்கொள்ளுங்கள்.",
+      "steps": [
+        "சட்டத்தில் பொருத்திய பருத்தித் துணியில் 10 செ.மீ. நீளமுள்ள கழுத்து வளைவை வரையுங்கள். இலைகளின் அடிப்பகுதியைக் குறிக்க, அதிலிருந்து சுமார் 4 மி.மீ. வெளியே இன்னொரு வளைவை வரையுங்கள்.",
+        "நெகிழும் அளவுநாடாவால் வெளி வளைவில் சுமார் 12 மி.மீ. இடைவெளியில் ஆறு புள்ளிகளைக் குறியுங்கள். ஒவ்வொரு புள்ளியிலும் சுமார் 8 மி.மீ. நீளமுள்ள இலையை வரையுங்கள். இலை நுனிகள் வெளிப்புறமாகவும் வளைவின் திசையில் சற்றுச் சாய்ந்தும் இருக்கட்டும்.",
+        "உள் வளைவைத் தங்க நிற நூலால் சங்கிலித் தையலில் தையுங்கள். ஒவ்வொரு இலையின் அடியிலிருந்து தொடங்கி, நுனியைச் சுற்றி மீண்டும் அடிக்குத் திரும்பி அதன் வெளிக்கோட்டைத் தையுங்கள். நுனியில் சிறிய வளையங்களைப் போட்டு, அடியில் கடைசி வளையத்தைப் பிடித்து முடியுங்கள்.",
+        "இலையின் நீளத்துக்கு ஏற்ப பச்சை நூலால் சிறிய சங்கிலித் தையல் வரிசைகளைப் போட்டு நிரப்புங்கள். மெல்லிய தங்க நிற ஓரம் தெரியட்டும். நுனி கூர்மையாக இருக்க, அதற்குச் சற்று முன்பே நிரப்புவதை நிறுத்துங்கள்."
+      ],
+      "exercise": "மெதுவாக வளைந்த பகுதியில் மூன்று இலைகளையும், அதிகமாக வளைந்த பகுதியில் மூன்று இலைகளையும் தையுங்கள். வளைந்த வழிகோட்டில் அளவுநாடாவால் இடைவெளியைச் சரிபாருங்கள்.",
+      "check": "இலை அடிப்பகுதிகளுக்கு இடையிலான இடைவெளி சீராக இருக்க வேண்டும். இலைகள் வளைவின் போக்கைப் பின்பற்ற வேண்டும். நுனிகள் தெளிவாகவும் தங்க நிற ஓரம் தட்டையாகவும் இருக்க வேண்டும்."
+    },
+    {
+      "id": "beaded-rosette",
+      "title": "ரவிக்கைக் கைக்கு ஆறு இதழ் மணிப்பூ தைத்தல்",
+      "goal": "மெல்லிய மணி ஊசியால் நடு மணியைச் சுற்றி ஆறு இதழ் மணிகளைச் சம இடைவெளியில் தைத்துச் சிறிய பூ உருவாக்குங்கள்.",
+      "steps": [
+        "பருத்தித் துண்டைச் சட்டத்தில் பொருத்தி நடுப் புள்ளியைக் குறியுங்கள். நடுவில் ஒரு 4 மி.மீ. மணியையும் அதைச் சுற்றி ஒரே அளவுள்ள ஆறு 3 மி.மீ. மணிகளையும் வைத்து, வெளி மணிகள் அமரும் இடங்களைக் குறியுங்கள்.",
+        "துணியின் பின்புறத்தில் நூலைப் பிடித்துத் தொடங்குங்கள். நடு மணியின் ஒரு முனையில் ஊசியை மேலே எடுத்து, மணியின் துளை வழியாகக் கோத்து, மறுமுனையில் கீழே செலுத்துங்கள். மணியை உறுதியாகப் பிடிக்க மீண்டும் ஒருமுறை அதே துளை வழியாகத் தையுங்கள்.",
+        "வெளி மணிகளை ஒவ்வொன்றாகத் தையுங்கள். முதலில் மேல் மணியையும் அடுத்து அதற்கு எதிரே உள்ள கீழ் மணியையும் தையுங்கள். பின்னர் மீதமுள்ள இரண்டு எதிரெதிர் ஜோடிகளைத் தையுங்கள். வெளி மணிகளின் துளைகள் நடுவை நோக்கி இருக்கட்டும்.",
+        "மணிகள் தட்டையாக அமரும் அளவுக்கு நூலை இழுத்துத் தையுங்கள். துணியின் பின்புறத் தையல்களுக்கு அடியில் நூலைக் கோத்து வெட்டி முடிக்கவும்."
+      ],
+      "exercise": "நடுப்புள்ளிகளுக்கிடையில் 2 செ.மீ. இடைவெளி விட்டு வரிசையாக மூன்று மணிப்பூக்களைத் தையுங்கள். நடுவிலுள்ள பூவுக்கு வேறு நிற நடு மணியைப் பயன்படுத்திப் பாருங்கள்.",
+      "check": "ஒவ்வொரு பூவிலும் ஆறு இதழ் மணிகள் சம இடைவெளியில் இருக்க வேண்டும். விரலால் மெதுவாகத் தொட்டுப் பாருங்கள். மணிகள் நகராமல், துணி சுருக்கமின்றி இருக்க வேண்டும்."
     }
   ]
 }

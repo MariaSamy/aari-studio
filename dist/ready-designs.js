@@ -44,6 +44,31 @@ const readyCollection = [
     name: { en: 'Teal blouse with a floral neckline', ta: 'பூ வேலைப்பாடு கொண்ட நீலப்பச்சை ரவிக்கைக் கழுத்து' },
     detail: { en: 'Red and gold embroidery frames the neckline, and small floral sprigs decorate the blouse.', ta: 'சிவப்பும் தங்க நிறமும் கலந்த வேலைப்பாடு கழுத்தைச் சுற்றியுள்ளது. சிறு பூங்கிளைகள் ரவிக்கையை அலங்கரிக்கின்றன.' },
   },
+  {
+    id: 'teal-teardrop-neckline', placement: 'neck', image: 'gallery-teal-teardrop-neckline.webp',
+    name: { en: 'Teal teardrop-stone neckline', ta: 'துளி வடிவக் கற்கள் பதித்த நீலப்பச்சைக் கழுத்து வடிவம்' },
+    detail: { en: 'Rows of gold beads and pearls frame teal teardrop stones along the neckline.', ta: 'கழுத்து ஓரத்தில் நீலப்பச்சைத் துளி வடிவக் கற்களைத் தங்க நிற மணிகளும் முத்து வரிசைகளும் சுற்றியுள்ளன.' },
+  },
+  {
+    id: 'purple-turquoise-birds', placement: 'back', image: 'gallery-purple-turquoise-birds.webp',
+    name: { en: 'Turquoise twin-bird motif', ta: 'நீலப்பச்சை இரட்டைப் பறவை வடிவம்' },
+    detail: { en: 'Two turquoise birds sit above gold leaves and strands of hanging beads on purple fabric.', ta: 'ஊதாத் துணியில் இரு நீலப்பச்சைப் பறவைகளின் கீழே தங்க நிற இலைகளும் தொங்கும் மணி வரிசைகளும் உள்ளன.' },
+  },
+  {
+    id: 'purple-peacock-leaf-neckline', placement: 'neck', image: 'gallery-purple-peacock-leaf-neckline.webp',
+    name: { en: 'Purple peacock neckline with a leaf border', ta: 'இலைக் கரையுடன் ஊதா மயில் கழுத்து வடிவம்' },
+    detail: { en: 'A narrow gold-and-green leaf border frames the curve and meets a large peacock motif on one side.', ta: 'தங்க நிறமும் பச்சையும் கலந்த சிறிய இலைகள் கழுத்து வளைவைச் சுற்றி, ஒரு பக்கத்தில் பெரிய மயில் வடிவத்துடன் இணைகின்றன.' },
+  },
+  {
+    id: 'mint-paisley-lattice-sleeve', placement: 'sleeve', image: 'gallery-mint-paisley-lattice-sleeve.webp',
+    name: { en: 'Mint paisley sleeve with a lattice cuff', ta: 'கட்ட வடிவக் கை ஓரத்துடன் இளம்பச்சை மாங்காய் வடிவம்' },
+    detail: { en: 'Gold bead rosettes surround a central paisley, with a square-stone lattice at the cuff.', ta: 'நடுவிலுள்ள மாங்காய் வடிவத்தைத் தங்க நிற மணிப்பூக்கள் சுற்றியுள்ளன. கை ஓரத்தில் சதுரக் கற்களால் ஆன கட்ட வடிவம் உள்ளது.' },
+  },
+  {
+    id: 'aqua-floral-trellis-sleeve', placement: 'sleeve', image: 'gallery-aqua-floral-trellis-sleeve.webp',
+    name: { en: 'Aqua sleeve with a gold floral trellis', ta: 'தங்க நிறப் பூ வலைப்பின்னலுடன் நீலப்பச்சைக் கை வடிவம்' },
+    detail: { en: 'Gold flowers and curling vines frame a diamond trellis dotted with small bead clusters.', ta: 'சிறிய மணிக்கொத்துகள் கொண்ட வைர வடிவ வலைப்பின்னலைத் தங்க நிறப் பூக்களும் வளைந்த கொடிகளும் சுற்றியுள்ளன.' },
+  },
 ];
 
 const readyDialog = byId('ready-preview');
