@@ -126,6 +126,32 @@
       ],
       "exercise": "Make one row of eight sequins on a straight line and another along a gentle curve. Keep the centre marks evenly spaced along both guides.",
       "check": "Check that each sequin overlaps its neighbour by about 2 mm on the straight row. Brush the rows lightly with a fingertip to check for loose or tilted sequins."
+    },
+    {
+      "id": "chain-stitch-y-junction",
+      "title": "Join two Aari chain-stitch branches",
+      "goal": "Make a clean Y-shaped junction with an Aari hook and a fine hand needle.",
+      "steps": [
+        "Draw a Y on framed scrap cotton. Mark the junction and two branch tips about 2 cm from it.",
+        "With the hook above the cloth and the thread below, chain-stitch up the stem and out along the first branch. Keep the stitches short at the junction. Anchor the final loop and fasten the thread on the back.",
+        "Start the second branch beside the junction with a fresh thread. Draw up the first loop just outside the existing chain so the hook misses the stitched thread. Work outward and secure the final loop.",
+        "If a gap shows at the junction, bridge it with one tiny straight stitch in matching thread using the hand needle."
+      ],
+      "exercise": "Stitch two Y shapes, one with branches close together and one with branches spread wider. Compare the two junctions.",
+      "check": "Both branches should appear to grow from the stem. The join should lie flat without a lump of thread."
+    },
+    {
+      "id": "padded-satin-teardrop",
+      "title": "Raise a teardrop with padded satin stitch",
+      "goal": "Use a hand embroidery needle to make a small, raised accent for an Aari border.",
+      "steps": [
+        "Draw a teardrop about 15 mm long on framed cotton. Mark its long centre line.",
+        "Pad the shape with short lengthwise stitches. Add a second layer only over the widest area and leave the narrow tip lightly padded.",
+        "Start across the widest part. Bring the needle up on one edge and take it down on the opposite edge to cover the padding. Place the satin stitches side by side across the shape, working from the widest part toward the tip.",
+        "Return to the widest part and fill toward the rounded end. Keep the edges smooth, then weave the thread under the stitches on the back."
+      ],
+      "exercise": "Stitch two teardrops. Give one a single padding layer and the other two layers at the widest point. Compare their height under light from the side.",
+      "check": "The top layer should cover the padding. The tip should stay neat and the surrounding fabric should lie flat."
     }
   ],
   "ta": [
@@ -255,6 +281,32 @@
       ],
       "exercise": "எட்டு சீக்வின்களை ஒரு நேர்கோட்டிலும், மேலும் எட்டு சீக்வின்களை ஒரு மென்மையான வளைவிலும் தையுங்கள். இரண்டு கோடுகளிலும் நடுப்புள்ளிகளுக்கு இடையே சம இடைவெளி விடுங்கள்.",
       "check": "நேரான வரிசையில் அடுத்தடுத்த சீக்வின்கள் சுமார் 2 மி.மீ. ஒன்றன்மேல் ஒன்று படிய வேண்டும். தளர்ந்த அல்லது சாய்ந்த சீக்வின்கள் உள்ளனவா என்று விரல் நுனியால் மெதுவாகத் தடவிப் பாருங்கள்."
+    },
+    {
+      "id": "chain-stitch-y-junction",
+      "title": "ஆரி சங்கிலித் தையலில் இரு கிளைகளை இணைத்தல்",
+      "goal": "ஆரி ஊசியாலும் மெல்லிய கை ஊசியாலும் Y வடிவில் சீராகக் கிளைகளை இணைக்கக் கற்றுக்கொள்ளுங்கள்.",
+      "steps": [
+        "சட்டத்தில் பொருத்திய பருத்தித் துண்டில் Y வடிவம் வரையுங்கள். கிளைகள் பிரியும் இடத்தையும் அங்கிருந்து சுமார் 2 செ.மீ. தொலைவில் இரு கிளை நுனிகளையும் குறியுங்கள்.",
+        "ஆரி ஊசியைத் துணிக்கு மேலேயும் நூலைக் கீழேயும் வைத்துத் தண்டிலிருந்து முதல் கிளை நுனிவரை சங்கிலித் தையல் போடுங்கள். கிளை பிரியும் இடத்தில் சிறிய தையல்கள் போடுங்கள். கடைசி வளையத்தைப் பிடித்து, நூலைப் பின்புறத்தில் முடிக்கவும்.",
+        "புதிய நூலால் இணைப்பின் அருகே இரண்டாவது கிளையைத் தொடங்குங்கள். ஏற்கெனவே தைத்த நூலில் ஊசி படாதபடி, சங்கிலிக்குச் சற்று வெளியே முதல் வளையத்தை எடுங்கள். நுனி வரை தைத்துக் கடைசி வளையத்தைப் பிடியுங்கள்.",
+        "இணைப்பில் இடைவெளி தெரிந்தால், அதே நிற நூலைக் கை ஊசியில் கோத்து ஒரு சிறிய நேர்த் தையலால் இடைவெளியை மூடுங்கள்."
+      ],
+      "exercise": "கிளைகள் நெருக்கமாக உள்ள ஒரு Y வடிவத்தையும், கிளைகள் அகலமாகப் பிரியும் மற்றொரு Y வடிவத்தையும் தையுங்கள். இரண்டின் இணைப்புகளையும் ஒப்பிடுங்கள்.",
+      "check": "இரு கிளைகளும் தண்டிலிருந்து பிரிவதுபோல் தெரிய வேண்டும். இணைப்பில் நூல் குவியாமல் தட்டையாக இருக்க வேண்டும்."
+    },
+    {
+      "id": "padded-satin-teardrop",
+      "title": "அடித்தையல் இட்டுத் துளி வடிவில் உயர்த்திய சாட்டின் தையல்",
+      "goal": "கை எம்பிராய்டரி ஊசியால் ஆரி கரைக்கு ஒரு சிறிய புடைப்பான அலங்காரம் தையுங்கள்.",
+      "steps": [
+        "சட்டத்தில் பொருத்திய பருத்தித் துணியில் சுமார் 15 மி.மீ. நீளமுள்ள துளி வடிவம் வரையுங்கள். அதன் நடுவில் நீளவாக்கில் கோடிடுங்கள்.",
+        "வடிவத்துக்குள் நீளவாக்கில் சிறிய அடித்தையல்களைப் போடுங்கள். அகலமான பகுதியில் மட்டும் இரண்டாம் அடுக்கு போடுங்கள். குறுகிய நுனியில் மெல்லிய அடுக்கு போதும்.",
+        "அகலமான பகுதியிலிருந்து தொடங்குங்கள். ஒரு ஓரத்தில் ஊசியை மேலே எடுத்து, அடித்தையலை மூடும் வகையில் மறு ஓரத்தில் கீழே செலுத்துங்கள். இவ்வாறு சாட்டின் தையல்களை அருகருகே போட்டுக்கொண்டே நுனி நோக்கித் தையுங்கள்.",
+        "அகலமான பகுதிக்குத் திரும்பி, வட்டமான முனை வரை நிரப்புங்கள். ஓரங்களைச் சீராக வைத்துத் துணியின் பின்புறத் தையல்களுக்கு அடியில் நூலைக் கோத்து முடிக்கவும்."
+      ],
+      "exercise": "இரண்டு துளி வடிவங்களைத் தையுங்கள். ஒன்றில் ஓர் அடுக்கும் மற்றொன்றின் அகலமான பகுதியில் இரண்டு அடுக்குகளும் போடுங்கள். பக்கவாட்டில் வெளிச்சம் படும்போது அவற்றின் உயரத்தை ஒப்பிடுங்கள்.",
+      "check": "மேல் தையல்கள் அடித்தையல்களை முழுமையாக மூட வேண்டும். நுனி சீராகவும் சுற்றியுள்ள துணி சுருக்கமின்றியும் இருக்க வேண்டும்."
     }
   ]
 }
