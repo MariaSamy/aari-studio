@@ -60,6 +60,16 @@ const trainingMedia = {
     video: 'gold-cord-demo',
     caption: 'trainingGoldCordDemo',
   },
+  'whipped-chain-border': {
+    image: 'whipped-chain-demo-poster.png',
+    video: 'whipped-chain-demo',
+    caption: 'trainingWhippedChainDemo',
+  },
+  'overlapping-sequin-border': {
+    image: 'overlapping-sequins-demo-poster.png',
+    video: 'overlapping-sequins-demo',
+    caption: 'trainingOverlappingSequinsDemo',
+  },
   'curved-leaf-border': {
     image: 'gallery-purple-peacock-leaf-neckline.webp',
     alt: {
