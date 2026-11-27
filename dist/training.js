@@ -84,6 +84,20 @@ const trainingMedia = {
       ta: 'இளம்பச்சைக் கையின் நடுவிலுள்ள மாங்காய் வடிவத்தைச் சுற்றிச் சிறிய வட்டமான தங்க நிற மணிப்பூக்கள் உள்ளன.',
     },
   },
+  'herringbone-cuff-band': {
+    image: 'herringbone-cuff-stitch-diagram.webp',
+    alt: {
+      en: 'First, cross from the lower guide to the upper guide, then move back to the left under the fabric. Next, alternate guides to form a row of X shapes between two gold chain borders.',
+      ta: 'முதலில் கீழ்க் கோட்டிலிருந்து மேல் கோட்டுக்குக் குறுக்காகத் தைத்து, துணியின் அடியில் சற்று இடப்புறம் நகருங்கள். பின் மேல், கீழ் கோடுகளுக்கு மாறி மாறித் தைத்து, இரு தங்க நிறச் சங்கிலிக் கரைகளுக்கிடையில் X வடிவங்களை உருவாக்குங்கள்.',
+    },
+  },
+  'shisha-mirror-chain-edge': {
+    image: 'shisha-mirror-stitch-diagram.webp',
+    alt: {
+      en: 'Three vertical threads run across the mirror and anchor in the surrounding fabric. Weave three horizontal threads over and under them, then stitch a gold chain ring outside the rim.',
+      ta: 'கண்ணாடியின் மேல் மூன்று செங்குத்து நூல்கள் செல்கின்றன. அவற்றின் முனைகள் சுற்றியுள்ள துணியில் பிடிக்கப்பட்டுள்ளன. மூன்று கிடைமட்ட நூல்களை மேலும் கீழுமாகப் பின்னி, விளிம்புக்கு வெளியே தங்க நிறச் சங்கிலித் தையல் போடுங்கள்.',
+    },
+  },
 };
 
 function hasTrainingAccess() {

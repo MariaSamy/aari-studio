@@ -1,5 +1,35 @@
 const readyCollection = [
   {
+    id: 'crimson-peacock-palanquin', placement: 'back', image: 'gallery-crimson-peacock-palanquin.webp',
+    name: { en: 'Crimson peacock and palanquin blouse back', ta: 'மயில்களும் பல்லக்கும் கொண்ட செந்நிற ரவிக்கைப் பின்புறம்' },
+    detail: { en: 'Two green-and-gold peacocks frame a palanquin procession above a diamond-patterned border.', ta: 'வைர வடிவக் கரைக்கு மேலே பல்லக்கு ஊர்வலம் உள்ளது. இருபுறமும் பச்சையும் தங்க நிறமும் கலந்த மயில்கள் உள்ளன.' },
+  },
+  {
+    id: 'magenta-dancer-vines', placement: 'sleeve', image: 'gallery-magenta-dancer-vines.webp',
+    name: { en: 'Magenta dancer and leaf-vine sleeve panel', ta: 'நடன உருவமும் இலைக்கொடிகளும் கொண்ட அடர் இளஞ்சிவப்புக் கை வடிவம்' },
+    detail: { en: 'Gold and red leaf vines surround a dancer beneath a pointed arch, with a beaded band below.', ta: 'கூர்முனை வளைவுக்குள் நடன உருவம் உள்ளது. அதைச் சிவப்பும் தங்க நிறமும் கலந்த இலைக்கொடிகள் சுற்றியுள்ளன. கீழே மணி வேலைப்பாடு கொண்ட பட்டை உள்ளது.' },
+  },
+  {
+    id: 'green-gold-arch-medallion', placement: 'sleeve', image: 'gallery-green-gold-arch-medallion.webp',
+    name: { en: 'Green sleeve with a gold arch and floral medallion', ta: 'தங்க நிற வளைவும் பூ வடிவமும் கொண்ட பச்சை ரவிக்கைக் கை' },
+    detail: { en: 'A pink-and-gold floral motif sits inside a pointed arch, between a diamond lattice and a scalloped cuff.', ta: 'கூர்முனை வளைவுக்குள் இளஞ்சிவப்பும் தங்க நிறமும் கலந்த பூ வடிவம் உள்ளது. மேலே வைர வடிவ வலைப்பின்னலும் கீழே அலை வடிவக் கை ஓரமும் உள்ளன.' },
+  },
+  {
+    id: 'red-floral-grid-peacock', placement: 'sleeve', image: 'gallery-red-floral-grid-peacock.webp',
+    name: { en: 'Red floral-grid sleeve with peacock cuff', ta: 'பூக் கட்டங்களும் மயில் கை ஓரமும் கொண்ட சிவப்பு ரவிக்கைக் கை' },
+    detail: { en: 'Gold squares hold small green-centred flowers above a round medallion and a peacock cuff motif.', ta: 'தங்க நிறக் கட்டங்களுக்குள் பச்சை நடுப்பகுதி கொண்ட சிறு பூக்கள் உள்ளன. அவற்றுக்குக் கீழே வட்ட வடிவமும் கை ஓரத்தில் மயில் வடிவமும் உள்ளன.' },
+  },
+  {
+    id: 'coral-diamond-pearl-neckline', placement: 'neck', image: 'gallery-coral-diamond-pearl-neckline.webp',
+    name: { en: 'Coral blouse with a pearl neckline and diamond cuffs', ta: 'முத்துக் கழுத்துக் கரையும் வைர வடிவக் கை ஓரமும் கொண்ட பவள நிற ரவிக்கை' },
+    detail: { en: 'Pearls and gold beads trace the neckline, and dense diamond motifs cover the broad cuff panels.', ta: 'முத்துகளும் தங்க நிற மணிகளும் கழுத்துக் கோட்டைச் சுற்றியுள்ளன. அகன்ற கை ஓரங்களில் நெருக்கமான வைர வடிவங்கள் உள்ளன.' },
+  },
+  {
+    id: 'fuchsia-floral-blouse-back', placement: 'back', image: 'gallery-fuchsia-floral-blouse-back.webp',
+    name: { en: 'Fuchsia blouse back with gold floral sleeves', ta: 'தங்க நிறப் பூங்கொடிகள் தைத்த கைகளுடன் அடர் இளஞ்சிவப்பு ரவிக்கைப் பின்புறம்' },
+    detail: { en: 'An embroidered centrepiece fills a pale pink inset framed by gold beads and floral sleeves.', ta: 'வெளிர் இளஞ்சிவப்பு நடுப்பகுதியில் அலங்கார உருவம் தைக்கப்பட்டுள்ளது. அதைச் சுற்றித் தங்க நிற மணிக் கரையும் இருபுறக் கைகளில் பூங்கொடிகளும் உள்ளன.' },
+  },
+  {
     id: 'navy-twin-peacock', placement: 'sleeve', image: 'gallery-navy-twin-peacock.webp',
     name: { en: 'Navy twin-peacock sleeve', ta: 'இரு மயில்கள் கொண்ட கருநீலக் கை வடிவம்' },
   },
