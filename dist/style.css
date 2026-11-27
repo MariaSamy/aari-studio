@@ -129,9 +129,11 @@ footer{background:#f8edf1;color:var(--wine);padding:1.4rem 0}
 .training-lessons details{scroll-margin-top:1rem;padding:1rem;background:white;border:1px solid var(--line);border-radius:.85rem}
 .training-lessons summary{display:flex;align-items:center;gap:.75rem;font-weight:750;color:var(--wine);cursor:pointer}
 .training-lessons summary::after{content:"";width:.5rem;height:.5rem;margin-left:auto;flex:none;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg)}
-.training-lessons details[open] summary::after{transform:rotate(225deg)}
+.training-lessons details[open] > summary::after{transform:rotate(225deg)}
 .training-preview{width:104px;height:68px;flex:none;object-fit:contain;border-radius:.5rem;background:var(--pink)}
 .training-lesson-media{max-width:640px;margin:1rem 0}
+.training-lesson-media > details{margin-top:.65rem;padding:.65rem .8rem}
+.training-lesson-media > details .diagram{margin-top:.65rem}
 .training-lesson-media figcaption,.training-lesson-media .button{margin-top:.55rem}
 @media(max-width:520px){.training-practice{grid-template-columns:minmax(0,1fr)}.training-preview{width:72px;height:52px}}
 .training-lessons li+li{margin-top:.5rem}
