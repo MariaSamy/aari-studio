@@ -102,6 +102,14 @@ const trainingMedia = {
       ta: 'கண்ணாடியின் மேல் மூன்று செங்குத்து நூல்கள் செல்கின்றன. அவற்றின் முனைகள் சுற்றியுள்ள துணியில் பிடிக்கப்பட்டுள்ளன. மூன்று கிடைமட்ட நூல்களை மேலும் கீழுமாகப் பின்னி, விளிம்புக்கு வெளியே தங்க நிறச் சங்கிலித் தையல் போடுங்கள்.',
     },
   },
+  'detached-chain-sprig': {
+    video: 'detached-chain-sprig-demo',
+    caption: 'trainingCaptionedAnimation',
+  },
+  'beaded-picot-edging': {
+    video: 'beaded-picot-demo',
+    caption: 'trainingCaptionedAnimation',
+  },
 };
 
 function hasTrainingAccess() {
@@ -125,8 +133,8 @@ function buildLessonMedia(lesson, media, t) {
     const video = document.createElement('video');
     video.controls = true;
     video.playsInline = true;
-    video.preload = 'none';
-    video.poster = media.image;
+    video.preload = media.image ? 'none' : 'metadata';
+    if (media.image) video.poster = media.image;
     video.width = 768;
     video.height = 432;
     video.setAttribute('aria-label', lesson.title);
@@ -222,7 +230,7 @@ function renderTraining() {
     const media = trainingMedia[lesson.id];
     const titleText = document.createElement('span');
     titleText.textContent = t.lessonNumber + ' ' + (index + 3) + ' · ' + lesson.title;
-    if (media) {
+    if (media?.image) {
       const preview = document.createElement('img');
       preview.className = 'training-preview';
       preview.src = media.image;
